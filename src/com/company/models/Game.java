@@ -8,7 +8,7 @@ public class Game {
     Prompter prompter = new Prompter(new Scanner(System.in));
     private final Player player;
     Home home = new Home();
-    private String filepath = "resources/music.wav";
+    //private String filepath = "music.wav";
     private Music musicObject = new Music();
 
     public Game(Player player) {
@@ -135,10 +135,10 @@ public class Game {
             else if(inputSplit[0].equals("music")){
                 String musicInput = prompter.prompt("[PLAY] or [STOP] Music: ").toLowerCase();
                 if (musicInput.equals("play")){
-                    musicObject.playMusic(filepath);
+                    musicObject.playMusic("music.wav");
                 }
                 else if (musicInput.equals("stop")){
-                    musicObject.stopMusic(filepath);
+                    musicObject.stopMusic("music.wav");
                 }
                 else {
                     System.out.println("Invalid input");
