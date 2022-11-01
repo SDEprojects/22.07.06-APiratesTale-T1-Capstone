@@ -219,13 +219,16 @@ public class Player {
                         System.out.println(entry.get("name") + "'s current hp is : " + entry.get("hp"));
                         System.out.println("You are attacking: " + entry.get("name"));
                         Double points = (Double) entry.get("hp");
-                        if (points >= 0) {
+                        if (points > 0) {
                             points -= dp;
                             entry.put("hp", points);
                             System.out.println(entry.get("name") + "'s hp after attack is : " + points);
-                            Double damage = (Double) entry.get("dp");
-                            hp -= damage;
-                            System.out.println(entry.get("name") + " was able to attack you back. Your HP is now " + hp);
+                            //second if condition to kill npc characters at or under 0 health
+                            if (points > 0) {
+                                Double damage = (Double) entry.get("dp");
+                                hp -= damage;
+                                System.out.println(entry.get("name") + " was able to attack you back. Your HP is now " + hp);
+                            }
                         }
 
                         if (hp <= 0) {
