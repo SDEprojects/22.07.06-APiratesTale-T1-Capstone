@@ -1,10 +1,8 @@
 package com.company.models;
 
-import com.apps.util.Console;
 import com.apps.util.Prompter;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.*;

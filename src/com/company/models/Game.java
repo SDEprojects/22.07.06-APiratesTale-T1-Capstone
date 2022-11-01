@@ -48,7 +48,17 @@ public class Game {
             Console.clear();
             String[] inputSplit = userInput.trim().toLowerCase().split(" ");
             if(inputSplit[0].equals("look")) {
-                player.look(inputSplit[1]);
+                if (inputSplit.length == 2) {
+                    player.look(inputSplit[1]);
+                }
+                else if (inputSplit.length == 3) {
+                    String look = inputSplit[1] + " " + inputSplit[2];
+                    player.look(look);
+                }
+                else {
+                    System.out.println("Invalid action");
+                }
+
             }
             else if (inputSplit[0].equals("go")) {
                 if (inputSplit.length == 2) {
@@ -88,7 +98,17 @@ public class Game {
             }
 
             else if(inputSplit[0].equals("use")){
-                player.useItem(inputSplit[1]);
+                if (inputSplit.length == 2) {
+                    player.useItem(inputSplit[1]);
+                }
+                else if (inputSplit.length == 3) {
+                    String use = inputSplit[1] + " " + inputSplit[2];
+                    player.useItem(use);
+                }
+                else {
+                    System.out.println("Invalid use");
+                }
+
             }
             else if (inputSplit[0].equals("drop")){
                 if (inputSplit.length == 2) {
