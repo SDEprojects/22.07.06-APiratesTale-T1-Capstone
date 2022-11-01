@@ -12,6 +12,7 @@ public class Home {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
+    private FileGetter file = new FileGetter();
     Prompter prompter = new Prompter(new Scanner(System.in));
 
 
@@ -24,17 +25,19 @@ public class Home {
     }
 
     // welcome screen
+    // Changed file to be read from resources root vs a named path
     private void banner() {
-        try {
-            List<String> textLines = Files.readAllLines(Paths.get("resources/welcome.text"));
-            for(String line : textLines){
+        Scanner myReader = new Scanner(file.fileGetter("welcome.text"));
+        while (myReader.hasNextLine()) {
+            try {
                 Thread.sleep(500);
-                System.out.println( ANSI_YELLOW + line + ANSI_RESET);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
+            String data = myReader.nextLine();
+            System.out.println(ANSI_YELLOW + data + ANSI_RESET);
         }
+        myReader.close();
     }
 
     private void gameInfo()  {

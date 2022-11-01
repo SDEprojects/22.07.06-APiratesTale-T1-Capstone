@@ -18,6 +18,7 @@ public class Player {
     Prompter prompter = new Prompter(new Scanner(System.in));
     ArrayList<Map<String, Object>> locationData = tools.readJson("location.json");
     ArrayList<Map<String, Object>> characterData = tools.readJson("character.json");
+    private FileGetter file = new FileGetter();
 
     public Player() {
     }
