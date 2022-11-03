@@ -6,7 +6,7 @@ import com.apps.util.Console;
 import com.apps.util.Prompter;
 
 public class Player {
-    public String name;
+    public String name = "wilson";
     public double hp = 10;
     public double dp = 1;
     // make inventory/location items use list of item
@@ -34,12 +34,12 @@ public class Player {
     }
 
     // create new player
-    public void newPlayer() {
-        //refactor to UI
-        System.out.println("\nNew Game Created");
-        setPlayerName(prompter.prompt("\nAhoy, What is your name adventurer? "));
-        System.out.println();
-    }
+//    public void newPlayer() {
+//        //refactor to UI
+//        System.out.println("\nNew Game Created");
+//        setPlayerName(prompter.prompt("\nAhoy, What is your name adventurer? "));
+//        System.out.println();
+//    }
 
     // status menu bar
     public void status() {

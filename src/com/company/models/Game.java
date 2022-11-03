@@ -16,20 +16,20 @@ public class Game {
     }
 
     public void playGame() {
-        System.out.printf("\nWelcome to Mango Island, %s.", player.name);
-        System.out.println();
-        Console.pause(2000);
-        System.out.println("You awaken on the beach in your modest shack on Mango Island after a long nap.\nYou look out the window and notice a sad traveler approaching you. You step outside to greet him.");
-        System.out.println();
-
-        Console.pause(2000);
-        //get rid of with ui implementation
-        System.out.println("You can use the following commands to play the game: ");
-
-
-        System.out.println("TIP: Enter TALK [name] to speak to others.\n");
+//        System.out.printf("\nWelcome to Mango Island, %s.", player.name);
+//        System.out.println();
+//        Console.pause(2000);
+//        System.out.println("You awaken on the beach in your modest shack on Mango Island after a long nap.\nYou look out the window and notice a sad traveler approaching you. You step outside to greet him.");
+//        System.out.println();
+//
+//        Console.pause(2000);
+//        //get rid of with ui implementation
+//        System.out.println("You can use the following commands to play the game: ");
+//
+//
+//        System.out.println("TIP: Enter TALK [name] to speak to others.\n");
         actions();
-        System.out.println();
+//        System.out.println();
     }
 
     // menu actions for player
