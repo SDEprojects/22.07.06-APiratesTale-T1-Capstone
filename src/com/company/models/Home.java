@@ -19,31 +19,11 @@ public class Home {
 
     //Methods
     public void buildHome() {
-        banner();
-        gameInfo();
+
+//        banner(); replace banner with a splash screen intro "title page"
+        // maybe swap with "splash screen"
+//        gameInfo(); replace with an informational button
         startGame();
-    }
-
-    // welcome screen
-    // Changed file to be read from resources root vs a named path
-    private void banner() {
-        Scanner myReader = new Scanner(file.fileGetter("welcome.text"));
-        while (myReader.hasNextLine()) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            String data = myReader.nextLine();
-            System.out.println(ANSI_YELLOW + data + ANSI_RESET);
-        }
-        myReader.close();
-    }
-
-    private void gameInfo()  {
-
-        System.out.println(ANSI_BLUE +"This is a terminal based role playing game. Seek adventure, by solving the mystery of the " +
-                            "secret treasure of Skull Island. Please select a MENU option to continue.\n" + ANSI_RESET);
     }
 
     private void startGame() {
@@ -57,6 +37,7 @@ public class Home {
                 break;
             }
             if (menuSelection.toLowerCase().equals("exit")) {
+                //maybe build a confirmation or do we just click to close?
                 System.out.println("\nThanks For Playing... Good Bye!");
                 System.exit(0);
             }
