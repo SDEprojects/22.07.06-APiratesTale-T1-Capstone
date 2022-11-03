@@ -2,6 +2,7 @@ package com.company.models;
 import com.apps.util.Prompter;
 
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -9,52 +10,51 @@ import javax.sound.sampled.*;
 
 
 public class Music {
-    Prompter prompter = new Prompter(new Scanner(System.in));
-    private String musicLocation;
-    Clip clip;
-    {
-        try {
-            clip = AudioSystem.getClip();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
+
+    FileGetter fileGetter = new FileGetter();
+    Scanner scanner = new Scanner(System.in);
+    File file = new File("");
+    boolean playCompleted;
 
     public void playMusic(String musicLocation) {
-        try {
-            File musicPath = new File(musicLocation);
-            if (musicPath.exists()) {
 
-                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                clip.open(audioInput);
-                clip.start();
-            }
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        try {
+            //using bufferedInputStream and file getter to use classpath/resources root
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(fileGetter.fileGetter(musicLocation)));
+            Clip audioClip = AudioSystem.getClip();
+            audioClip.open(audioStream);
+            //Added loop
+            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+            playCompleted = false;
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!playCompleted) {
+                        try {
+                            Thread.sleep(1000);
+
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    audioClip.close();
+                }
+            });
+            thread.start();
+
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            ex.printStackTrace();
         }
+
     }
 
-    public  void stopMusic(String musicLocation) {
-        try {
-            File musicPath = new File(musicLocation);
-            if(musicPath.exists() && clip.isOpen()) {
+    public void update(LineEvent event) {
+        LineEvent.Type type = event.getType();
 
-                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                clip.close();
-            }
-        }
-        catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
+
+    public void stopMusic(String musicLocation) {
+        playCompleted = true;
+    }
+
 }
-
-
-
-

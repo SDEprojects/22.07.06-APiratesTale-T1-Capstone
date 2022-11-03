@@ -8,7 +8,7 @@ public class Game {
     Prompter prompter = new Prompter(new Scanner(System.in));
     private final Player player;
     Home home = new Home();
-    private String filepath = "resources/music.wav";
+    //private String filepath = "music.wav";
     private Music musicObject = new Music();
 
     public Game(Player player) {
@@ -23,6 +23,7 @@ public class Game {
         System.out.println();
 
         Console.pause(2000);
+        //get rid of with ui implementation
         System.out.println("You can use the following commands to play the game: ");
 
 
@@ -38,6 +39,7 @@ public class Game {
 //            Console.pause(1000);
 
             player.status();
+            //replace with UI
             String userInput = prompter.prompt("\nCMD:  GO [direction] |  TALK [name]  |  GRAB [item]  |   DROP [item]" +
                     "    |     LOOK [item]" +
 
@@ -46,9 +48,21 @@ public class Game {
                     "---------------------------------------------------------\nYOUR MOVE: ").toLowerCase();
 //            Console.pause(500);
             Console.clear();
+
+            //rebuild to switch statement and use event handler
             String[] inputSplit = userInput.trim().toLowerCase().split(" ");
             if(inputSplit[0].equals("look")) {
-                player.look(inputSplit[1]);
+                if (inputSplit.length == 2) {
+                    player.look(inputSplit[1]);
+                }
+                else if (inputSplit.length == 3) {
+                    String look = inputSplit[1] + " " + inputSplit[2];
+                    player.look(look);
+                }
+                else {
+                    System.out.println("Invalid action");
+                }
+
             }
             else if (inputSplit[0].equals("go")) {
                 if (inputSplit.length == 2) {
@@ -88,7 +102,17 @@ public class Game {
             }
 
             else if(inputSplit[0].equals("use")){
-                player.useItem(inputSplit[1]);
+                if (inputSplit.length == 2) {
+                    player.useItem(inputSplit[1]);
+                }
+                else if (inputSplit.length == 3) {
+                    String use = inputSplit[1] + " " + inputSplit[2];
+                    player.useItem(use);
+                }
+                else {
+                    System.out.println("Invalid use");
+                }
+
             }
             else if (inputSplit[0].equals("drop")){
                 if (inputSplit.length == 2) {
@@ -115,10 +139,10 @@ public class Game {
             else if(inputSplit[0].equals("music")){
                 String musicInput = prompter.prompt("[PLAY] or [STOP] Music: ").toLowerCase();
                 if (musicInput.equals("play")){
-                    musicObject.playMusic(filepath);
+                    musicObject.playMusic("music.wav");
                 }
                 else if (musicInput.equals("stop")){
-                    musicObject.stopMusic(filepath);
+                    musicObject.stopMusic("music.wav");
                 }
                 else {
                     System.out.println("Invalid input");

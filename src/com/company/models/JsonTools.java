@@ -2,30 +2,25 @@ package com.company.models;
 
 import com.google.gson.Gson;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
+import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class JsonTools {
 
+    private FileGetter fileGetter = new FileGetter();
+
 
     public ArrayList<Map<String, Object>> readJson(String file) {
-        try {
             Gson gson = new Gson();
-            String path = String.format("resources/%s", file);
-            Reader reader = Files.newBufferedReader(Paths.get(path));
+            InputStream path = fileGetter.fileGetter(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(path));
+            //creating a new buffered reader to read in json as stream.
             ArrayList<Map<String, Object>> data = gson.fromJson(reader, ArrayList.class);
-            reader.close();
             return data;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public void writeJson(String file, String fileKey, Map<String, Object> entry) {
