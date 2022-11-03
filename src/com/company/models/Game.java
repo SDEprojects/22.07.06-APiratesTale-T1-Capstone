@@ -23,6 +23,7 @@ public class Game {
         System.out.println();
 
         Console.pause(2000);
+        //get rid of with ui implementation
         System.out.println("You can use the following commands to play the game: ");
 
 
@@ -38,6 +39,7 @@ public class Game {
 //            Console.pause(1000);
 
             player.status();
+            //replace with UI
             String userInput = prompter.prompt("\nCMD:  GO [direction] |  TALK [name]  |  GRAB [item]  |   DROP [item]" +
                     "    |     LOOK [item]" +
 
@@ -46,6 +48,8 @@ public class Game {
                     "---------------------------------------------------------\nYOUR MOVE: ").toLowerCase();
 //            Console.pause(500);
             Console.clear();
+
+            //rebuild to switch statement and use event handler
             String[] inputSplit = userInput.trim().toLowerCase().split(" ");
             if(inputSplit[0].equals("look")) {
                 if (inputSplit.length == 2) {

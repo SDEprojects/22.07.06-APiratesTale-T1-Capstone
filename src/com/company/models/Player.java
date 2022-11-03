@@ -9,12 +9,15 @@ public class Player {
     public String name;
     public double hp = 10;
     public double dp = 1;
+    // make inventory/location items use list of item
     public List<String> inventory = new ArrayList<>();
+    private ArrayList<String> locationItems;
+    // make locationNPCs use list of characters
+    private ArrayList<String> locationNPC;
     private JsonTools tools = new JsonTools();
     private String currentRoom = "Beach Shack";
     private Map<String, String> directions;
-    private ArrayList<String> locationItems;
-    private ArrayList<String> locationNPC;
+
     Prompter prompter = new Prompter(new Scanner(System.in));
     ArrayList<Map<String, Object>> locationData = tools.readJson("location.json");
     ArrayList<Map<String, Object>> characterData = tools.readJson("character.json");
@@ -32,6 +35,7 @@ public class Player {
 
     // create new player
     public void newPlayer() {
+        //refactor to UI
         System.out.println("\nNew Game Created");
         setPlayerName(prompter.prompt("\nAhoy, What is your name adventurer? "));
         System.out.println();
@@ -39,9 +43,14 @@ public class Player {
 
     // status menu bar
     public void status() {
+        //status will be the main ui loader for each screen
+        //change equipped inventory to not be hard coded
+        //example dp * swordStrength
         if (inventory.contains("sword")) {
             setDp(5);
         }
+        // if equipped item:
+        // replace with setDp(getDp*itemStat)
         for (Map<String, Object> entry : locationData) {
             if (entry.get("name").equals(currentRoom)) {
                 directions = (Map<String, String>) entry.get("directions");
@@ -78,7 +87,7 @@ public class Player {
         }
     }
 
-    public void grabItem(String item) {
+    public void grabItem(String item) { //grab needs overhauled this is a lot of hard coding
         if (!item.equals("parrot") && !item.equals("treasure chest") && locationItems.contains(item)) {
             //remove from the location
             locationItems.remove(item);
@@ -94,9 +103,8 @@ public class Player {
             System.out.println("You were able to grab the parrot by feeding it a cracker.");
         } else if (!inventory.contains("cracker") && locationItems.contains("parrot") && item.equals("parrot")) {
             System.out.println("You were not able to grab the Parrot.\n");
-        }
-          else if (inventory.contains("treasure key") && locationItems.contains("treasure chest") && item.equals(
-                 "treasure chest")) {
+        } else if (inventory.contains("treasure key") && locationItems.contains("treasure chest") && item.equals(
+                "treasure chest")) {
             inventory.remove("treasure key");
             inventory.add(item);
             locationItems.remove(item);
@@ -106,7 +114,7 @@ public class Player {
         }
     }
 
-    public void useItem(String item) {
+    public void useItem(String item) { //replace hard coding
         String file = "item.json";
         ArrayList<Map<String, Object>> itemData = tools.readJson(file);
         if (locationItems.contains(item) || inventory.contains(item)) {
@@ -146,6 +154,7 @@ public class Player {
     public void talk(String name) {
         if (locationNPC.contains(name)) {
             for (Map<String, Object> entry : characterData) {
+                // refactor to isFriendly
                 if (entry.get("name").equals(name) && !entry.get("name").equals("skeleton beast") && !entry.get("name").equals("skull king") && !entry.get("name").equals("skeleton soldier") && !entry.get("name").equals("skeleton captain")) {
                     while (true) {
                         System.out.println("Speaking to: " + entry.get("name"));
@@ -174,6 +183,7 @@ public class Player {
 
     public void go(String directionInput) throws NullPointerException {
         ArrayList<String> bossKeys = new ArrayList<String>(Arrays.asList("left boss key", "right boss key"));
+        // refactor to "doors method"
         if (directions.containsKey(directionInput)) {
             String location = directions.get(directionInput);
             if (!location.equals("Boat") && !location.equals("Treasure Room")) {
@@ -205,53 +215,74 @@ public class Player {
                     System.out.println(entry.get("description") + "\n");
                 }
             }
-        }
-        else {
+        } else {
             System.out.println("You cannot look at items that are not in front of you.");
         }
     }
 
     public void attack(String name) {
         if (locationNPC.contains(name)) {
-            for (Map<String, Object> entry : characterData) {
-                if (entry.get("name").equals(name)) {
-                    while (true) {
-                        System.out.println(entry.get("name") + "'s current hp is : " + entry.get("hp"));
-                        System.out.println("You are attacking: " + entry.get("name"));
-                        Double points = (Double) entry.get("hp");
-                        if (points > 0) {
-                            points -= dp;
-                            entry.put("hp", points);
-                            System.out.println(entry.get("name") + "'s hp after attack is : " + points);
-                            //second if condition to kill npc characters at or under 0 health
-                            if (points > 0) {
-                                Double damage = (Double) entry.get("dp");
-                                hp -= damage;
-                                System.out.println(entry.get("name") + " was able to attack you back. Your HP is now " + hp);
-                            }
-                        }
+            boolean isFighting = true;
+            while (isFighting) {
+                //added switchcase to make fights feel like an event
+                String battleAction = prompter.prompt("fight, run, bag");
+                switch (battleAction) {
+                    case "fight":
+                        for (Map<String, Object> entry : characterData) {
+                            if (entry.get("name").equals(name)) {
+                                while (true) {
+                                    System.out.println(entry.get("name") + "'s current hp is : " + entry.get("hp"));
+                                    System.out.println("You are attacking: " + entry.get("name"));
+                                    Double points = (Double) entry.get("hp");
+                                    if (points > 0) {
+                                        points -= dp;
+                                        entry.put("hp", points);
+                                        System.out.println(entry.get("name") + "'s hp after attack is : " + points);
+                                        //second if condition to kill npc characters at or under 0 health
+                                        if (points > 0) {
+                                            Double damage = (Double) entry.get("dp");
+                                            hp -= damage;
+                                            System.out.println(entry.get("name") + " was able to attack you back. Your HP is now " + hp);
+                                        }
+                                    }
 
-                        if (hp <= 0) {
-                            gameOver();
+                                    if (hp <= 0) {
+                                        gameOver();
+                                        isFighting = false;
 
-                        }
-                        if (points <= 0 && entry.containsKey("items")) {
-                            System.out.println(this.name + " has wasted " + entry.get("name") + "!");
-                            ArrayList<String> itemsArray = (ArrayList<String>) entry.get("items");
-                            locationNPC.remove(name);
-                            for (String item : itemsArray) {
-                                inventory.add(item);
-                                System.out.println(entry.get("name") + "'s " + item + " has been added to your inventory");
+                                    }
+                                    if (points <= 0 && entry.containsKey("items")) {
+                                        System.out.println(this.name + " has wasted " + entry.get("name") + "!");
+                                        ArrayList<String> itemsArray = (ArrayList<String>) entry.get("items");
+                                        locationNPC.remove(name);
+                                        for (String item : itemsArray) {
+                                            inventory.add(item);
+                                            System.out.println(entry.get("name") + "'s " + item + " has been added to your inventory");
 
+                                        }isFighting = false;
+                                    }
+
+                                    break;
+                                }
                             }
                         }
                         break;
-                    }
+                    case "run":
+                        System.out.println("running");
+                        isFighting = false;
+                        break;
+                    case "bag":
+                        System.out.println("get items");
+                        break;
+                    default:
+                        System.out.println("nothing happened");
                 }
             }
+
         } else {
             System.out.println("Invalid Target");
         }
+        //
     }
 
     // dialogue to accept quest from NPC
