@@ -1,6 +1,8 @@
 [
     {
       "name": "Beach Shack",
+      "island": "mango",
+      "coordinate": "a2",
       "description" : "Your home on Mango Island",
       "NPC" : ["sad traveler"],
       "items" : [],
