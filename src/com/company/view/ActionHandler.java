@@ -35,9 +35,11 @@ public class ActionHandler implements ActionListener {
                 break;
             case "grab":
                 gm.getUi().messageText.setText("You grab "+ inputSplit[1]);
+                gm.getPlayer().grabItem(inputSplit[1]);
                 break;
             case "eat":
                 gm.getUi().messageText.setText("You try to eat "+ inputSplit[1]);
+                gm.getPlayer().useItem(inputSplit[1]);
                 break;
             case "fight":
                 gm.getUi().messageText.setText("You try to fight "+ inputSplit[1]);

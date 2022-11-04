@@ -17,8 +17,9 @@ public class Characters {
     private int yaxis;
     private int width;
     private int height;
+    private String type;
 
-    public Characters(String name, Map<String, String> quote, List<String> items, int hp, boolean isFriendly, int dp, List<String> questReq, List<String> reward, String img, int xaxis, int yaxis, int width, int height) {
+    public Characters(String name, Map<String, String> quote, List<String> items, int hp, boolean isFriendly, int dp, List<String> questReq, List<String> reward, String img, int xaxis, int yaxis, int width, int height, String type) {
         this.name = name;
         this.quote = quote;
         this.items = items;
@@ -32,6 +33,7 @@ public class Characters {
         this.yaxis = yaxis;
         this.width = width;
         this.height = height;
+        this.type = type;
     }
 
     public String getName() {
@@ -136,5 +138,13 @@ public class Characters {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

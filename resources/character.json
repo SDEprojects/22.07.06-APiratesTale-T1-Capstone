@@ -17,7 +17,8 @@
       "xaxis": "70",
       "yaxis": "80",
       "width": "264",
-      "height": "400"
+      "height": "400",
+      "type": "friendly"
     },
     {
       "name": "pirate captain",
@@ -44,7 +45,8 @@
       "xaxis": "70",
       "yaxis": "80",
       "width": "264",
-      "height": "400"
+      "height": "400",
+      "type": "friendly"
     },
     {
       "name": "uncle",
@@ -64,7 +66,8 @@
       "xaxis": "70",
       "yaxis": "80",
       "width": "264",
-      "height": "400"
+      "height": "400",
+      "type": "friendly"
     },
     {
       "name": "monkey king",
@@ -84,7 +87,8 @@
       "xaxis": "70",
       "yaxis": "80",
       "width": "264",
-      "height": "400"
+      "height": "400",
+      "type": "friendly"
     },
     {
       "name": "monkey prince",
@@ -101,7 +105,8 @@
       "xaxis": "70",
       "yaxis": "80",
       "width": "264",
-      "height": "400"
+      "height": "400",
+      "type": "friendly"
     },
     {
       "name": "skull king",
@@ -120,7 +125,8 @@
       "xaxis": "70",
       "yaxis": "80",
       "width": "264",
-      "height": "400"
+      "height": "400",
+      "type": "enemy"
     },
     {
       "name": "skeleton beast",
@@ -135,7 +141,8 @@
       "xaxis": "70",
       "yaxis": "80",
       "width": "264",
-      "height": "400"
+      "height": "400",
+      "type": "enemy"
     },
   {
     "name": "skeleton soldier",
@@ -150,7 +157,8 @@
     "xaxis": "70",
     "yaxis": "80",
     "width": "264",
-    "height": "400"
+    "height": "400",
+    "type": "enemy"
   },
   {
     "name": "skeleton captain",
@@ -165,6 +173,7 @@
     "xaxis": "70",
     "yaxis": "80",
     "width": "264",
-    "height": "400"
+    "height": "400",
+    "type": "enemy"
   }
   ]
