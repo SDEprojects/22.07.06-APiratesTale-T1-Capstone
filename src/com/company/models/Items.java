@@ -13,11 +13,12 @@ public class Items {
     private int yaxis;
     private int width;
     private int height;
+    private String keyReq;
+    private String keyError;
 
     //Constructor
 
-
-    public Items(String name, String description, int value, int cost, int strength, String type, String img, int xaxis, int yaxis, int width, int height) {
+    public Items(String name, String description, int value, int cost, int strength, String type, String img, int xaxis, int yaxis, int width, int height, String keyReq, String keyError) {
         this.name = name;
         this.description = description;
         this.value = value;
@@ -29,6 +30,8 @@ public class Items {
         this.yaxis = yaxis;
         this.width = width;
         this.height = height;
+        this.keyReq = keyReq;
+        this.keyError = keyError;
     }
 
     public String getName() {
@@ -117,5 +120,21 @@ public class Items {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public String getKeyReq() {
+        return keyReq;
+    }
+
+    public void setKeyReq(String keyReq) {
+        this.keyReq = keyReq;
+    }
+
+    public String getKeyError() {
+        return keyError;
+    }
+
+    public void setKeyError(String keyError) {
+        this.keyError = keyError;
     }
 }

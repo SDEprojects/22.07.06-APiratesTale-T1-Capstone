@@ -2,6 +2,7 @@ package com.company.models;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import com.company.client.GameMain;
 import com.company.view.Home;
 
 import java.util.ArrayList;
@@ -12,13 +13,15 @@ import java.util.Scanner;
 public class Game {
     Prompter prompter = new Prompter(new Scanner(System.in));
     //private final Player player;
-    public ArrayList<Locations> locations = new ArrayList<>();
-    private ArrayList<Items> items = new ArrayList<>();
-    private ArrayList<Characters> characters = new ArrayList<>();
+    ArrayList<Locations> locations = new ArrayList<>();
+    ArrayList<Items> items = new ArrayList<>();
+    ArrayList<Characters> characters = new ArrayList<>();
     private Music musicObject = new Music();
     JsonTools tools = new JsonTools();
+    GameMain gm;
 
-    public Game() {
+    public Game(GameMain gm) {
+        this.gm = gm;
         //this.player = player;
     }
 
@@ -43,7 +46,7 @@ public class Game {
             Items item = new Items(entry.get("name").toString(), entry.get("description").toString(), Integer.parseInt(entry.get("value").toString()),
                     Integer.parseInt(entry.get("cost").toString()), Integer.parseInt(entry.get("strength").toString()), entry.get("type").toString(),
                     entry.get("img").toString(), Integer.parseInt(entry.get("xaxis").toString()), Integer.parseInt(entry.get("yaxis").toString()),
-                    Integer.parseInt(entry.get("width").toString()), Integer.parseInt(entry.get("height").toString()));
+                    Integer.parseInt(entry.get("width").toString()), Integer.parseInt(entry.get("height").toString()), entry.get("keyReq").toString(), entry.get("keyError").toString());
             items.add(item);
         }
         for (Map<String, Object> entry : characterData){
@@ -52,7 +55,7 @@ public class Game {
             Characters character = new Characters(entry.get("name").toString(), dialogue,(List<String>) entry.get("items"),
                     Integer.parseInt(entry.get("hp").toString()), (boolean) entry.get("isFriendly"), Integer.parseInt(entry.get("dp").toString()),
                     (List<String>) entry.get("questReq"), (List<String>) entry.get("reward"), entry.get("img").toString(), Integer.parseInt(entry.get("xaxis").toString()),
-                    Integer.parseInt(entry.get("yaxis").toString()), Integer.parseInt(entry.get("width").toString()), Integer.parseInt(entry.get("height").toString()));
+                    Integer.parseInt(entry.get("yaxis").toString()), Integer.parseInt(entry.get("width").toString()), Integer.parseInt(entry.get("height").toString()), entry.get("type").toString());
             characters.add(character);
         }
         for (Map<String, Object> entry : locationData){

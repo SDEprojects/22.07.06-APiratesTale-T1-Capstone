@@ -13,8 +13,8 @@ public class GameMain {
     public ActionHandler aHandler = new ActionHandler(this);
     private final UI ui = new UI(this, resolution);
     public SceneChanger sc = new SceneChanger(this);
-    private final Player player = new Player();
-    private final Game game = new Game();
+    private final Player player = new Player(this);
+    private final Game game = new Game(this);
 
 
     public static void main(String[] args) {

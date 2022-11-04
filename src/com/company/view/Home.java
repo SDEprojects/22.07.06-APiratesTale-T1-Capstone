@@ -27,20 +27,20 @@ public class Home {
         //startGame();
     }
 
-    public void startGame(GameMain gm) {
-        Player player = new Player();
+//    public void startGame(GameMain gm) {
+//        Player player = new Player();
       //  Game newGame = new Game(player);
 //        SceneBuilder sb = new SceneBuilder();
 //        sb.generate();
     //    playGame(player, newGame, gm);
-        }
+       // }
 
-    public void playGame(Player player, Game newGame, GameMain gm){
-
-//        while (player.isPlayGame()){
+//    public void playGame(Player player, Game newGame, GameMain gm){
 //
-//        }
-    }
+////        while (player.isPlayGame()){
+////
+////        }
+//    }
 
 
     }

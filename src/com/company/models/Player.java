@@ -4,12 +4,13 @@ import java.util.*;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import com.company.client.GameMain;
 import com.company.view.Home;
 
 public class Player {
     public String name = "wilson";
-    public double hp = 10;
-    public double dp = 1;
+    public int hp = 10;
+    public int dp = 1;
     // make inventory/location items use list of item
     public List<String> inventory = new ArrayList<>();
     private ArrayList<String> locationItems;
@@ -19,6 +20,7 @@ public class Player {
     private String currentRoom = "Beach Shack";
     private Map<String, String> directions;
     private boolean playGame;
+    GameMain gm;
 
     Prompter prompter = new Prompter(new Scanner(System.in));
     ArrayList<Map<String, Object>> locationData = tools.readJson("location.json");
@@ -26,14 +28,8 @@ public class Player {
     //read these 'ArrayList<Map<String, Object>>' into classes ^
     private FileGetter file = new FileGetter();
 
-    public Player() {
-    }
-
-    public Player(String name, double hp, int dp, List<String> inventory) {
-        this.name = name;
-        this.hp = hp;
-        this.dp = dp;
-        this.inventory = inventory;
+    public Player(GameMain gm) {
+        this.gm = gm;
     }
 
     // create new player
@@ -91,56 +87,81 @@ public class Player {
     }
 
     public void grabItem(String item) { //grab needs overhauled this is a lot of hard coding
-        if (!item.equals("parrot") && !item.equals("treasure chest") && locationItems.contains(item)) {
-            //remove from the location
-            locationItems.remove(item);
-            //add to inventory
-            inventory.add(item);
-            this.locationItems = locationItems;
+        Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
+        Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
 
-        }
-        if (inventory.contains("cracker") && locationItems.contains("parrot") && item.equals("parrot")) {
-            inventory.remove("cracker");
-            inventory.add(item);
-            locationItems.remove(item);
-            System.out.println("You were able to grab the parrot by feeding it a cracker.");
-        } else if (!inventory.contains("cracker") && locationItems.contains("parrot") && item.equals("parrot")) {
-            System.out.println("You were not able to grab the Parrot.\n");
-        } else if (inventory.contains("treasure key") && locationItems.contains("treasure chest") && item.equals(
-                "treasure chest")) {
-            inventory.remove("treasure key");
-            inventory.add(item);
-            locationItems.remove(item);
-            winGame();
-        } else if (!inventory.contains("treasure key") && locationItems.contains("treasure chest") && item.equals("treasure chest")) {
-            System.out.println("You were not able to grab the Treasure Chest.\n");
+        if (itemInstance.getKeyReq().equals("none")) {
+            getInventory().add(item);
+            locationStuff.getItems().remove(item);
+        } else if (inventory.contains(itemInstance.getKeyReq())) {
+            getInventory().add(item);
+            locationStuff.getItems().remove(item);
+        } else {
+            //gm.getUi().messageText.setText(itemInstance.getKeyError());
+            System.out.println(itemInstance.getKeyError());
         }
     }
+
+//        if (!item.equals("parrot") && !item.equals("treasure chest") && locationItems.contains(item)) {
+//            //remove from the location
+//            locationItems.remove(item);
+//            //add to inventory
+//            inventory.add(item);
+//            this.locationItems = locationItems;
+//
+//        }
+//        if (inventory.contains("cracker") && locationItems.contains("parrot") && item.equals("parrot")) {
+//            inventory.remove("cracker");
+//            inventory.add(item);
+//            locationItems.remove(item);
+//            System.out.println("You were able to grab the parrot by feeding it a cracker.");
+//        } else if (!inventory.contains("cracker") && locationItems.contains("parrot") && item.equals("parrot")) {
+//            System.out.println("You were not able to grab the Parrot.\n");
+//        } else if (inventory.contains("treasure key") && locationItems.contains("treasure chest") && item.equals(
+//                "treasure chest")) {
+//            inventory.remove("treasure key");
+//            inventory.add(item);
+//            locationItems.remove(item);
+//            winGame();
+//        } else if (!inventory.contains("treasure key") && locationItems.contains("treasure chest") && item.equals("treasure chest")) {
+//            System.out.println("You were not able to grab the Treasure Chest.\n");
+//        }
 
     public void useItem(String item) { //replace hard coding
-        String file = "item.json";
-        ArrayList<Map<String, Object>> itemData = tools.readJson(file);
-        if (locationItems.contains(item) || inventory.contains(item)) {
-            for (Map<String, Object> entry : itemData) {
-                if (inventory.contains(item) && entry.get("name").toString().toLowerCase().equals(item)) {
-                    System.out.println(entry.get("description") + "\n");
-                    if (item.equals("mango")) {
-                        hp += 5;
-                        inventory.remove(item);
-                    } else if (item.equals("banana")) {
-                        hp += 10;
-                        inventory.remove(item);
-                    } else if (item.equals("sword")) {
-                        System.out.println("In order to wield the sword, please enter 'ATTACK' [name]");
-                    } else {
-                        System.out.println("You can't use that item in this manner. Don't be a fool.");
-                    }
-                }
-            }
-        } else {
-            System.out.println("You can not use this item");
+        Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
+        Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
+        if (locationStuff.getItems().contains(item)) {
+            setHp(getHp() +  itemInstance.getValue());
+            locationStuff.getItems().remove(item);
+            //gm.getUi().messageText.setText("You ate " + item + " and replenished your health by " + itemInstance.getValue());
         }
     }
+
+
+//
+//        String file = "item.json";
+//        ArrayList<Map<String, Object>> itemData = tools.readJson(file);
+//        if (locationItems.contains(item) || ) {
+//            for (Map<String, Object> entry : itemData) {
+//                if (inventory.contains(item) && entry.get("name").toString().toLowerCase().equals(item)) {
+//                    System.out.println(entry.get("description") + "\n");
+//                    if (item.equals("mango")) {
+//                        hp += 5;
+//                        inventory.remove(item);
+//                    } else if (item.equals("banana")) {
+//                        hp += 10;
+//                        inventory.remove(item);
+//                    } else if (item.equals("sword")) {
+//                        System.out.println("In order to wield the sword, please enter 'ATTACK' [name]");
+//                    } else {
+//                        System.out.println("You can't use that item in this manner. Don't be a fool.");
+//                    }
+//                }
+//            }
+//        } else {
+//            System.out.println("You can not use this item");
+//        }
+//    }
 
     public void dropItem(String item) {
         if (!item.equals("parrot") && inventory.contains(item)) {
@@ -350,15 +371,16 @@ public class Player {
         return name;
     }
 
-    public List<String> getItems(Player player) {
-        return player.inventory;
-    }
 
     public void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
     }
 
-    public void setDp(double dp) {
+    public String getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setDp(int dp) {
         this.dp = dp;
     }
 
@@ -368,5 +390,21 @@ public class Player {
 
     public void setPlayGame(boolean playGame) {
         this.playGame = playGame;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public List<String> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<String> inventory) {
+        this.inventory = inventory;
     }
 }
