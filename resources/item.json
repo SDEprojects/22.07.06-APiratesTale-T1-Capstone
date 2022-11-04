@@ -107,7 +107,7 @@
     {
       "name": "Banana",
       "description": "Delicious fruit found on Monkey Island. Restores health by 10 pts",
-      "value": "0",
+      "value": "10",
       "cost": "0",
       "strength": "0",
       "type": "food",
