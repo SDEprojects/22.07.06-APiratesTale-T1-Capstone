@@ -12,10 +12,10 @@ public class SceneChanger {
     }
 
     public void showScreen(int screen) {
-        for (JPanel panel:gm.ui.bgPanel
+        for (JPanel panel:gm.getUi().getBgPanel()
              ) {panel.setVisible(false);
        }
-        gm.ui.bgPanel[screen].setVisible(true);
+        gm.getUi().getBgPanel().get(screen).setVisible(true);
     }
 
 }

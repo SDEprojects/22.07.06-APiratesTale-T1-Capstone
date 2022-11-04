@@ -1,8 +1,6 @@
 [
     {
       "name": "Beach Shack",
-      "island": "mango",
-      "coordinate": "a2",
       "description" : "Your home on Mango Island",
       "NPC" : ["sad traveler"],
       "items" : [],
@@ -10,7 +8,10 @@
         "north" : "Mango Docks",
         "east" : "Blacksmith Forge",
         "west" : "Mango Jungle"
-      }
+      },
+      "img": "img/village.png",
+      "island": "mango",
+      "grid": "a2"
     },
     {
       "name": "Mango Docks",
@@ -20,7 +21,10 @@
       "directions": {
         "east" : "Boat",
         "south" : "Beach Shack"
-      }
+      },
+      "img": "img/dock.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Blacksmith Forge",
@@ -29,16 +33,22 @@
       "items" : [],
       "directions": {
         "west" : "Beach Shack"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Mango Jungle",
       "description" : "The Western jungle that is home to a squawking parrot, and delicious mangos.",
       "NPC" : [],
-      "items" : ["parrot", "mango"],
+      "items" : ["Parrot", "Mango"],
       "directions": {
         "east" : "Beach Shack"
-      }
+      },
+      "img": "img/jungle.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "South Beach",
@@ -50,25 +60,34 @@
         "east" : "Banana Stash",
         "west" : "Banana Jungle",
         "south" : "Boat"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Banana Jungle",
       "description" : "The western jungle with many vines.",
       "NPC" : ["monkey prince"],
-      "items" : ["banana"],
+      "items" : ["Banana"],
       "directions": {
         "east" : "South Beach"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Banana Stash",
       "description" : "The monkey troop’s sacred banana stash",
       "NPC" : ["skeleton beast"],
-      "items" : ["banana"],
+      "items" : ["Banana"],
       "directions": {
         "west" : "South Beach"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Monkey Temple",
@@ -77,7 +96,10 @@
       "items" : [],
       "directions": {
         "south" : "South Beach"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Skull Dock",
@@ -87,7 +109,10 @@
       "directions": {
         "east" : "Skull Cave",
         "west" : "Boat"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Skull Cave",
@@ -99,7 +124,10 @@
         "east" : "Skull King Throne Room",
         "west" : "Skull Dock",
         "south" : "Southern Cavern"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Northern Cavern",
@@ -108,7 +136,10 @@
       "items" : [],
       "directions": {
         "south" : "Skull Cave"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Southern Cavern",
@@ -117,7 +148,10 @@
       "items" : [],
       "directions": {
         "north" : "Skull Cave"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Skull King Throne Room",
@@ -127,16 +161,22 @@
       "directions": {
         "east" : "Treasure Room",
         "west" : "Skull Cave"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Treasure Room",
       "description" : "An extravagant golden glow fills the room.",
       "NPC" : [],
-      "items" : ["treasure chest"],
+      "items" : ["Treasure Chest"],
       "directions": {
         "west" : "Skull King Throne Room"
-      }
+      },
+      "img": "img/village.png",
+      "island": " ",
+      "grid": " "
     },
     {
       "name": "Boat",
@@ -147,6 +187,9 @@
         "mango island" : "Mango Docks",
         "monkey island" : "South Beach",
         "skull island" : "Skull Dock"
-      }
+      },
+      "img": "img/dock.png",
+      "island": " ",
+      "grid": " "
     }
   ]
