@@ -8,9 +8,16 @@
       "items": [
         "map"
         ],
-      "hp": 10,
+      "hp": "10",
       "isFriendly": true,
-      "dp" : 1
+      "dp" : "1",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400"
     },
     {
       "name": "pirate captain",
@@ -26,13 +33,18 @@
       "items": [
         "cracker"
       ],
+      "hp": "10",
+      "isFriendly": true,
+      "dp" : "5",
+      "questReq" : ["parrot"],
       "reward" : [
         "Boat Pass"
       ],
-      "questReq" : ["parrot"],
-      "hp": 10,
-      "isFriendly": true,
-      "dp" : 5
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400"
     },
     {
       "name": "uncle",
@@ -43,9 +55,16 @@
       "items": [
         "sword", "mango"
         ],
-      "hp": 10,
+      "hp": "10",
       "isFriendly": true,
-      "dp" : 5
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400"
     },
     {
       "name": "monkey king",
@@ -55,12 +74,17 @@
       "reward" : "\nImpressive outsider, you have restored peace to our bananas stash, and saved the Prince from his folly. As a reward I give you this key.\nIt is said to be the key to opening the secret treasure of Skull Island.\nSkull Island is a dangerous place, take one of our sacred bananas. If you fall ill, it will replenish 10pts. of your health.\n",
       "quit" : "Hmmmm farewell..."
     },
-      "items": [],
-      "reward" : ["treasure key", "banana"],
-      "questReq" : ["monkey pin", "beast skull"],
-      "hp": 10,
+      "items": ["banana"],
+      "hp": "10",
       "isFriendly": true,
-      "dp" : 10
+      "dp" : "10",
+      "questReq" : ["monkey pin", "beast skull"],
+      "reward" : ["treasure key", "banana"],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400"
     },
     {
       "name": "monkey prince",
@@ -68,9 +92,16 @@
       "initial": "\nHello I am the monkey prince!\nI wasn't lost I was monkeying around, I will tell my father that you found me. Show this pin to my father and you will earn his respect."
     },
       "items": ["monkey pin"],
-      "hp": 10,
+      "hp": "10",
       "isFriendly": true,
-      "dp" : 1
+      "dp" : "1",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400"
     },
     {
       "name": "skull king",
@@ -80,32 +111,60 @@
       "items": [
         "treasure room key"
       ],
-      "hp": 13,
+      "hp": "13",
       "isFriendly": false,
-      "dp": 4
+      "dp": "4",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400"
     },
     {
       "name": "skeleton beast",
       "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
       "items": ["beast skull"],
-      "hp": 5,
+      "hp": "5",
       "isFriendly": false,
-      "dp": 2
+      "dp": "2",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400"
     },
   {
     "name": "skeleton soldier",
     "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
     "items": ["mango"],
-    "hp": 5,
+    "hp": "5",
     "isFriendly": true,
-    "dp": 2
+    "dp": "2",
+    "questReq" : [],
+    "reward" : [],
+    "img": "img/uncle.png",
+    "xaxis": "70",
+    "yaxis": "80",
+    "width": "264",
+    "height": "400"
   },
   {
     "name": "skeleton captain",
     "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
     "items": ["banana"],
-    "hp": 5,
+    "hp": "5",
     "isFriendly": true,
-    "dp": 2
+    "dp": "2",
+    "questReq" : [],
+    "reward" : [],
+    "img": "img/uncle.png",
+    "xaxis": "70",
+    "yaxis": "80",
+    "width": "264",
+    "height": "400"
   }
   ]

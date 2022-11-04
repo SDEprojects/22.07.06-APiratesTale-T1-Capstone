@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import com.company.view.Home;
 
 public class Player {
     public String name = "wilson";
@@ -17,10 +18,12 @@ public class Player {
     private JsonTools tools = new JsonTools();
     private String currentRoom = "Beach Shack";
     private Map<String, String> directions;
+    private boolean playGame;
 
     Prompter prompter = new Prompter(new Scanner(System.in));
     ArrayList<Map<String, Object>> locationData = tools.readJson("location.json");
     ArrayList<Map<String, Object>> characterData = tools.readJson("character.json");
+    //read these 'ArrayList<Map<String, Object>>' into classes ^
     private FileGetter file = new FileGetter();
 
     public Player() {
@@ -357,5 +360,13 @@ public class Player {
 
     public void setDp(double dp) {
         this.dp = dp;
+    }
+
+    public boolean isPlayGame() {
+        return playGame;
+    }
+
+    public void setPlayGame(boolean playGame) {
+        this.playGame = playGame;
     }
 }

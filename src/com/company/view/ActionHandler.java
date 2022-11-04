@@ -1,15 +1,17 @@
 package com.company.view;
 
 import com.company.client.GameMain;
-import com.company.models.Home;
+import com.company.models.Game;
+import com.company.models.Player;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ActionHandler implements ActionListener {
 
-    GameMain gm;
+    private GameMain gm;
     Home home = new Home();
+
 
 
     public ActionHandler(GameMain gm){
@@ -22,34 +24,38 @@ public class ActionHandler implements ActionListener {
         String yourChoice = e.getActionCommand();
         String[] inputSplit = yourChoice.trim().toLowerCase().split(" ");
 
+        if (inputSplit.length>2){
+            inputSplit[1] = inputSplit[1] +" "+inputSplit[2];
+        }
+
+
         switch (inputSplit[0]) {
             case "look":
-                gm.ui.messageText.setText("You look at "+ inputSplit[1]);
+                gm.getUi().messageText.setText("You look at "+ inputSplit[1]);
                 break;
             case "grab":
-                gm.ui.messageText.setText("You grab "+ inputSplit[1]);
+                gm.getUi().messageText.setText("You grab "+ inputSplit[1]);
                 break;
             case "eat":
-                gm.ui.messageText.setText("You try to eat "+ inputSplit[1]);
+                gm.getUi().messageText.setText("You try to eat "+ inputSplit[1]);
                 break;
             case "fight":
-                gm.ui.messageText.setText("You try to fight "+ inputSplit[1]);
+                gm.getUi().messageText.setText("You try to fight "+ inputSplit[1]);
                 break;
             case "talk":
-                gm.ui.messageText.setText("You talk to "+ inputSplit[1]);
+                gm.getUi().messageText.setText("You talk to "+ inputSplit[1]);
                 break;
             case "trade":
-                gm.ui.messageText.setText("You try and trade with "+ inputSplit[1]);
+                gm.getUi().messageText.setText("You try and trade with "+ inputSplit[1]);
                 break;
             case "move":
                 int direction = Integer.parseInt(inputSplit[1]);
                 gm.sc.showScreen(direction);
+                gm.getUi().messageText.setText("you went to area "+ inputSplit[1]);
                 break;
             case "start":
-                int nextScreen = Integer.parseInt(inputSplit[1]);
-                gm.sc.showScreen(nextScreen);
-                gm.ui.createMessageViewer();
-                home.startGame("start");
+                gm.sc.showScreen(1);
+                gm.getUi().createMessageViewer();
                 break;
             default:
                 break;
