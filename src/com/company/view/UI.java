@@ -11,6 +11,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +29,10 @@ public class UI {
     int windowHeight = 720;
     int windowWidth = 1280;
     public JTextArea messageText;
+    private Font oldRetro;
+    private JPanel directionPanel;
+    private JButton northButton, southButton, eastButton, westButton;
+    private JPanel invPanel;
     ArrayList<JPanel> bgPanel= new ArrayList<>();
     ArrayList<JLabel> bgLabel= new ArrayList<>();
 //    JPanel bgPanel[];
@@ -34,6 +42,7 @@ public class UI {
     public UI(GameMain gm, double resolutionChanger) {
 
         this.gm = gm;
+        fontCreate();
         setResolutionChanger(resolutionChanger);
         setWindowHeight((int) (getWindowHeight()*getResolutionChanger()));
         setWindowWidth((int) (getWindowWidth()*getResolutionChanger()));
@@ -43,34 +52,81 @@ public class UI {
         window.setVisible(true);
     }
 
+    private void fontCreate(){
+        try {
+            InputStream is = new BufferedInputStream(new FileInputStream(("resources/Press_Start_2P/PressStart2P-Regular.ttf")));
+            Font retro = Font.createFont(Font.TRUETYPE_FONT, is);
+            setOldRetro(retro.deriveFont(Font.PLAIN, 20));
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void createMainField(){
-        window = new JFrame();
+        window = new JFrame("A Pirates Tale");
         window.setSize(windowWidth, windowHeight);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.BLACK);
+        window.setContentPane(new JLabel(new ImageIcon("resources/img/gamegackground.jpg")));
         window.setLayout(null);
+        window.setResizable(false);
+        window.setLocationRelativeTo(null);
 
     }
 
     public void createMessageViewer(){
-        messageText = new JTextArea("Welcome to the Jungle!");
-        messageText.setBounds((int) (.05*windowWidth), (int) (.68*windowHeight), (int) (.9*windowWidth), (int) (.25*windowHeight));
+        setDirectionPanel(new JPanel());
+        getDirectionPanel().setBounds((int)(.76*windowWidth), (int) (.68*windowHeight), (int) (.18*windowWidth), (int) (.25*windowHeight));
+        getDirectionPanel().setBackground(Color.BLUE);
+        getDirectionPanel().setLayout(null);
+
+        setNorthButton(new JButton("N"));
+        setSouthButton(new JButton("S"));
+        setEastButton(new JButton("E"));
+        setWestButton(new JButton("W"));
+
+        getNorthButton().setBounds(100,30,30,30);
+        getSouthButton().setBounds(100,120,30,30);
+        getEastButton().setBounds(150,75,30,30);
+        getWestButton().setBounds(50,75,30,30);
+        getNorthButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        getWestButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        getEastButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        getSouthButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        getDirectionPanel().add(getSouthButton());
+        getDirectionPanel().add(getEastButton());
+        getDirectionPanel().add(getNorthButton());
+        getDirectionPanel().add(getWestButton());
+        getDirectionPanel().setOpaque(false);
+
+        setInvPanel(new JPanel());
+        getInvPanel().setBounds((int) (.05*windowWidth), (int) (.68*windowHeight), (int) (.07*windowWidth), (int) (.25*windowHeight));
+        getInvPanel().setBackground(Color.BLUE);
+        getInvPanel().setLayout(null);
+        getInvPanel().setOpaque(false);
+
+        messageText = new JTextArea();
+        messageText.setBounds((int) (.13*windowWidth), (int) (.68*windowHeight), (int) (.62*windowWidth), (int) (.25*windowHeight));
         messageText.setBackground(Color.BLUE);
-        messageText.setForeground(Color.WHITE);
+        messageText.setForeground(Color.black);
+        messageText.setOpaque(false);
         messageText.setEditable(false);
         messageText.setLineWrap(true);
         messageText.setWrapStyleWord(true);
-        messageText.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
+        messageText.setFont(getOldRetro());
+        window.add(getInvPanel());
+        window.add(getDirectionPanel());
         window.add(messageText);
     }
 
     public void createBackground(int bgNum, String bgFileName){
 
         JPanel panel = new JPanel();
+        setDirectionPanel(new JPanel());
         panel.setName(String.valueOf(bgNum));
         panel.setBounds((int) (.05*windowWidth),(int) (.08*windowHeight),(int) (.9*windowWidth),(int) (.58*windowHeight));
-        panel.setBackground(Color.BLUE);
         panel.setLayout(null);
+        panel.setOpaque(false);
         bgPanel.add(panel);
         window.add(panel);
 
@@ -219,10 +275,10 @@ public class UI {
     public void createStartButton(int x, int y, int width, int height, String command, String target){
         JButton startButton = new JButton("Press Start");
         startButton.setForeground(Color.black);
-        //startButton.setFont(oldRetro);
-        startButton.setOpaque(true);
+        startButton.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        startButton.setOpaque(false);
         startButton.setBounds(x,y,width,height);
-        startButton.setBackground(null);
+        startButton.setBackground(Color.GRAY);
         startButton.addActionListener(gm.aHandler);
         startButton.setActionCommand(command + " " + target);
         bgPanel.get(0).add(startButton);
@@ -309,7 +365,7 @@ public class UI {
 
     public void generateSplashScene(){
         createSplashScreen("img/splashscreen.png");
-        createStartButton(550, 550, 150, 50, "start", "1");
+        createStartButton(550, 550, 200, 50, "start", "1");
         bgPanel.get(0).add(bgLabel.get(0));
     }
 
@@ -351,5 +407,61 @@ public class UI {
 
     public void setBgLabel(ArrayList<JLabel> bgLabel) {
         this.bgLabel = bgLabel;
+    }
+
+    public Font getOldRetro() {
+        return oldRetro;
+    }
+
+    public void setOldRetro(Font oldRetro) {
+        this.oldRetro = oldRetro;
+    }
+
+    public JPanel getDirectionPanel() {
+        return directionPanel;
+    }
+
+    public void setDirectionPanel(JPanel directionPanel) {
+        this.directionPanel = directionPanel;
+    }
+
+    public JButton getNorthButton() {
+        return northButton;
+    }
+
+    public void setNorthButton(JButton northButton) {
+        this.northButton = northButton;
+    }
+
+    public JButton getSouthButton() {
+        return southButton;
+    }
+
+    public void setSouthButton(JButton southButton) {
+        this.southButton = southButton;
+    }
+
+    public JButton getEastButton() {
+        return eastButton;
+    }
+
+    public void setEastButton(JButton eastButton) {
+        this.eastButton = eastButton;
+    }
+
+    public JButton getWestButton() {
+        return westButton;
+    }
+
+    public void setWestButton(JButton westButton) {
+        this.westButton = westButton;
+    }
+
+    public JPanel getInvPanel() {
+        return invPanel;
+    }
+
+    public void setInvPanel(JPanel invPanel) {
+        this.invPanel = invPanel;
     }
 }
