@@ -22,7 +22,7 @@ public class ActionHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String yourChoice = e.getActionCommand();
-        String[] inputSplit = yourChoice.trim().toLowerCase().split(" ");
+        String[] inputSplit = yourChoice.trim().split(" ");
 
         if (inputSplit.length>2){
             inputSplit[1] = inputSplit[1] +" "+inputSplit[2];
@@ -34,12 +34,19 @@ public class ActionHandler implements ActionListener {
                 gm.getUi().messageText.setText("You look at "+ inputSplit[1]);
                 break;
             case "grab":
+                System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getName());
+                System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getItems());
+                System.out.println(gm.getPlayer().getInventory());
                 gm.getUi().messageText.setText("You grab "+ inputSplit[1]);
                 gm.getPlayer().grabItem(inputSplit[1]);
                 break;
             case "eat":
+                System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getItems());
+                System.out.println(gm.getPlayer().getHp());
                 gm.getUi().messageText.setText("You try to eat "+ inputSplit[1]);
                 gm.getPlayer().useItem(inputSplit[1]);
+                System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getItems());
+                System.out.println(gm.getPlayer().getHp());
                 break;
             case "fight":
                 gm.getUi().messageText.setText("You try to fight "+ inputSplit[1]);
@@ -51,8 +58,8 @@ public class ActionHandler implements ActionListener {
                 gm.getUi().messageText.setText("You try and trade with "+ inputSplit[1]);
                 break;
             case "move":
-                int direction = Integer.parseInt(inputSplit[1]);
-                gm.sc.showScreen(direction);
+                String direction = inputSplit[1];
+                gm.sc.screenPicker(direction);
                 gm.getUi().messageText.setText("you went to area "+ inputSplit[1]);
                 break;
             case "start":

@@ -93,6 +93,14 @@ public class UI {
         getWestButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         getEastButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         getSouthButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        getNorthButton().addActionListener(gm.aHandler);
+        getNorthButton().setActionCommand("move north");
+        getSouthButton().addActionListener(gm.aHandler);
+        getSouthButton().setActionCommand("move south");
+        getWestButton().addActionListener(gm.aHandler);
+        getWestButton().setActionCommand("move west");
+        getEastButton().addActionListener(gm.aHandler);
+        getEastButton().setActionCommand("move east");
         getDirectionPanel().add(getSouthButton());
         getDirectionPanel().add(getEastButton());
         getDirectionPanel().add(getNorthButton());
@@ -119,11 +127,11 @@ public class UI {
         window.add(messageText);
     }
 
-    public void createBackground(int bgNum, String bgFileName){
+    public void createBackground(int bgNum, String bgFileName, String target){
 
         JPanel panel = new JPanel();
         setDirectionPanel(new JPanel());
-        panel.setName(String.valueOf(bgNum));
+        panel.setName(target);
         panel.setBounds((int) (.05*windowWidth),(int) (.08*windowHeight),(int) (.9*windowWidth),(int) (.58*windowHeight));
         panel.setLayout(null);
         panel.setOpaque(false);
@@ -146,6 +154,7 @@ public class UI {
         splash.setBounds(0, 0, 1280, 720);
         splash.setBackground(Color.BLUE);
         splash.setLayout(null);
+        splash.setName("Title");
         bgPanel.add(splash);
         window.add(splash);
 
@@ -289,15 +298,15 @@ public class UI {
         int i = 1;
         for (Locations location:gm.getGame().getLocations()
         ) {
-            generateScenes(i,location.getImg(),location.getItems(),location.getNPC(),location.getDirections());
+            generateScenes(i,location.getImg(),location.getItems(),location.getNPC(),location.getDirections(), location.getName());
             System.out.println("loading... scene "+ i);
             i++;
         }
 
     }
 
-    public void generateScenes(int sceneNum, String img, List<String> items, List<String> npcs, Map<String, String> directions) {
-        gm.getUi().createBackground(sceneNum, img);
+    public void generateScenes(int sceneNum, String img, List<String> items, List<String> npcs, Map<String, String> directions, String location) {
+        gm.getUi().createBackground(sceneNum, img, location);
 
         for (String item:items
              ) {
@@ -329,12 +338,12 @@ public class UI {
         }
 
 
-        if (sceneNum<15) {
-            createArrowButton(sceneNum, 0, 150, 50, 50, "img/left.png", "move", String.valueOf(sceneNum+1));
-        }
-        else {
-            createArrowButton(sceneNum, 0, 150, 50, 50, "img/left.png", "move", String.valueOf(1));
-        }
+//        if (sceneNum<15) {
+//            createArrowButton(sceneNum, 0, 150, 50, 50, "img/left.png", "move", String.valueOf(sceneNum+1));
+//        }
+//        else {
+//            createArrowButton(sceneNum, 0, 150, 50, 50, "img/left.png", "move", String.valueOf(1));
+//        }
         gm.getUi().bgPanel.get(sceneNum).add(bgLabel.get(sceneNum));
 
 

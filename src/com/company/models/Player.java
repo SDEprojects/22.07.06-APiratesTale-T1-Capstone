@@ -89,17 +89,19 @@ public class Player {
     public void grabItem(String item) { //grab needs overhauled this is a lot of hard coding
         Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
-
-        if (itemInstance.getKeyReq().equals("none")) {
-            getInventory().add(item);
-            locationStuff.getItems().remove(item);
-        } else if (inventory.contains(itemInstance.getKeyReq())) {
-            getInventory().add(item);
-            locationStuff.getItems().remove(item);
-        } else {
-            //gm.getUi().messageText.setText(itemInstance.getKeyError());
-            System.out.println(itemInstance.getKeyError());
+        if (locationStuff.getItems().contains(item)){
+            if (itemInstance.getKeyReq().equals("none")) {
+                getInventory().add(item);
+                locationStuff.getItems().remove(item);
+            } else if (inventory.contains(itemInstance.getKeyReq())) {
+                getInventory().add(item);
+                locationStuff.getItems().remove(item);
+            } else {
+                //gm.getUi().messageText.setText(itemInstance.getKeyError());
+                System.out.println(itemInstance.getKeyError());
+            }
         }
+
     }
 
 //        if (!item.equals("parrot") && !item.equals("treasure chest") && locationItems.contains(item)) {
