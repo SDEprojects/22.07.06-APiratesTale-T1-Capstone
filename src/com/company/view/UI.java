@@ -11,6 +11,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +29,7 @@ public class UI {
     int windowHeight = 720;
     int windowWidth = 1280;
     public JTextArea messageText;
+    private Font oldRetro;
     ArrayList<JPanel> bgPanel= new ArrayList<>();
     ArrayList<JLabel> bgLabel= new ArrayList<>();
 //    JPanel bgPanel[];
@@ -34,6 +39,7 @@ public class UI {
     public UI(GameMain gm, double resolutionChanger) {
 
         this.gm = gm;
+        fontCreate();
         setResolutionChanger(resolutionChanger);
         setWindowHeight((int) (getWindowHeight()*getResolutionChanger()));
         setWindowWidth((int) (getWindowWidth()*getResolutionChanger()));
@@ -43,24 +49,38 @@ public class UI {
         window.setVisible(true);
     }
 
+    private void fontCreate(){
+        try {
+            InputStream is = new BufferedInputStream(new FileInputStream(("resources/Press_Start_2P/PressStart2P-Regular.ttf")));
+            Font retro = Font.createFont(Font.TRUETYPE_FONT, is);
+            setOldRetro(retro.deriveFont(Font.PLAIN, 20));
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void createMainField(){
-        window = new JFrame();
+        window = new JFrame("A Pirates Tale");
         window.setSize(windowWidth, windowHeight);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.BLACK);
+        window.setContentPane(new JLabel(new ImageIcon("resources/img/gamegackground.jpg")));
         window.setLayout(null);
+        window.setResizable(false);
+        window.setLocationRelativeTo(null);
 
     }
 
     public void createMessageViewer(){
         messageText = new JTextArea("Welcome to the Jungle!");
         messageText.setBounds((int) (.05*windowWidth), (int) (.68*windowHeight), (int) (.9*windowWidth), (int) (.25*windowHeight));
-        messageText.setBackground(Color.BLUE);
-        messageText.setForeground(Color.WHITE);
+        //messageText.setBackground(Color.BLUE);
+        messageText.setForeground(Color.black);
+        messageText.setOpaque(false);
         messageText.setEditable(false);
         messageText.setLineWrap(true);
         messageText.setWrapStyleWord(true);
-        messageText.setFont(new Font("Book Antiqua", Font.PLAIN, 26));
+        messageText.setFont(getOldRetro());
         window.add(messageText);
     }
 
@@ -351,5 +371,13 @@ public class UI {
 
     public void setBgLabel(ArrayList<JLabel> bgLabel) {
         this.bgLabel = bgLabel;
+    }
+
+    public Font getOldRetro() {
+        return oldRetro;
+    }
+
+    public void setOldRetro(Font oldRetro) {
+        this.oldRetro = oldRetro;
     }
 }
