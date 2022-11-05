@@ -61,7 +61,7 @@
   },
     {
       "name": "Mango",
-      "description": "Delicious fruit found on Mango Island. Restores health by 5pts",
+      "description": "Delicious fruit found on Mango Island. Restores health by 5pts.",
       "value": "5",
       "cost": "0",
       "strength": "0",

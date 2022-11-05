@@ -6,128 +6,256 @@
       "items" : [],
       "directions": {
         "north" : "Mango Docks",
-        "east" : "Blacksmith Forge",
-        "west" : "Mango Jungle"
+        "east" : "Mango Trade Center",
+        "south" : "Mango Jungle North"
       },
-      "img": "img/village.png",
+      "img": "img/beachShack.png",
       "island": "mango",
-      "grid": "a2"
+      "grid": "b1"
     },
     {
       "name": "Mango Docks",
       "description" : "Where pirate captains dock their ships.",
-      "NPC" : ["pirate captain"],
+      "NPC" : ["boat captain"],
       "items" : [],
       "directions": {
         "east" : "Boat",
         "south" : "Beach Shack"
       },
       "img": "img/dock.png",
-      "island": " ",
-      "grid": " "
+      "island": "mango",
+      "grid": "a1"
     },
     {
-      "name": "Blacksmith Forge",
-      "description" : "Your uncle forges excellent swords here.",
-      "NPC" : ["uncle"],
+      "name": "Mango Trade Center",
+      "description" : "Where you can trade, gamble, buy, sell and loose things.",
+      "NPC" : ["trader1", "gambler1", "uncle"],
       "items" : [],
       "directions": {
         "west" : "Beach Shack"
       },
       "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "island": "mango",
+      "grid": "b2"
     },
     {
-      "name": "Mango Jungle",
-      "description" : "The Western jungle that is home to a squawking parrot, and delicious mangos.",
-      "NPC" : [],
-      "items" : ["Parrot", "Mango"],
+      "name": "Mango Jungle North",
+      "description" : "The North jungle that has delicious mangos and ugly pirates.",
+      "NPC" : ["ugly pirate"],
+      "items" : ["Mango"],
       "directions": {
-        "east" : "Beach Shack"
+        "north" : "Beach Shack",
+        "south" : "Mango Jungle South"
       },
-      "img": "img/jungle.png",
-      "island": " ",
-      "grid": " "
+      "img": "img/mangoJN.png",
+      "island": "mango",
+      "grid": "c1"
     },
     {
-      "name": "South Beach",
-      "description" : "The southern beach of Monkey Island. Atop a hill you see a large temple, with three monkeys standing guard.",
+      "name": "Mango Jungle South",
+      "description" : "The South jungle that has delicious mangos and dirty pirates.",
+      "NPC" : ["dirty pirate"],
+      "items" : ["Mango"],
+      "directions": {
+        "north" : "Mango Jungle North",
+        "west" : "Mango Jungle SouthWest",
+        "east" : "Mango Jungle SouthEast"
+      },
+      "img": "img/mangoJS.png",
+      "island": "mango",
+      "grid": "d1"
+    },
+    {
+      "name": "Mango Jungle SouthWest",
+      "description" : "The SouthWest jungle that has naughty parrot and boss pirate.",
+      "NPC" : ["boss pirate"],
+      "items" : ["Parrot"],
+      "directions": {
+        "east" : "Mango Jungle South"
+      },
+      "img": "img/mangoJSW.png",
+      "island": "mango",
+      "grid": "d0"
+    },
+    {
+      "name": "Mango Jungle SouthEast",
+      "description" : "The SouthEast jungle that has rats.",
       "NPC" : [],
       "items" : [],
       "directions": {
-        "north" : "Monkey Temple",
-        "east" : "Banana Stash",
-        "west" : "Banana Jungle",
+        "west" : "Mango Jungle South"
+      },
+      "img": "img/jungle.png",
+      "island": "mango",
+      "grid": "d2"
+    },
+    {
+      "name": "Boat1",
+      "description" : "A clean pirate ship, with a strong smell of sasporilla.",
+      "NPC" : ["helmsman1"],
+      "items" : [],
+      "directions": {
+        "west" : "Mango Docks"
+      },
+      "img": "img/boat1.png",
+      "island": "mango",
+      "grid": "a2"
+    },
+    {
+      "name": "Boat2",
+      "description" : "A clean pirate ship, with a strong smell of sasporilla.",
+      "NPC" : ["helmsman2"],
+      "items" : [],
+      "directions": {
+        "north" : "Monkey Docks"
+      },
+      "img": "img/boat2.png",
+      "island": "monkey",
+      "grid": "e2"
+    },
+    {
+      "name": "Boat3",
+      "description" : "A clean pirate ship, with a strong smell of sasporilla.",
+      "NPC" : ["helmsman3"],
+      "items" : [],
+      "directions": {
+        "north" : "Skull Docks"
+      },
+      "img": "img/boat3.png",
+      "island": "skull",
+      "grid": "d0"
+    },
+    {
+      "name": "Monkey Docks",
+      "description" : "The beautiful southern beach with docks of Monkey Island.",
+      "NPC" : ["monkey pirate"],
+      "items" : [],
+      "directions": {
+        "north" : "Monkey Fields",
+        "east" : "Monkey Trade Center",
         "south" : "Boat"
       },
       "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "island": "monkey",
+      "grid": "d2"
     },
     {
-      "name": "Banana Jungle",
-      "description" : "The western jungle with many vines.",
+      "name": "Monkey Trade Center",
+      "description" : "Where you can trade, gamble, buy, sell and loose things.",
+      "NPC" : ["trader2", "gambler2"],
+      "items" : [],
+      "directions": {
+        "east" : "Monkey Docks"
+      },
+      "img": "img/village.png",
+      "island": "monkey",
+      "grid": "d3"
+    },
+    {
+      "name": "Monkey Fields",
+      "description" : "Big open field with wild monkeys jumping around.",
+      "NPC" : [],
+      "items" : ["Banana"],
+      "directions": {
+        "north" : "Monkey Temple",
+        "east" : "Banana Stash",
+        "west" : "Monkey Jungle West",
+        "south" : "Monkey Docks"
+      },
+      "img": "img/monkeyFields.png",
+      "island": "monkey",
+      "grid": "c2"
+    },
+    {
+      "name": "Monkey Jungle",
+      "description" : "The jungle with many vines and banana trees.",
+      "NPC" : [],
+      "items" : ["Banana"],
+      "directions": {
+        "east" : "Monkey Fields ",
+        "west" : "Monkey Jungle West"
+      },
+      "img": "img/monkeyJungle.png",
+      "island": "monkey",
+      "grid": "c1"
+    },
+    {
+      "name": "Monkey Jungle West",
+      "description" : "The western jungle is a dark jungle filled with goons.",
+      "NPC" : ["monkeyman"],
+      "items" : ["Banana"],
+      "directions": {
+        "east" : "Monkey Jungle ",
+        "north" : "Monkey Jungle NorthWest"
+      },
+      "img": "img/village.png",
+      "island": "monkey",
+      "grid": "c0"
+    },
+    {
+      "name": "Monkey Jungle NorthWest",
+      "description" : "The northern jungle is filled with monkeys and banana trees.",
       "NPC" : ["monkey prince"],
       "items" : ["Banana"],
       "directions": {
-        "east" : "South Beach"
+        "south" : "Monkey Jungle West "
       },
       "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "island": "monkey",
+      "grid": "b0"
     },
     {
       "name": "Banana Stash",
-      "description" : "The monkey troop’s sacred banana stash",
+      "description" : "The monkey troop’s sacred banana stash.",
       "NPC" : ["skeleton beast"],
       "items" : ["Banana"],
       "directions": {
-        "west" : "South Beach"
+        "west" : "Monkey Fields"
       },
-      "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "img": "img/bStash.png",
+      "island": "monkey",
+      "grid": "c3"
     },
+
     {
       "name": "Monkey Temple",
-      "description" : "Home of the Monkey King and his troop",
+      "description" : "Home of the Monkey King and his troop.",
       "NPC" : ["monkey king"],
       "items" : [],
       "directions": {
-        "south" : "South Beach"
+        "south" : "Monkey Fields"
       },
       "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "island": "monkey",
+      "grid": "b2"
     },
     {
-      "name": "Skull Dock",
+      "name": "Skull Docks",
       "description" : "A nefarious dock made from skulls and bones.",
       "NPC" : [],
       "items" : [],
       "directions": {
         "east" : "Skull Cave",
-        "west" : "Boat"
+        "south" : "Boat"
       },
       "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "island": "skull",
+      "grid": "c0"
     },
     {
       "name": "Skull Cave",
-      "description" : "Treacherous cave with the sinister appearance of a human skull. To the east you see a massive door that requires two keys.",
+      "description" : "Treacherous cave with the sinister appearance of a human skull.",
       "NPC" : [],
       "items" : [],
       "directions": {
         "north" : "Northern Cavern",
-        "east" : "Skull King Throne Room",
-        "west" : "Skull Dock",
+        "east" : "Throne Room",
+        "west" : "Skull Docks",
         "south" : "Southern Cavern"
       },
-      "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "img": "img/skullCave.png",
+      "island": "skull",
+      "grid": "c1"
     },
     {
       "name": "Northern Cavern",
@@ -137,24 +265,24 @@
       "directions": {
         "south" : "Skull Cave"
       },
-      "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "img": "img/nCave.png",
+      "island": "skull",
+      "grid": "b1"
     },
     {
       "name": "Southern Cavern",
       "description" : "The southern cavern which is flowing with molten lava.",
-      "NPC" : ["skeleton captain"],
+      "NPC" : ["skull captain"],
       "items" : [],
       "directions": {
         "north" : "Skull Cave"
       },
-      "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "img": "img/sCave.png",
+      "island": "skull",
+      "grid": "d1"
     },
     {
-      "name": "Skull King Throne Room",
+      "name": "Throne Room",
       "description" : "A candlelit throne room. Filled with skeleton art work.",
       "NPC" : ["skull king"],
       "items" : [],
@@ -163,8 +291,8 @@
         "west" : "Skull Cave"
       },
       "img": "img/village.png",
-      "island": " ",
-      "grid": " "
+      "island": "skull",
+      "grid": "c2"
     },
     {
       "name": "Treasure Room",
@@ -172,24 +300,10 @@
       "NPC" : [],
       "items" : ["Treasure Chest"],
       "directions": {
-        "west" : "Skull King Throne Room"
+        "west" : "Throne Room"
       },
       "img": "img/village.png",
-      "island": " ",
-      "grid": " "
-    },
-    {
-      "name": "Boat",
-      "description" : "A clean pirate ship, with a strong smell of sasporilla.",
-      "NPC" : [],
-      "items" : [],
-      "directions": {
-        "mango island" : "Mango Docks",
-        "monkey island" : "South Beach",
-        "skull island" : "Skull Dock"
-      },
-      "img": "img/dock.png",
-      "island": " ",
-      "grid": " "
+      "island": "skull",
+      "grid": "c3"
     }
   ]
