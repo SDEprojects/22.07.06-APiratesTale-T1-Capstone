@@ -14,14 +14,14 @@
       "questReq" : [],
       "reward" : [],
       "img": "img/uncle.png",
-      "xaxis": "70",
+      "xaxis": "700",
       "yaxis": "80",
       "width": "264",
       "height": "400",
       "type": "friendly"
     },
     {
-      "name": "pirate captain",
+      "name": "boat captain",
       "quote": {
         "initial": "\nAhoy adventurer, I am Captain Ron.\n",
         "quest" : "\nIf it’s a ship you seek, I will not help you.\nYou see it’s my lucky PARROT, Polly. A fallen mango spooked the ole girl, and she flew into the mango forest.\nI will not set sail without her, for it would surely lead me to a doomed fate at sea.\nHey, if you are able to find her and bring my Polly back, I would take you anywhere you want.\nWould you find her for me? [yes/no]\n",
@@ -42,7 +42,26 @@
         "Boat Pass"
       ],
       "img": "img/uncle.png",
-      "xaxis": "70",
+      "xaxis": "60",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "friendly"
+    },
+    {
+      "name": "trader1",
+      "quote": {
+        "initial": "Hi, My name is Joe. \nI am the best trader you can find on this island.",
+        "quit" : "Come back to trade your life anytime."
+      },
+      "items": [],
+      "hp": "10",
+      "isFriendly": true,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "30",
       "yaxis": "80",
       "width": "264",
       "height": "400",
@@ -55,8 +74,169 @@
         "quit" : "Come back to visit anytime Nephew."
       },
       "items": [
-        "sword", "mango"
-        ],
+        "sword", "redkey"
+      ],
+      "hp": "10",
+      "isFriendly": true,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "400",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "friendly"
+    },
+    {
+      "name": "gambler1",
+      "quote": {
+        "initial": "",
+        "quit" : "Come back to win anytime."
+      },
+      "items": [],
+      "hp": "10",
+      "isFriendly": true,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "800",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "friendly"
+    },
+    {
+      "name": "ugly pirate",
+      "quote": {"initial": ""},
+      "items": ["mango"],
+      "hp": "10",
+      "isFriendly": false,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "250",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "enemy"
+    },
+    {
+      "name": "dirty pirate",
+      "quote": {
+        "initial": "",
+        "quit" : ""
+      },
+      "items": ["mango"],
+      "hp": "10",
+      "isFriendly": false,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "enemy"
+    },
+    {
+      "name": "boss pirate",
+      "quote": {
+        "initial": "",
+        "quit" : ""
+      },
+      "items": [],
+      "hp": "10",
+      "isFriendly": false,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "650",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "enemy"
+    },
+    {
+      "name": "helmsman1",
+      "quote": {"initial": "Where to sail Pirate ??"},
+      "items": [],
+      "hp": "10",
+      "isFriendly": true,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "700",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "friendly"
+    },
+    {
+      "name": "helmsman2",
+      "quote": {"initial": "Where to sail Pirate ??"},
+      "items": [],
+      "hp": "10",
+      "isFriendly": true,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "700",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "friendly"
+    },
+    {
+      "name": "helmsman3",
+      "quote": {"initial": "Where to sail Pirate ??"},
+      "items": [],
+      "hp": "10",
+      "isFriendly": true,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "60",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "friendly"
+    },
+    {
+      "name": "monkey pirate",
+      "quote": {
+        "initial" : "",
+        "quit" : "Safe travels,..."
+      },
+      "items": [
+        "map"
+      ],
+      "hp": "10",
+      "isFriendly": true,
+      "dp" : "1",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "friendly"
+    },
+    {
+      "name": "trader2",
+      "quote": {
+        "initial": "",
+        "quit" : "Come back to trade your life anytime."
+      },
+      "items": [],
       "hp": "10",
       "isFriendly": true,
       "dp" : "5",
@@ -68,6 +248,41 @@
       "width": "264",
       "height": "400",
       "type": "friendly"
+    },
+    {
+      "name": "gambler2",
+      "quote": {
+        "initial": "",
+        "quit" : "Come back to win anytime."
+      },
+      "items": [],
+      "hp": "10",
+      "isFriendly": true,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "friendly"
+    },
+    {
+      "name": "monkeyman",
+      "quote": {"initial": ""},
+      "items": [],
+      "hp": "10",
+      "isFriendly": false,
+      "dp" : "5",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "enemy"
     },
     {
       "name": "monkey king",
@@ -93,7 +308,7 @@
     {
       "name": "monkey prince",
       "quote": {
-      "initial": "\nHello I am the monkey prince!\nI wasn't lost I was monkeying around, I will tell my father that you found me. Show this pin to my father and you will earn his respect."
+        "initial": "\nHello I am the monkey prince!\nI wasn't lost I was monkeying around, I will tell my father that you found me. Show this pin to my father and you will earn his respect."
     },
       "items": ["monkey pin"],
       "hp": "10",
@@ -144,36 +359,36 @@
       "height": "400",
       "type": "enemy"
     },
-  {
-    "name": "skeleton soldier",
-    "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
-    "items": ["mango"],
-    "hp": "5",
-    "isFriendly": true,
-    "dp": "2",
-    "questReq" : [],
-    "reward" : [],
-    "img": "img/uncle.png",
-    "xaxis": "70",
-    "yaxis": "80",
-    "width": "264",
-    "height": "400",
-    "type": "enemy"
-  },
-  {
-    "name": "skeleton captain",
-    "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
-    "items": ["banana"],
-    "hp": "5",
-    "isFriendly": true,
-    "dp": "2",
-    "questReq" : [],
-    "reward" : [],
-    "img": "img/uncle.png",
-    "xaxis": "70",
-    "yaxis": "80",
-    "width": "264",
-    "height": "400",
-    "type": "enemy"
-  }
+    {
+      "name": "skeleton soldier",
+      "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
+      "items": ["mango"],
+      "hp": "5",
+      "isFriendly": true,
+      "dp": "2",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "enemy"
+    },
+    {
+      "name": "skull captain",
+      "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
+      "items": ["banana"],
+      "hp": "5",
+      "isFriendly": true,
+      "dp": "2",
+      "questReq" : [],
+      "reward" : [],
+      "img": "img/uncle.png",
+      "xaxis": "70",
+      "yaxis": "80",
+      "width": "264",
+      "height": "400",
+      "type": "enemy"
+    }
   ]
