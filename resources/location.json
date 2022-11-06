@@ -19,7 +19,7 @@
       "NPC" : ["boat captain"],
       "items" : [],
       "directions": {
-        "east" : "Boat",
+        "east" : "Boat1",
         "south" : "Beach Shack"
       },
       "img": "img/dock.png",
@@ -95,7 +95,9 @@
       "NPC" : ["helmsman1"],
       "items" : [],
       "directions": {
-        "west" : "Mango Docks"
+        "west" : "Mango Docks",
+        "north" : "Monkey Docks",
+        "east" : "Skull Docks"
       },
       "img": "img/boat1.png",
       "island": "mango",
@@ -107,7 +109,9 @@
       "NPC" : ["helmsman2"],
       "items" : [],
       "directions": {
-        "north" : "Monkey Docks"
+        "north" : "Monkey Docks",
+        "east" : "Skull Docks",
+        "west" : "Mango Docks"
       },
       "img": "img/boat2.png",
       "island": "monkey",
@@ -119,7 +123,9 @@
       "NPC" : ["helmsman3"],
       "items" : [],
       "directions": {
-        "north" : "Skull Docks"
+        "north" : "Skull Docks",
+        "west" : "Mango Docks",
+        "east" : "Monkey Docks"
       },
       "img": "img/boat3.png",
       "island": "skull",
@@ -133,7 +139,7 @@
       "directions": {
         "north" : "Monkey Fields",
         "east" : "Monkey Trade Center",
-        "south" : "Boat"
+        "south" : "Boat2"
       },
       "img": "img/village.png",
       "island": "monkey",
@@ -145,7 +151,7 @@
       "NPC" : ["trader2", "gambler2"],
       "items" : [],
       "directions": {
-        "east" : "Monkey Docks"
+        "west" : "Monkey Docks"
       },
       "img": "img/village.png",
       "island": "monkey",
@@ -159,7 +165,7 @@
       "directions": {
         "north" : "Monkey Temple",
         "east" : "Banana Stash",
-        "west" : "Monkey Jungle West",
+        "west" : "Monkey Jungle East",
         "south" : "Monkey Docks"
       },
       "img": "img/monkeyFields.png",
@@ -167,12 +173,12 @@
       "grid": "c2"
     },
     {
-      "name": "Monkey Jungle",
+      "name": "Monkey Jungle East",
       "description" : "The jungle with many vines and banana trees.",
       "NPC" : [],
       "items" : ["Banana"],
       "directions": {
-        "east" : "Monkey Fields ",
+        "east" : "Monkey Fields",
         "west" : "Monkey Jungle West"
       },
       "img": "img/monkeyJungle.png",
@@ -185,7 +191,7 @@
       "NPC" : ["monkeyman"],
       "items" : ["Banana"],
       "directions": {
-        "east" : "Monkey Jungle ",
+        "east" : "Monkey Jungle East",
         "north" : "Monkey Jungle NorthWest"
       },
       "img": "img/village.png",
@@ -198,7 +204,7 @@
       "NPC" : ["monkey prince"],
       "items" : ["Banana"],
       "directions": {
-        "south" : "Monkey Jungle West "
+        "south" : "Monkey Jungle West"
       },
       "img": "img/village.png",
       "island": "monkey",
@@ -236,7 +242,7 @@
       "items" : [],
       "directions": {
         "east" : "Skull Cave",
-        "south" : "Boat"
+        "south" : "Boat3"
       },
       "img": "img/village.png",
       "island": "skull",
