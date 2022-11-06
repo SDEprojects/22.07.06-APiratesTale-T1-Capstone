@@ -13,12 +13,12 @@
       "dp" : "1",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "700",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "img": "img/traveler.png",
+      "xaxis": "500",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "quest"
     },
     {
       "name": "boat captain",
@@ -41,11 +41,11 @@
       "reward" : [
         "Boat Pass"
       ],
-      "img": "img/uncle.png",
+      "img": "img/pirate1.png",
       "xaxis": "60",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "friendly"
     },
     {
@@ -60,12 +60,12 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "30",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "img": "img/shopkeeper1.png",
+      "xaxis": "400",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "trader"
     },
     {
       "name": "uncle",
@@ -82,11 +82,11 @@
       "questReq" : [],
       "reward" : [],
       "img": "img/uncle.png",
-      "xaxis": "400",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "quest"
     },
     {
       "name": "gambler1",
@@ -100,11 +100,11 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
+      "img": "img/gambler1.png",
       "xaxis": "800",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "friendly"
     },
     {
@@ -116,11 +116,11 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "250",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "img": "img/badpirate1.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "enemy"
     },
     {
@@ -135,11 +135,11 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "img": "img/badpirate2.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "enemy"
     },
     {
@@ -154,11 +154,11 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "650",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "img": "img/badpirate3.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "enemy"
     },
     {
@@ -170,12 +170,12 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "700",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "img": "img/pirate2.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "boat"
     },
     {
       "name": "helmsman2",
@@ -186,12 +186,12 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "700",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "img": "img/pirate3.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "boat"
     },
     {
       "name": "helmsman3",
@@ -202,12 +202,12 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
+      "img": "img/pirate4.png",
       "xaxis": "60",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "boat"
     },
     {
       "name": "monkey pirate",
@@ -223,11 +223,11 @@
       "dp" : "1",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "img": "img/monkey2.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "friendly"
     },
     {
@@ -242,12 +242,12 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "img": "img/shopkeeper2.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "shop"
     },
     {
       "name": "gambler2",
@@ -261,12 +261,12 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "img": "img/gambler2.png",
+      "xaxis": "350",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "gamble"
     },
     {
       "name": "monkeyman",
@@ -277,12 +277,12 @@
       "dp" : "5",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "enemy"
+      "img": "img/monkey1.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "friendly"
     },
     {
       "name": "monkey king",
@@ -298,12 +298,12 @@
       "dp" : "10",
       "questReq" : ["monkey pin", "beast skull"],
       "reward" : ["treasure key", "banana"],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "img": "img/monkeyking.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "quest"
     },
     {
       "name": "monkey prince",
@@ -316,12 +316,12 @@
       "dp" : "1",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
-      "type": "friendly"
+      "img": "img/monkeyprince.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
+      "type": "quest"
     },
     {
       "name": "skull king",
@@ -336,11 +336,11 @@
       "dp": "4",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "img": "img/skullking.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "enemy"
     },
     {
@@ -352,11 +352,11 @@
       "dp": "2",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "img": "img/skullgoon.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "enemy"
     },
     {
@@ -368,11 +368,11 @@
       "dp": "2",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "img": "img/skullgoon.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "enemy"
     },
     {
@@ -384,11 +384,11 @@
       "dp": "2",
       "questReq" : [],
       "reward" : [],
-      "img": "img/uncle.png",
-      "xaxis": "70",
-      "yaxis": "80",
-      "width": "264",
-      "height": "400",
+      "img": "img/skullcaptain.png",
+      "xaxis": "60",
+      "yaxis": "65",
+      "width": "350",
+      "height": "350",
       "type": "enemy"
     }
   ]
