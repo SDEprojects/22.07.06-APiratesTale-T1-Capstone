@@ -50,6 +50,7 @@ public class ActionHandler implements ActionListener {
                 break;
             case "fight":
                 gm.getUi().messageText.setText("You try to fight "+ inputSplit[1]);
+                gm.getPlayer().attack(inputSplit[1]);
                 break;
             case "talk":
                 gm.getUi().messageText.setText("You talk to "+ inputSplit[1]);
@@ -68,6 +69,9 @@ public class ActionHandler implements ActionListener {
                 break;
             default:
                 break;
+        }
+        if (gm.getPlayer().getHp()<=0){
+            System.out.println("Game over");
         }
 
     }

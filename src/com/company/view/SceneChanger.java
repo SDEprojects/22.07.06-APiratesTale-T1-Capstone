@@ -20,7 +20,7 @@ public class SceneChanger {
         try {
             if (!nextRoom.isEmpty()){
                 gm.getPlayer().setCurrentRoom(nextRoom);
-                int roomSelect = findIndex(gm.getUi().getBgPanel(), nextRoom);
+                int roomSelect = gm.getUi().findPanelIndex(nextRoom);
                 showScreen(roomSelect);
             }
         } catch (Exception e) {
@@ -33,26 +33,26 @@ public class SceneChanger {
 
     }
 
-    public static int findIndex(List<JPanel> arr, String name)
-    {
-        // find length of array
-        int len = arr.size();
-        int i = 0;
-
-        // traverse in the array
-        while (i < len) {
-
-            // if the i-th element is t
-            // then return the index
-            if (arr.get(i).getName().equals(name)) {
-                return i;
-            }
-            else {
-                i = i + 1;
-            }
-        }
-        return -1;
-    }
+//    public static int findIndex(List<JPanel> panel, String name)
+//    {
+//        // find length of array
+//        int len = panel.size();
+//        int i = 0;
+//
+//        // traverse in the array
+//        while (i < len) {
+//
+//            // if the i-th element is t
+//            // then return the index
+//            if (panel.get(i).getName().equals(name)) {
+//                return i;
+//            }
+//            else {
+//                i = i + 1;
+//            }
+//        }
+//        return -1;
+//    }
 
     public void showScreen(int screen) {
         for (JPanel panel:gm.getUi().getBgPanel()
