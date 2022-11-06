@@ -17,6 +17,7 @@ public class GameMain {
     private final Game game = new Game(this);
 
 
+
     public static void main(String[] args) {
         new GameMain();
     }
@@ -37,5 +38,21 @@ public class GameMain {
 
     public Game getGame() {
         return game;
+    }
+
+    public SceneChanger getSc() {
+        return sc;
+    }
+
+    public void setSc(SceneChanger sc) {
+        this.sc = sc;
+    }
+
+    public ActionHandler getaHandler() {
+        return aHandler;
+    }
+
+    public void setaHandler(ActionHandler aHandler) {
+        this.aHandler = aHandler;
     }
 }
