@@ -1,7 +1,6 @@
 package com.company.view;
 
 import com.company.client.GameMain;
-import com.company.models.Game;
 import com.company.models.Items;
 import com.company.models.Locations;
 import com.company.models.Characters;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public class UI {
 
@@ -230,6 +228,7 @@ public class UI {
         objectLabel.setBounds(objX,objY,objWidth,ObjHeight);
         ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(objFile)));
         objectLabel.setIcon(objectIcon);
+        objectLabel.setName(target);
 
         objectLabel.addMouseListener(new MouseListener() {
             @Override
@@ -292,6 +291,55 @@ public class UI {
         startButton.setActionCommand(command + " " + target);
         bgPanel.get(0).add(startButton);
 
+    }
+
+    public void deleteObject(String name){
+        int panel = findPanelIndex(gm.getPlayer().getCurrentRoom());
+        bgPanel.get(panel).remove(findLabelIndex(panel, name));
+        gm.getSc().showScreen(panel);
+    }
+
+    public int findLabelIndex(int panel, String name)
+    {
+        // find length of array
+        int len = bgPanel.get(panel).getComponentCount();
+        int i = 0;
+
+        // traverse in the array
+        while (i < len) {
+
+            // if the i-th element is t
+            // then return the index
+            if (bgPanel.get(panel).getComponent(i).getName().equals(name)) {
+                return i;
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        return -1;
+    }
+
+    public int findPanelIndex(String name)
+    {
+        // find length of array
+
+        int len = bgPanel.size();
+        int i = 0;
+
+        // traverse in the array
+        while (i < len) {
+
+            // if the i-th element is t
+            // then return the index
+            if (bgPanel.get(i).getName().equals(name)) {
+                return i;
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        return -1;
     }
 
     public void generate() {
