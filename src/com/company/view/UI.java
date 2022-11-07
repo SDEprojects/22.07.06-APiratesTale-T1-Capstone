@@ -31,7 +31,8 @@ public class UI {
     private JPanel directionPanel;
     private JButton northButton, southButton, eastButton, westButton;
     private JButton invButton, equipButton, settingButton, helpButton;
-    private JPanel invPanel, settingPanel;
+    private JPanel invPanel, settingPanel, statusPanel;
+    private JLabel hp, playerCurrentLocation, message;
     private JButton invBag, equipWeapon, settingIcon, helpIcon;
     ArrayList<JPanel> bgPanel= new ArrayList<>();
     ArrayList<JLabel> bgLabel= new ArrayList<>();
@@ -56,7 +57,7 @@ public class UI {
         try {
             InputStream is = new BufferedInputStream(new FileInputStream(("resources/Press_Start_2P/PressStart2P-Regular.ttf")));
             Font retro = Font.createFont(Font.TRUETYPE_FONT, is);
-            setOldRetro(retro.deriveFont(Font.PLAIN, 20));
+            setOldRetro(retro.deriveFont(Font.PLAIN, 15));
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
@@ -152,15 +153,31 @@ public class UI {
         getHelpIcon().setIcon(helpIcon);
 
 
+        setStatusPanel(new JPanel());
+        getStatusPanel().setBounds((int) (.13*windowWidth), (int) (.68*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
+        //getStatusPanel().setBackground(Color.BLUE);
+        getStatusPanel().setLayout(null);
+        getStatusPanel().setOpaque(false);
+
+        setHp(new JLabel("HP: " + (gm.getPlayer().getHp())));
+        getHp().setBounds((int) (0*windowWidth), (int) (0*windowHeight), (int) (.05*windowWidth), (int) (.05*windowHeight));
+        getHp().setFont(getOldRetro().deriveFont(Font.ITALIC,10));
+        getStatusPanel().add(getHp());
+        setPlayerCurrentLocation(new JLabel("Current Location: " + gm.getPlayer().getCurrentRoom()));
+        getPlayerCurrentLocation().setBounds((int) (.06*windowWidth), (int) (0*windowHeight), (int) (.56*windowWidth), (int) (.05*windowHeight));
+        getPlayerCurrentLocation().setFont(getOldRetro().deriveFont(Font.ITALIC, 10));
+        getStatusPanel().add(getPlayerCurrentLocation());
+
         messageText = new JTextArea();
-        messageText.setBounds((int) (.13*windowWidth), (int) (.68*windowHeight), (int) (.62*windowWidth), (int) (.25*windowHeight));
-       // messageText.setBackground(Color.BLUE);
+        messageText.setBounds((int) (.13*windowWidth), (int) (.74*windowHeight), (int) (.62*windowWidth), (int) (.19*windowHeight));
+        //messageText.setBackground(Color.BLUE);
         messageText.setForeground(Color.black);
         messageText.setOpaque(false);
         messageText.setEditable(false);
         messageText.setLineWrap(true);
         messageText.setWrapStyleWord(true);
         messageText.setFont(getOldRetro());
+        window.add(getStatusPanel());
         window.add(getSettingPanel());
         window.add(getInvPanel());
         window.add(getDirectionPanel());
@@ -636,5 +653,37 @@ public class UI {
 
     public void setHelpIcon(JButton helpIcon) {
         this.helpIcon = helpIcon;
+    }
+
+    public JPanel getStatusPanel() {
+        return statusPanel;
+    }
+
+    public void setStatusPanel(JPanel statusPanel) {
+        this.statusPanel = statusPanel;
+    }
+
+    public JLabel getHp() {
+        return hp;
+    }
+
+    public void setHp(JLabel hp) {
+        this.hp = hp;
+    }
+
+    public JLabel getPlayerCurrentLocation() {
+        return playerCurrentLocation;
+    }
+
+    public void setPlayerCurrentLocation(JLabel playerCurrentLocation) {
+        this.playerCurrentLocation = playerCurrentLocation;
+    }
+
+    public JLabel getMessage() {
+        return message;
+    }
+
+    public void setMessage(JLabel message) {
+        this.message = message;
     }
 }
