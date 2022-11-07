@@ -31,7 +31,7 @@ public class ActionHandler implements ActionListener {
 
         switch (inputSplit[0]) {
             case "look":
-                gm.getUi().messageText.setText("You look at "+ inputSplit[1]);
+                gm.getPlayer().look(inputSplit[1]);
                 break;
             case "grab":
                 System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getName());
@@ -53,7 +53,7 @@ public class ActionHandler implements ActionListener {
                 gm.getPlayer().attack(inputSplit[1]);
                 break;
             case "talk":
-                gm.getUi().messageText.setText("You talk to "+ inputSplit[1]);
+                gm.getPlayer().talk(inputSplit[1]);
                 break;
             case "trade":
                 gm.getUi().messageText.setText("You try and trade with "+ inputSplit[1]);

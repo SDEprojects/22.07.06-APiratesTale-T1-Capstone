@@ -94,13 +94,14 @@ public class Player {
                 getInventory().add(item);
                 locationStuff.getItems().remove(item);
                 gm.getUi().deleteObject(item);
+                gm.getUi().messageText.setText("you picked up "+ item);
             } else if (inventory.contains(itemInstance.getKeyReq())) {
                 getInventory().add(item);
                 locationStuff.getItems().remove(item);
                 gm.getUi().deleteObject(item);
+                gm.getUi().messageText.setText("you picked up "+ item);
             } else {
-                //gm.getUi().messageText.setText(itemInstance.getKeyError());
-                System.out.println(itemInstance.getKeyError());
+                gm.getUi().messageText.setText(itemInstance.getKeyError());
             }
         }
 
@@ -138,7 +139,7 @@ public class Player {
             setHp(getHp() +  itemInstance.getValue());
             locationStuff.getItems().remove(item);
             gm.getUi().deleteObject(item);
-            //gm.getUi().messageText.setText("You ate " + item + " and replenished your health by " + itemInstance.getValue());
+            gm.getUi().messageText.setText("You ate " + item + " and replenished your health by " + itemInstance.getValue());
         }
     }
 
@@ -181,34 +182,52 @@ public class Player {
 
 
     public void talk(String name) {
-        if (locationNPC.contains(name)) {
-            for (Map<String, Object> entry : characterData) {
-                // refactor to isFriendly
-                if (entry.get("name").equals(name) && !entry.get("name").equals("skeleton beast") && !entry.get("name").equals("skull king") && !entry.get("name").equals("skeleton soldier") && !entry.get("name").equals("skeleton captain")) {
-                    while (true) {
-                        System.out.println("Speaking to: " + entry.get("name"));
-                        Map<String, String> dialogue = (Map<String, String>) entry.get("quote");
-                        System.out.println(dialogue.get("initial"));
-                        if (dialogue.containsKey("quest")) {
-                            handleQuest(entry, dialogue);
-                            break;
-                        } else if (entry.containsKey("items")) {
-                            ArrayList<String> itemsArray = (ArrayList<String>) entry.get("items");
-                            for (String item : itemsArray) {
-                                inventory.add(item);
-                                System.out.println(item + " was added to inventory.\n");
-                            }
-                            entry.remove("items");
-                        }
-                        break;
-                    }
-                }
-
+        Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
+        Characters NPCInstance = gm.getGame().getCharacters().stream().filter(npc -> npc.getName().equals(name)).findFirst().orElse(null);
+        if (locationStuff.getNPC().contains(name)) {
+            switch (NPCInstance.getType()) {
+                case "quest":
+                    //need to replace with a quest method and button response
+                    gm.getUi().messageText.setText(NPCInstance.getName()+": " + NPCInstance.getQuote().get("quest"));
+                    break;
+                case "enemy":
+                    gm.getUi().messageText.setText(NPCInstance.getName()+": " + NPCInstance.getQuote().get("initial"));
+                    attack(name);
+                    break;
+                default:
+                    gm.getUi().messageText.setText(NPCInstance.getName()+": " + NPCInstance.getQuote().get("initial"));
+                    break;
             }
-        } else {
-            System.out.println("Invalid Name");
         }
     }
+//        if (locationNPC.contains(name)) {
+//            for (Map<String, Object> entry : characterData) {
+//                // refactor to isFriendly
+//                if (entry.get("name").equals(name) && !entry.get("name").equals("skeleton beast") && !entry.get("name").equals("skull king") && !entry.get("name").equals("skeleton soldier") && !entry.get("name").equals("skeleton captain")) {
+//                    while (true) {
+//                        System.out.println("Speaking to: " + entry.get("name"));
+//                        Map<String, String> dialogue = (Map<String, String>) entry.get("quote");
+//                        System.out.println(dialogue.get("initial"));
+//                        if (dialogue.containsKey("quest")) {
+//                            handleQuest(entry, dialogue);
+//                            break;
+//                        } else if (entry.containsKey("items")) {
+//                            ArrayList<String> itemsArray = (ArrayList<String>) entry.get("items");
+//                            for (String item : itemsArray) {
+//                                inventory.add(item);
+//                                System.out.println(item + " was added to inventory.\n");
+//                            }
+//                            entry.remove("items");
+//                        }
+//                        break;
+//                    }
+//                }
+//
+//            }
+//        } else {
+//            System.out.println("Invalid Name");
+//        }
+//    }
 
     public void go(String directionInput) throws NullPointerException {
         ArrayList<String> bossKeys = new ArrayList<String>(Arrays.asList("left boss key", "right boss key"));
@@ -236,18 +255,24 @@ public class Player {
     }
 
     public void look(String item) {
-        String file = "item.json";
-        ArrayList<Map<String, Object>> itemData = tools.readJson(file);
-        if (locationItems.contains(item) || inventory.contains(item)) {
-            for (Map<String, Object> entry : itemData) {
-                if (entry.get("name").toString().toLowerCase().equals(item)) {
-                    System.out.println(entry.get("description") + "\n");
-                }
-            }
-        } else {
-            System.out.println("You cannot look at items that are not in front of you.");
+        Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
+        Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
+        if (locationStuff.getItems().contains(item)) {
+            gm.getUi().messageText.setText("You look at "+item+", "+itemInstance.getDescription());
         }
     }
+//        String file = "item.json";
+//        ArrayList<Map<String, Object>> itemData = tools.readJson(file);
+//        if (locationItems.contains(item) || inventory.contains(item)) {
+//            for (Map<String, Object> entry : itemData) {
+//                if (entry.get("name").toString().toLowerCase().equals(item)) {
+//                    System.out.println(entry.get("description") + "\n");
+//                }
+//            }
+//        } else {
+//            System.out.println("You cannot look at items that are not in front of you.");
+//        }
+//    }
 
     public void attack(String name) {
         Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
@@ -256,6 +281,7 @@ public class Player {
             boolean isFighting = true;
             while (isFighting) {
                 //added switchcase to make fights feel like an event
+                gm.getUi().messageText.setText("fight, run, bag");
                 String battleAction = prompter.prompt("fight, run, bag");
                 switch (battleAction) {
                     case "fight":
@@ -268,18 +294,20 @@ public class Player {
                             if (NPCInstance.getHp() > 0) {
                                 int damage = NPCInstance.getDp();
                                 gm.getPlayer().setHp(gm.getPlayer().getHp() - damage);
+                                gm.getUi().messageText.setText(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp()+"\n"+"You are attacking: " + NPCInstance.getName()+"\n"+NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp()+"\n"+NPCInstance.getName() + " was able to attack you back. Your HP is now " + gm.getPlayer().getHp());
                                 System.out.println(NPCInstance.getName() + " was able to attack you back. Your HP is now " + gm.getPlayer().getHp());
-                            }
+                                }
                         }
-
                         if (gm.getPlayer().getHp() <= 0) {
                             //gameOver();
                             System.out.println("Game over...");
+                            gm.getUi().messageText.setText("Game over...");
                             isFighting = false;
+                            break;
                         }
-
                         if (NPCInstance.getHp() <= 0 && !NPCInstance.getItems().isEmpty()) {
                             System.out.println("Wasted " + NPCInstance.getName() + "!");
+                            gm.getUi().messageText.setText("Wasted " + NPCInstance.getName() + "!");
                             gm.getUi().deleteObject(NPCInstance.getName());
 //                            ArrayList<String> itemsArray = (ArrayList<String>) entry.get("items");
 //                            locationNPC.remove(name);
@@ -287,19 +315,28 @@ public class Player {
 //                                inventory.add(item);
 //                                System.out.println(entry.get("name") + "'s " + item + " has been added to your inventory");
                             isFighting = false;
+                            break;
+                        }
+                        if (NPCInstance.getHp() <= 0) {
+                            gm.getUi().messageText.setText("Wasted " + NPCInstance.getName() + "!");
+                            gm.getUi().deleteObject(NPCInstance.getName());
+                            isFighting = false;
+                            break;
                         }
                         break;
                     case "run":
                         System.out.println("running");
+                        gm.getUi().messageText.setText("You ran away from the fight with " + NPCInstance.getName() + "!");
                         isFighting = false;
                         break;
                     case "bag":
                         System.out.println("get items");
+                        //add a way to use during fight
+                        gm.getUi().messageText.setText("You check you bag!\n...Found nothing to use");
                         break;
                     default:
                         System.out.println("nothing happened");
                         break;
-
                 }
             }
 
@@ -430,6 +467,7 @@ public class Player {
 
     // dialogue to accept quest from NPC
     private void handleQuest(Map<String, Object> entry, Map<String, String> dialogue) {
+
         List<String> req = (List<String>) entry.get("questReq");
         if (inventory.containsAll(req)) {
             System.out.println(dialogue.get("reward"));

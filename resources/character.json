@@ -2,6 +2,7 @@
     {
       "name": "sad traveler",
       "quote": {
+        "quest" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
         "initial" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
         "quit" : "Safe travels, kid..."
         },
@@ -46,7 +47,7 @@
       "yaxis": "65",
       "width": "350",
       "height": "350",
-      "type": "friendly"
+      "type": "quest"
     },
     {
       "name": "trader1",
