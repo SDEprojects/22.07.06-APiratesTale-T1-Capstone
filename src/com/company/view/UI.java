@@ -45,7 +45,7 @@ public class UI {
     JPanel map = new JPanel();
     public JList<String> inventoryList = new JList<>();
     public DefaultListModel inventory = new DefaultListModel();
-    private String selectedItem = null;
+    private String selectedItem;
 
 //    JPanel bgPanel[];
 //    JLabel bgLabel[];
@@ -62,7 +62,7 @@ public class UI {
         System.out.println("Generating main splash");
         generateSplashScene();
         window.setVisible(true);
-        playerBag = eventPanel(100, 100, (int) (windowWidth*.8), (int) (windowHeight*.8), "playerBag");
+        playerBag = eventPanel(300, 300, 400, 180, "playerBag");
         inventoryListBuilder();
         playerBag.setVisible(false);
         playerEquipment = eventPanel(100, 100, (int) (windowWidth*.6), (int) (windowHeight*.6), "playerEquipment");
@@ -317,7 +317,7 @@ public class UI {
         exitButton.setForeground(Color.black);
         exitButton.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         exitButton.setOpaque(false);
-        exitButton.setBounds((int) (width*.9),0,100,50);
+        exitButton.setBounds((int) (width-30),0,30,30);
         exitButton.setBackground(Color.GRAY);
         exitButton.addActionListener(gm.aHandler);
         exitButton.setActionCommand("close "+target);
@@ -336,47 +336,78 @@ public class UI {
         inventoryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         inventoryList.setLayoutOrientation(JList.VERTICAL);
         inventoryList.setVisibleRowCount(-1);
-        inventoryList.setBounds(300,300, 250, 80);
+        inventoryList.setBounds(50,50, 250, 80);
+        JScrollPane listScroller = new JScrollPane(inventoryList);
+        listScroller.setPreferredSize(new Dimension(250, 80));
 
-        ListSelectionListener selection = new ListSelectionListener() {
+
+        ListSelectionListener listSelect = new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    int i = inventoryList.getSelectedIndex();
-                    selectedItem = (String) inventory.getElementAt(i);
+                if(!e.getValueIsAdjusting()) {
+
+                    inventoryList.addMouseListener(new MouseListener() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                            if (SwingUtilities.isLeftMouseButton(e)) {
+                                JPopupMenu popupMenu = new JPopupMenu();
+                                JMenuItem menuItem[] = new JMenuItem[4];
+                                menuItem[0] = new JMenuItem("drop");
+                                menuItem[0].addActionListener(gm.aHandler);
+                                menuItem[0].setActionCommand("drop " + inventoryList.getSelectedValue());
+                                menuItem[0].setName(inventoryList.getSelectedValue());
+                                popupMenu.add(menuItem[0]);
+
+                                menuItem[1] = new JMenuItem("use");
+                                menuItem[1].addActionListener(gm.aHandler);
+                                menuItem[1].setActionCommand("use "+ inventoryList.getSelectedValue());
+                                menuItem[1].setName(inventoryList.getSelectedValue());
+                                popupMenu.add(menuItem[1]);
 
 
-                    System.out.println(selectedItem);
-                    //selectedItem = inventoryList.getSelectedValue();
+                                menuItem[2] = new JMenuItem("equip");
+                                menuItem[2].addActionListener(gm.aHandler);
+                                menuItem[2].setActionCommand("equip "+ inventoryList.getSelectedValue());
+                                menuItem[2].setName(inventoryList.getSelectedValue());
+                                popupMenu.add(menuItem[2]);
+                                inventoryList.getSelectedValue();
+                                popupMenu.show(inventoryList, e.getX(), e.getY());
+                            }
+                        }
+
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+
+                        }
+                    });
                 }
-
-
             }
         };
 
-
-
-        inventoryList.addListSelectionListener(selection);
-        JScrollPane listScroller = new JScrollPane(inventoryList);
-        listScroller.setPreferredSize(new Dimension(250, 80));
+        inventoryList.addListSelectionListener(listSelect);
 
         playerBag.add(inventoryList);
 
 
+    }
 
-        JButton drop = new JButton("Drop");
-        drop.setForeground(Color.black);
-        drop.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
-        drop.setOpaque(false);
-        drop.setBounds(300,400,100,50);
-        drop.setBackground(Color.GRAY);
-        drop.addActionListener(gm.aHandler);
-        drop.setActionCommand("drop " + selectedItem);
-        playerBag.add(drop);
-
-
-
-
+    private String selectItem(){
+        return "drop "+ getSelectedItem();
     }
 
 
@@ -471,7 +502,7 @@ public class UI {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e)) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
                     popupMenu.show(objectLabel, e.getX(), e.getY());
                 }
             }
@@ -530,6 +561,16 @@ public class UI {
         int panel = findPanelIndex(gm.getPlayer().getCurrentRoom());
         bgPanel.get(panel).remove(findLabelIndex(panel, name));
         gm.getSc().showScreen(panel);
+    }
+
+    public void addObject(String name){
+        int panel = findPanelIndex(gm.getPlayer().getCurrentRoom());
+        Items itemBuild = gm.getGame().getItems().stream().filter(itemSeek -> itemSeek.getName().equals(name)).findFirst().orElse(null);
+        System.out.println("rebuilding Item name: " + itemBuild.getName() + ". Description: " +itemBuild.getDescription());
+        gm.getUi().createObject(panel, itemBuild.getXaxis(), itemBuild.getYaxis(), itemBuild.getWidth(), itemBuild.getHeight(),
+                itemBuild.getImg(), itemBuild.getType(), itemBuild.getName());
+        gm.getSc().showScreen(panel);
+        gm.getUi().bgPanel.get(panel).add(bgLabel.get(panel));
     }
 
     public int findLabelIndex(int panel, String name)
@@ -899,5 +940,13 @@ public class UI {
 
     public void setInventory(DefaultListModel inventory) {
         this.inventory = inventory;
+    }
+
+    public String getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(String selectedItem) {
+        this.selectedItem = selectedItem;
     }
 }
