@@ -172,15 +172,24 @@ public class Player {
 //    }
 
     public void dropItem(String item) {
-        if (!item.equals("parrot") && inventory.contains(item)) {
-            //add to location
-            locationItems.add(item);
-            //remove from inventory
-            inventory.remove(item);
-        } else if (item.equals("parrot") && inventory.contains(item)) {
-            System.out.println("I should return the parrot to the pirate captain!");
+        Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
+        //Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
+        locationStuff.getItems().add(item);
+        //gm.getUi().deleteObject(item); remake the item?
+        gm.getUi().getInventory().removeElement(item);
+        gm.getUi().messageText.setText("You dropped " + item + "!");
+        gm.getUi().addObject(item);
         }
-    }
+
+//        if (!item.equals("parrot") && inventory.contains(item)) {
+//            //add to location
+//            locationItems.add(item);
+//            //remove from inventory
+//            inventory.remove(item);
+//        } else if (item.equals("parrot") && inventory.contains(item)) {
+//            System.out.println("I should return the parrot to the pirate captain!");
+//        }
+//    }
 
 
     public void talk(String name) {
