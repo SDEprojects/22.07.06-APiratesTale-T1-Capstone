@@ -92,11 +92,13 @@ public class Player {
         if (locationStuff.getItems().contains(item)){
             if (itemInstance.getKeyReq().equals("none")) {
                 getInventory().add(item);
+                gm.getUi().getInventory().addElement(item);
                 locationStuff.getItems().remove(item);
                 gm.getUi().deleteObject(item);
                 gm.getUi().messageText.setText("you picked up "+ item);
             } else if (inventory.contains(itemInstance.getKeyReq())) {
                 getInventory().add(item);
+                gm.getUi().getInventory().addElement(item);
                 locationStuff.getItems().remove(item);
                 gm.getUi().deleteObject(item);
                 gm.getUi().messageText.setText("you picked up "+ item);

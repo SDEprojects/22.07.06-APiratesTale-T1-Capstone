@@ -4,6 +4,7 @@ import com.company.client.GameMain;
 import com.company.models.Game;
 import com.company.models.Player;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -48,6 +49,9 @@ public class ActionHandler implements ActionListener {
                 System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getItems());
                 System.out.println(gm.getPlayer().getHp());
                 break;
+            case "drop":
+                gm.getUi().messageText.setText("You try to drop "+ inputSplit[1]);
+                break;
             case "fight":
                 gm.getUi().messageText.setText("You try to fight "+ inputSplit[1]);
                 gm.getPlayer().attack(inputSplit[1]);
@@ -62,6 +66,15 @@ public class ActionHandler implements ActionListener {
                 String direction = inputSplit[1];
                 gm.sc.screenPicker(direction);
                 gm.getUi().messageText.setText("you went to area "+ inputSplit[1]);
+                break;
+            case "inventory":
+                gm.getUi().playerBag.setVisible(true);
+                break;
+            case "equipment":
+                gm.getUi().playerEquipment.setVisible(true);
+                break;
+            case "close":
+                gm.getUi().eventPanelClose(inputSplit[1]);
                 break;
             case "start":
                 gm.sc.showScreen(1);

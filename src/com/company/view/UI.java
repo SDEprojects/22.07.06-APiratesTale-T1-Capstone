@@ -6,6 +6,8 @@ import com.company.models.Locations;
 import com.company.models.Characters;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -36,6 +38,15 @@ public class UI {
     private JButton invBag, equipWeapon, settingIcon, helpIcon;
     ArrayList<JPanel> bgPanel= new ArrayList<>();
     ArrayList<JLabel> bgLabel= new ArrayList<>();
+    JPanel playerBag = new JPanel();
+    JPanel playerEquipment = new JPanel();
+    JPanel help = new JPanel();
+    JPanel settings = new JPanel();
+    JPanel map = new JPanel();
+    public JList<String> inventoryList = new JList<>();
+    public DefaultListModel inventory = new DefaultListModel();
+    private String selectedItem = null;
+
 //    JPanel bgPanel[];
 //    JLabel bgLabel[];
 
@@ -51,6 +62,13 @@ public class UI {
         System.out.println("Generating main splash");
         generateSplashScene();
         window.setVisible(true);
+        playerBag = eventPanel(100, 100, (int) (windowWidth*.8), (int) (windowHeight*.8), "playerBag");
+        inventoryListBuilder();
+        playerBag.setVisible(false);
+        playerEquipment = eventPanel(100, 100, (int) (windowWidth*.6), (int) (windowHeight*.6), "playerEquipment");
+        playerEquipment.setVisible(false);
+
+
     }
 
     private void fontCreate(){
@@ -121,6 +139,8 @@ public class UI {
         getInvPanel().add(getInvBag());
         ImageIcon bagIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/bag.png")));
         getInvBag().setIcon(bagIcon);
+        getInvBag().addActionListener(gm.aHandler);
+        getInvBag().setActionCommand("inventory");
         setEquipWeapon(new JButton());
         getEquipWeapon().setBounds(10,80,72,72);
         getEquipWeapon().setOpaque(false);
@@ -129,6 +149,8 @@ public class UI {
         getInvPanel().add(getEquipWeapon());
         ImageIcon eqIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/equipped.png")));
         getEquipWeapon().setIcon(eqIcon);
+        getEquipWeapon().addActionListener(gm.aHandler);
+        getEquipWeapon().setActionCommand("equipment");
 
         setSettingPanel(new JPanel());
         getSettingPanel().setBounds((int)(.76*windowWidth), (int) (0*windowHeight), (int) (.18*windowWidth), (int) (.08*windowHeight));
@@ -221,6 +243,98 @@ public class UI {
 
         ImageIcon bgIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(bgFileName)));
         label.setIcon(bgIcon);
+    }
+
+    public JPanel eventPanel(int x, int y, int width, int height, String target){
+        JPanel panelBuilder = new JPanel();
+        panelBuilder.setBounds(x, y, width, height);
+        panelBuilder.setBackground(Color.black);
+        panelBuilder.setLayout(null);
+        panelBuilder.setName("Player Bag");
+        window.add(panelBuilder);
+
+        JButton exitButton = new JButton("X");
+        exitButton.setForeground(Color.black);
+        exitButton.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        exitButton.setOpaque(false);
+        exitButton.setBounds((int) (width*.9),0,100,50);
+        exitButton.setBackground(Color.GRAY);
+        exitButton.addActionListener(gm.aHandler);
+        exitButton.setActionCommand("close "+target);
+        panelBuilder.add(exitButton);
+
+        return panelBuilder;
+    }
+
+
+
+
+
+    public void inventoryListBuilder(){
+
+        inventoryList.setModel(inventory);
+        inventoryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        inventoryList.setLayoutOrientation(JList.VERTICAL);
+        inventoryList.setVisibleRowCount(-1);
+        inventoryList.setBounds(300,300, 250, 80);
+
+        ListSelectionListener selection = new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int i = inventoryList.getSelectedIndex();
+                    selectedItem = (String) inventory.getElementAt(i);
+
+
+                    System.out.println(selectedItem);
+                    //selectedItem = inventoryList.getSelectedValue();
+                }
+
+
+            }
+        };
+
+
+
+        inventoryList.addListSelectionListener(selection);
+        JScrollPane listScroller = new JScrollPane(inventoryList);
+        listScroller.setPreferredSize(new Dimension(250, 80));
+
+        playerBag.add(inventoryList);
+
+
+
+        JButton drop = new JButton("Drop");
+        drop.setForeground(Color.black);
+        drop.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        drop.setOpaque(false);
+        drop.setBounds(300,400,100,50);
+        drop.setBackground(Color.GRAY);
+        drop.addActionListener(gm.aHandler);
+        drop.setActionCommand("drop " + selectedItem);
+        playerBag.add(drop);
+
+
+
+
+    }
+
+
+    public void eventPanelClose(String name){
+        switch (name){
+            case "playerBag":
+                playerBag.setVisible(false);
+                break;
+            case "playerEquipment":
+                playerEquipment.setVisible(false);
+                break;
+            case "map":
+                map.setVisible(false);
+                break;
+            case "settings":
+                settings.setVisible(false);
+                break;
+        }
     }
 
     public void createObject(int bgNum, int objX, int objY, int objWidth, int ObjHeight, String objFile, String type, String target){
@@ -685,5 +799,13 @@ public class UI {
 
     public void setMessage(JLabel message) {
         this.message = message;
+    }
+
+    public DefaultListModel getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(DefaultListModel inventory) {
+        this.inventory = inventory;
     }
 }
