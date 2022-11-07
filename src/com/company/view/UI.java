@@ -31,9 +31,9 @@ public class UI {
     private JPanel directionPanel;
     private JButton northButton, southButton, eastButton, westButton;
     private JButton invButton, equipButton, settingButton, helpButton;
-    private JPanel invPanel, settingPanel, statusPanel;
-    private JLabel hp, playerCurrentLocation, message;
+    private JPanel invPanel, settingPanel, statusPanel,textPanel, hpPanel, currentEquipPanel;
     private JButton invBag, equipWeapon, settingIcon, helpIcon;
+    private JTextArea area, hp, currentWeapon, npcName;
     ArrayList<JPanel> bgPanel= new ArrayList<>();
     ArrayList<JLabel> bgLabel= new ArrayList<>();
 //    JPanel bgPanel[];
@@ -78,7 +78,7 @@ public class UI {
     public void createMessageViewer(){
         setDirectionPanel(new JPanel());
         getDirectionPanel().setBounds((int)(.76*windowWidth), (int) (.68*windowHeight), (int) (.18*windowWidth), (int) (.25*windowHeight));
-        //getDirectionPanel().setBackground(Color.BLUE);
+        getDirectionPanel().setBackground(Color.BLUE);
         getDirectionPanel().setLayout(null);
 
         setNorthButton(new JButton("N"));
@@ -110,7 +110,7 @@ public class UI {
 
         setInvPanel(new JPanel());
         getInvPanel().setBounds((int) (.05*windowWidth), (int) (.68*windowHeight), (int) (.07*windowWidth), (int) (.25*windowHeight));
-        //getInvPanel().setBackground(Color.BLUE);
+        getInvPanel().setBackground(Color.BLUE);
         getInvPanel().setLayout(null);
         getInvPanel().setOpaque(false);
         setInvBag(new JButton());
@@ -130,9 +130,81 @@ public class UI {
         ImageIcon eqIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/equipped.png")));
         getEquipWeapon().setIcon(eqIcon);
 
+        setTextPanel(new JPanel());
+        getTextPanel().setBounds((int)(.05*windowWidth), (int) (.03*windowHeight), (int) (.30*windowWidth), (int) (.05*windowHeight));
+        getTextPanel().setBackground(Color.BLUE);
+        getTextPanel().setLayout(null);
+        getTextPanel().setOpaque(false);
+
+        setHpPanel(new JPanel());
+        getHpPanel().setBounds((int)(.36*windowWidth), (int) (.03*windowHeight), (int) (.06*windowWidth), (int) (.05*windowHeight));
+        getHpPanel().setBackground(Color.BLUE);
+        getHpPanel().setLayout(null);
+        getHpPanel().setOpaque(false);
+
+        setCurrentEquipPanel(new JPanel());
+        getCurrentEquipPanel().setBounds((int)(.43*windowWidth), (int) (.03*windowHeight), (int) (.32*windowWidth), (int) (.05*windowHeight));
+        getCurrentEquipPanel().setBackground(Color.BLUE);
+        getCurrentEquipPanel().setLayout(null);
+        getCurrentEquipPanel().setOpaque(false);
+
+        setStatusPanel(new JPanel());
+        getStatusPanel().setBounds((int) (.13*windowWidth), (int) (.68*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
+        getStatusPanel().setBackground(Color.BLUE);
+        getStatusPanel().setLayout(null);
+        getStatusPanel().setOpaque(false);
+
+        setArea(new JTextArea());
+        getArea().setBounds((int)(0*windowWidth), (int) (.02*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
+        getArea().setEditable(false);
+        getArea().setLineWrap(true);
+        getArea().setWrapStyleWord(true);
+        getArea().setOpaque(false);
+        getArea().setForeground(Color.black);
+        getArea().setFont(getOldRetro().deriveFont(Font.ITALIC, 12));
+        getTextPanel().add(getArea());
+
+        setHp(new JTextArea());
+        getHp().setBounds((int)(0*windowWidth), (int) (.02*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
+        getHp().setEditable(false);
+        getHp().setLineWrap(true);
+        getHp().setWrapStyleWord(true);
+        getHp().setOpaque(false);
+        getHp().setForeground(Color.black);
+        getHp().setFont(getOldRetro().deriveFont(Font.ITALIC, 12));
+        getHpPanel().add(getHp());
+
+        setCurrentWeapon(new JTextArea());
+        getCurrentWeapon().setBounds((int)(0*windowWidth), (int) (.02*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
+        getCurrentWeapon().setEditable(false);
+        getCurrentWeapon().setLineWrap(true);
+        getCurrentWeapon().setWrapStyleWord(true);
+        getCurrentWeapon().setOpaque(false);
+        getCurrentWeapon().setForeground(Color.black);
+        getCurrentWeapon().setFont(getOldRetro().deriveFont(Font.ITALIC, 12));
+        getCurrentEquipPanel().add(getCurrentWeapon());
+
+        setNpcName(new JTextArea());
+        getNpcName().setBounds((int)(0*windowWidth), (int) (.02*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
+        getNpcName().setEditable(false);
+        getNpcName().setLineWrap(true);
+        getNpcName().setWrapStyleWord(true);
+        getNpcName().setOpaque(false);
+        getNpcName().setForeground(Color.black);
+        getNpcName().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        getStatusPanel().add(getNpcName());
+        //setHp(new JLabel("HP: " + (gm.getPlayer().getHp())));
+//        getHp().setBounds((int) (0*windowWidth), (int) (0*windowHeight), (int) (.05*windowWidth), (int) (.05*windowHeight));
+//        getHp().setFont(getOldRetro().deriveFont(Font.ITALIC,10));
+//        getStatusPanel().add(getHp());
+//        setPlayerCurrentLocation(new JLabel("Current Location: " + gm.getPlayer().getCurrentRoom()));
+//        getPlayerCurrentLocation().setBounds((int) (.06*windowWidth), (int) (0*windowHeight), (int) (.56*windowWidth), (int) (.05*windowHeight));
+//        getPlayerCurrentLocation().setFont(getOldRetro().deriveFont(Font.ITALIC, 10));
+//        getStatusPanel().add(getPlayerCurrentLocation());
+
         setSettingPanel(new JPanel());
         getSettingPanel().setBounds((int)(.76*windowWidth), (int) (0*windowHeight), (int) (.18*windowWidth), (int) (.08*windowHeight));
-        //getSettingPanel().setBackground(Color.BLUE);
+        getSettingPanel().setBackground(Color.BLUE);
         getSettingPanel().setLayout(null);
         getSettingPanel().setOpaque(false);
         setSettingIcon(new JButton());
@@ -152,31 +224,19 @@ public class UI {
         ImageIcon helpIcon = new ImageIcon(getClass().getClassLoader().getResource("img/help.png"));
         getHelpIcon().setIcon(helpIcon);
 
-
-        setStatusPanel(new JPanel());
-        getStatusPanel().setBounds((int) (.13*windowWidth), (int) (.68*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
-        //getStatusPanel().setBackground(Color.BLUE);
-        getStatusPanel().setLayout(null);
-        getStatusPanel().setOpaque(false);
-
-        setHp(new JLabel("HP: " + (gm.getPlayer().getHp())));
-        getHp().setBounds((int) (0*windowWidth), (int) (0*windowHeight), (int) (.05*windowWidth), (int) (.05*windowHeight));
-        getHp().setFont(getOldRetro().deriveFont(Font.ITALIC,10));
-        getStatusPanel().add(getHp());
-        setPlayerCurrentLocation(new JLabel("Current Location: " + gm.getPlayer().getCurrentRoom()));
-        getPlayerCurrentLocation().setBounds((int) (.06*windowWidth), (int) (0*windowHeight), (int) (.56*windowWidth), (int) (.05*windowHeight));
-        getPlayerCurrentLocation().setFont(getOldRetro().deriveFont(Font.ITALIC, 10));
-        getStatusPanel().add(getPlayerCurrentLocation());
-
         messageText = new JTextArea();
         messageText.setBounds((int) (.13*windowWidth), (int) (.74*windowHeight), (int) (.62*windowWidth), (int) (.19*windowHeight));
-        //messageText.setBackground(Color.BLUE);
+        messageText.setBackground(Color.BLUE);
         messageText.setForeground(Color.black);
         messageText.setOpaque(false);
         messageText.setEditable(false);
         messageText.setLineWrap(true);
         messageText.setWrapStyleWord(true);
-        messageText.setFont(getOldRetro().deriveFont(Font.ITALIC, 10));
+        messageText.setFont(getOldRetro().deriveFont(Font.ITALIC, 12));
+
+        window.add(getCurrentEquipPanel());
+        window.add(getHpPanel());
+        window.add(getTextPanel());
         window.add(getStatusPanel());
         window.add(getSettingPanel());
         window.add(getInvPanel());
@@ -663,27 +723,59 @@ public class UI {
         this.statusPanel = statusPanel;
     }
 
-    public JLabel getHp() {
+    public JPanel getTextPanel() {
+        return textPanel;
+    }
+
+    public void setTextPanel(JPanel textPanel) {
+        this.textPanel = textPanel;
+    }
+
+    public JTextArea getArea() {
+        return area;
+    }
+
+    public void setArea(JTextArea area) {
+        this.area = area;
+    }
+
+    public JPanel getHpPanel() {
+        return hpPanel;
+    }
+
+    public void setHpPanel(JPanel hpPanel) {
+        this.hpPanel = hpPanel;
+    }
+
+    public JPanel getCurrentEquipPanel() {
+        return currentEquipPanel;
+    }
+
+    public void setCurrentEquipPanel(JPanel currentEquipPanel) {
+        this.currentEquipPanel = currentEquipPanel;
+    }
+
+    public JTextArea getHp() {
         return hp;
     }
 
-    public void setHp(JLabel hp) {
+    public void setHp(JTextArea hp) {
         this.hp = hp;
     }
 
-    public JLabel getPlayerCurrentLocation() {
-        return playerCurrentLocation;
+    public JTextArea getCurrentWeapon() {
+        return currentWeapon;
     }
 
-    public void setPlayerCurrentLocation(JLabel playerCurrentLocation) {
-        this.playerCurrentLocation = playerCurrentLocation;
+    public void setCurrentWeapon(JTextArea currentWeapon) {
+        this.currentWeapon = currentWeapon;
     }
 
-    public JLabel getMessage() {
-        return message;
+    public JTextArea getNpcName() {
+        return npcName;
     }
 
-    public void setMessage(JLabel message) {
-        this.message = message;
+    public void setNpcName(JTextArea npcName) {
+        this.npcName = npcName;
     }
 }
