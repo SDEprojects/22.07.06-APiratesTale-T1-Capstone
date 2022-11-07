@@ -188,14 +188,14 @@ public class Player {
             switch (NPCInstance.getType()) {
                 case "quest":
                     //need to replace with a quest method and button response
-                    gm.getUi().messageText.setText(NPCInstance.getName()+": " + NPCInstance.getQuote().get("quest"));
+                    gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
                     break;
                 case "enemy":
-                    gm.getUi().messageText.setText(NPCInstance.getName()+": " + NPCInstance.getQuote().get("initial"));
+                    gm.getUi().messageText.setText(NPCInstance.getQuote().get("initial"));
                     attack(name);
                     break;
                 default:
-                    gm.getUi().messageText.setText(NPCInstance.getName()+": " + NPCInstance.getQuote().get("initial"));
+                    gm.getUi().messageText.setText(NPCInstance.getQuote().get("initial"));
                     break;
             }
         }

@@ -1,8 +1,7 @@
 package com.company.view;
 
 import com.company.client.GameMain;
-import com.company.models.Game;
-import com.company.models.Player;
+import com.company.models.Items;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +31,7 @@ public class ActionHandler implements ActionListener {
         switch (inputSplit[0]) {
             case "look":
                 gm.getPlayer().look(inputSplit[1]);
+                gm.getUi().getNpcName().setText(inputSplit[1]);
                 break;
             case "grab":
                 System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getName());
@@ -44,6 +44,7 @@ public class ActionHandler implements ActionListener {
                 System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getItems());
                 System.out.println(gm.getPlayer().getHp());
                 gm.getUi().messageText.setText("You try to eat "+ inputSplit[1]);
+                gm.getUi().getNpcName().setText(inputSplit[1]);
                 gm.getPlayer().useItem(inputSplit[1]);
                 System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getItems());
                 System.out.println(gm.getPlayer().getHp());
@@ -54,6 +55,7 @@ public class ActionHandler implements ActionListener {
                 break;
             case "talk":
                 gm.getPlayer().talk(inputSplit[1]);
+                gm.getUi().getNpcName().setText(inputSplit[1]);
                 break;
             case "trade":
                 gm.getUi().messageText.setText("You try and trade with "+ inputSplit[1]);
@@ -72,6 +74,11 @@ public class ActionHandler implements ActionListener {
         }
         if (gm.getPlayer().getHp()<=0){
             System.out.println("Game over");
+        }
+        if (gm.getPlayer().getHp() > 0){
+            gm.getUi().getArea().setText("Current location: " + gm.getPlayer().getCurrentRoom());
+            gm.getUi().getHp().setText("HP: " + gm.getPlayer().getHp());
+            //gm.getUi().getCurrentWeapon().setText("Weapon: " + (if(items.getName());
         }
 
     }
