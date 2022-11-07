@@ -30,7 +30,9 @@ public class UI {
     private Font oldRetro;
     private JPanel directionPanel;
     private JButton northButton, southButton, eastButton, westButton;
-    private JPanel invPanel;
+    private JButton invButton, equipButton, settingButton, helpButton;
+    private JPanel invPanel, settingPanel;
+    private JButton invBag, equipWeapon, settingIcon, helpIcon;
     ArrayList<JPanel> bgPanel= new ArrayList<>();
     ArrayList<JLabel> bgLabel= new ArrayList<>();
 //    JPanel bgPanel[];
@@ -75,7 +77,7 @@ public class UI {
     public void createMessageViewer(){
         setDirectionPanel(new JPanel());
         getDirectionPanel().setBounds((int)(.76*windowWidth), (int) (.68*windowHeight), (int) (.18*windowWidth), (int) (.25*windowHeight));
-        getDirectionPanel().setBackground(Color.BLUE);
+        //getDirectionPanel().setBackground(Color.BLUE);
         getDirectionPanel().setLayout(null);
 
         setNorthButton(new JButton("N"));
@@ -107,19 +109,59 @@ public class UI {
 
         setInvPanel(new JPanel());
         getInvPanel().setBounds((int) (.05*windowWidth), (int) (.68*windowHeight), (int) (.07*windowWidth), (int) (.25*windowHeight));
-        getInvPanel().setBackground(Color.BLUE);
+        //getInvPanel().setBackground(Color.BLUE);
         getInvPanel().setLayout(null);
         getInvPanel().setOpaque(false);
+        setInvBag(new JButton());
+        getInvBag().setBounds(10,0,72,72);
+        getInvBag().setOpaque(false);
+        getInvBag().setContentAreaFilled(false);
+        getInvBag().setBorderPainted(false);
+        getInvPanel().add(getInvBag());
+        ImageIcon bagIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/bag.png")));
+        getInvBag().setIcon(bagIcon);
+        setEquipWeapon(new JButton());
+        getEquipWeapon().setBounds(10,80,72,72);
+        getEquipWeapon().setOpaque(false);
+        getEquipWeapon().setContentAreaFilled(false);
+        getEquipWeapon().setBorderPainted(false);
+        getInvPanel().add(getEquipWeapon());
+        ImageIcon eqIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/equipped.png")));
+        getEquipWeapon().setIcon(eqIcon);
+
+        setSettingPanel(new JPanel());
+        getSettingPanel().setBounds((int)(.76*windowWidth), (int) (0*windowHeight), (int) (.18*windowWidth), (int) (.08*windowHeight));
+        //getSettingPanel().setBackground(Color.BLUE);
+        getSettingPanel().setLayout(null);
+        getSettingPanel().setOpaque(false);
+        setSettingIcon(new JButton());
+        getSettingIcon().setBounds(100,0,50,50);
+        getSettingIcon().setOpaque(false);
+        getSettingIcon().setContentAreaFilled(false);
+        getSettingIcon().setBorderPainted(false);
+        getSettingPanel().add(getSettingIcon());
+        ImageIcon sIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/gear.png")));
+        getSettingIcon().setIcon(sIcon);
+        setHelpIcon(new JButton());
+        getHelpIcon().setBounds(160,0,50,50);
+        getHelpIcon().setOpaque(false);
+        getHelpIcon().setContentAreaFilled(false);
+        getHelpIcon().setBorderPainted(false);
+        getSettingPanel().add(getHelpIcon());
+        ImageIcon helpIcon = new ImageIcon(getClass().getClassLoader().getResource("img/help.png"));
+        getHelpIcon().setIcon(helpIcon);
+
 
         messageText = new JTextArea();
         messageText.setBounds((int) (.13*windowWidth), (int) (.68*windowHeight), (int) (.62*windowWidth), (int) (.25*windowHeight));
-        messageText.setBackground(Color.BLUE);
+       // messageText.setBackground(Color.BLUE);
         messageText.setForeground(Color.black);
         messageText.setOpaque(false);
         messageText.setEditable(false);
         messageText.setLineWrap(true);
         messageText.setWrapStyleWord(true);
         messageText.setFont(getOldRetro());
+        window.add(getSettingPanel());
         window.add(getInvPanel());
         window.add(getDirectionPanel());
         window.add(messageText);
@@ -520,5 +562,79 @@ public class UI {
 
     public void setInvPanel(JPanel invPanel) {
         this.invPanel = invPanel;
+    }
+
+
+    public JPanel getSettingPanel() {
+        return settingPanel;
+    }
+
+    public void setSettingPanel(JPanel settingPanel) {
+        this.settingPanel = settingPanel;
+    }
+
+
+    public JButton getInvButton() {
+        return invButton;
+    }
+
+    public void setInvButton(JButton invButton) {
+        this.invButton = invButton;
+    }
+
+    public JButton getEquipButton() {
+        return equipButton;
+    }
+
+    public void setEquipButton(JButton equipButton) {
+        this.equipButton = equipButton;
+    }
+
+    public JButton getSettingButton() {
+        return settingButton;
+    }
+
+    public void setSettingButton(JButton settingButton) {
+        this.settingButton = settingButton;
+    }
+
+    public JButton getHelpButton() {
+        return helpButton;
+    }
+
+    public void setHelpButton(JButton helpButton) {
+        this.helpButton = helpButton;
+    }
+
+    public JButton getInvBag() {
+        return invBag;
+    }
+
+    public void setInvBag(JButton invBag) {
+        this.invBag = invBag;
+    }
+
+    public JButton getEquipWeapon() {
+        return equipWeapon;
+    }
+
+    public void setEquipWeapon(JButton equipWeapon) {
+        this.equipWeapon = equipWeapon;
+    }
+
+    public JButton getSettingIcon() {
+        return settingIcon;
+    }
+
+    public void setSettingIcon(JButton settingIcon) {
+        this.settingIcon = settingIcon;
+    }
+
+    public JButton getHelpIcon() {
+        return helpIcon;
+    }
+
+    public void setHelpIcon(JButton helpIcon) {
+        this.helpIcon = helpIcon;
     }
 }
