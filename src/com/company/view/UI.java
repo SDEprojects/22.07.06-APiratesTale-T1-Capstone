@@ -176,7 +176,7 @@ public class UI {
         messageText.setEditable(false);
         messageText.setLineWrap(true);
         messageText.setWrapStyleWord(true);
-        messageText.setFont(getOldRetro());
+        messageText.setFont(getOldRetro().deriveFont(Font.ITALIC, 10));
         window.add(getStatusPanel());
         window.add(getSettingPanel());
         window.add(getInvPanel());
