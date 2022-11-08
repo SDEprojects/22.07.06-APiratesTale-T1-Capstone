@@ -71,6 +71,7 @@ public class ActionHandler implements ActionListener {
             case "move":
                 String direction = inputSplit[1];
                 gm.sc.screenPicker(direction);
+                gm.getUi().getNpcName().setText("");
                 gm.getUi().messageText.setText("you went to area "+ inputSplit[1]);
                 break;
             case "inventory":
