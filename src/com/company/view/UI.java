@@ -1,6 +1,7 @@
 package com.company.view;
 
 import com.company.client.GameMain;
+import com.company.models.FileGetter;
 import com.company.models.Items;
 import com.company.models.Locations;
 import com.company.models.Characters;
@@ -73,7 +74,8 @@ public class UI {
 
     private void fontCreate(){
         try {
-            InputStream is = new BufferedInputStream(new FileInputStream(("resources/Press_Start_2P/PressStart2P-Regular.ttf")));
+            FileGetter fileGetter = new FileGetter();
+            InputStream is = new BufferedInputStream(fileGetter.fileGetter("Press_Start_2P/PressStart2P-Regular.ttf"));
             Font retro = Font.createFont(Font.TRUETYPE_FONT, is);
             setOldRetro(retro.deriveFont(Font.PLAIN, 15));
         } catch (FontFormatException | IOException e) {
@@ -243,7 +245,7 @@ public class UI {
         getHelpIcon().setContentAreaFilled(false);
         getHelpIcon().setBorderPainted(false);
         getSettingPanel().add(getHelpIcon());
-        ImageIcon helpIcon = new ImageIcon(getClass().getClassLoader().getResource("img/help.png"));
+        ImageIcon helpIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/help.png")));
         getHelpIcon().setIcon(helpIcon);
 
         messageText = new JTextArea();
