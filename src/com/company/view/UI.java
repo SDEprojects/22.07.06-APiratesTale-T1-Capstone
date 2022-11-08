@@ -88,7 +88,7 @@ public class UI {
         window = new JFrame("A Pirates Tale");
         window.setSize(windowWidth, windowHeight);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setContentPane(new JLabel(new ImageIcon("resources/img/gamegackground.jpg")));
+        window.setContentPane(new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/gamegackground.jpg")))));
         window.setLayout(null);
         window.setResizable(false);
         window.setLocationRelativeTo(null);
