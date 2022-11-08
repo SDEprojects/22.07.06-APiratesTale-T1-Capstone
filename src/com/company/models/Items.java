@@ -1,8 +1,11 @@
 package com.company.models;
 
+import java.util.Map;
+
 public class Items {
     //Fields
     private String name;
+    private Map<String,String> quote;
     private String description;
     private int value;
     private int cost;
@@ -18,8 +21,10 @@ public class Items {
 
     //Constructor
 
-    public Items(String name, String description, int value, int cost, int strength, String type, String img, int xaxis, int yaxis, int width, int height, String keyReq, String keyError) {
+
+    public Items(String name, Map<String, String> quote, String description, int value, int cost, int strength, String type, String img, int xaxis, int yaxis, int width, int height, String keyReq, String keyError) {
         this.name = name;
+        this.quote = quote;
         this.description = description;
         this.value = value;
         this.cost = cost;
@@ -40,6 +45,14 @@ public class Items {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Map<String, String> getQuote() {
+        return quote;
+    }
+
+    public void setQuote(Map<String, String> quote) {
+        this.quote = quote;
     }
 
     public String getDescription() {

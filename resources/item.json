@@ -1,6 +1,10 @@
 [
   {
     "name": "Map",
+    "quote": {
+      "sfx": " ",
+      "quest" : "Come back to trade your life anytime."
+    },
     "description": "this map is worthless",
     "value": "0",
     "cost": "0",
@@ -16,6 +20,10 @@
   },
     {
       "name": "Sword",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "Durable blade forged by your uncle, used for offensive attacks. Increases damage points to 5pts.",
       "value": "0",
       "cost": "0",
@@ -31,6 +39,10 @@
     },
     {
       "name": "Parrot",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "The Pirate Captain’s lucky Parrot",
       "value": "0",
       "cost": "0",
@@ -46,6 +58,10 @@
     },
   {
     "name" : "Monkey Pin",
+    "quote": {
+      "sfx": " ",
+      "quest" : "Come back to trade your life anytime."
+    },
     "description" : "Awarded from saving the monkey prince, to win respect of monkey king.",
     "value": "0",
     "cost": "0",
@@ -61,6 +77,10 @@
   },
     {
       "name": "Mango",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "Delicious fruit found on Mango Island. Restores health by 5pts.",
       "value": "5",
       "cost": "0",
@@ -76,6 +96,10 @@
     },
     {
       "name": "Cracker",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "Cracker given by the Pirate Captain, to entice the Parrot",
       "value": "0",
       "cost": "0",
@@ -91,6 +115,10 @@
     },
     {
       "name": "Note",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "Banana, Monkey Business, Monkey see monkey do",
       "value": "0",
       "cost": "0",
@@ -106,6 +134,10 @@
     },
     {
       "name": "Banana",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "Delicious fruit found on Monkey Island. Restores health by 10 pts",
       "value": "10",
       "cost": "0",
@@ -121,6 +153,10 @@
     },
     {
       "name": "Left Boss Key",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "Left key to unlock the Boss Door",
       "value": "0",
       "cost": "0",
@@ -136,6 +172,10 @@
     },
     {
       "name": "Right Boss Key",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "Right key to unlock the Boss Door",
       "value": "0",
       "cost": "0",
@@ -151,6 +191,10 @@
     },
     {
       "name": "Treasure Key",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "Key awarded by earning favor of the Monkey King. Fabled to be the lost key to the secret treasures of Skull Island",
       "value": "0",
       "cost": "0",
@@ -166,6 +210,10 @@
     },
     {
       "name": "Treasure Chest",
+      "quote": {
+        "sfx": " ",
+        "quest" : "Come back to trade your life anytime."
+      },
       "description": "Congratulations Adventurer, you conquered a great quest",
       "value": "0",
       "cost": "0",
@@ -181,6 +229,10 @@
     },
   {
     "name" : "Treasure Room Key",
+    "quote": {
+      "sfx": " ",
+      "quest" : "Come back to trade your life anytime."
+    },
     "description" : "Key earned by defeating Skull King, to access the treasure room",
     "value": "0",
     "cost": "0",
@@ -196,6 +248,10 @@
   },
   {
     "name" : "Boat Pass",
+    "quote": {
+      "sfx": " ",
+      "quest" : "Come back to trade your life anytime."
+    },
     "description" : "Boarding pass from the Pirate Captain, allows you access to the boat.",
     "value": "0",
     "cost": "0",
@@ -210,6 +266,10 @@
     "keyError": "none"
   },
   {"name" :  "Temple Pass",
+    "quote": {
+      "sfx": " ",
+      "quest" : "Come back to trade your life anytime."
+    },
   "description" :  "Ribbon for solving the Monkey Temple guards riddles, allows you access to the temple.",
     "value": "0",
     "cost": "0",

@@ -43,7 +43,9 @@ public class Game {
         ArrayList<Map<String, Object>> characterData = tools.readJson("character.json");
 
         for (Map<String, Object> entry : itemData){
-            Items item = new Items(entry.get("name").toString(), entry.get("description").toString(), Integer.parseInt(entry.get("value").toString()),
+            // this is how we map the k/v for character quote
+            Map<String, String> dialogue = (Map<String, String>) entry.get("quote");
+            Items item = new Items(entry.get("name").toString(), dialogue, entry.get("description").toString(), Integer.parseInt(entry.get("value").toString()),
                     Integer.parseInt(entry.get("cost").toString()), Integer.parseInt(entry.get("strength").toString()), entry.get("type").toString(),
                     entry.get("img").toString(), Integer.parseInt(entry.get("xaxis").toString()), Integer.parseInt(entry.get("yaxis").toString()),
                     Integer.parseInt(entry.get("width").toString()), Integer.parseInt(entry.get("height").toString()), entry.get("keyReq").toString(), entry.get("keyError").toString());
