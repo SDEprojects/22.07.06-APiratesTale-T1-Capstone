@@ -6,11 +6,11 @@
     "cost": "0",
     "strength": "0",
     "type": "quest",
-    "img": " ",
-    "xaxis": "970",
-    "yaxis": "140",
-    "width": "150",
-    "height": "225",
+    "img": "img/map.png",
+    "xaxis": "750",
+    "yaxis": "225",
+    "width": "165",
+    "height": "150",
     "keyReq": "none",
     "keyError": "none"
   },
@@ -41,7 +41,7 @@
       "yaxis": "140",
       "width": "150",
       "height": "225",
-      "keyReq": "cracker",
+      "keyReq": "Cracker",
       "keyError": "you need to find a cracker to grab the parrot"
     },
   {
@@ -81,11 +81,11 @@
       "cost": "0",
       "strength": "0",
       "type": "food",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
+      "img": "img/cracker.png",
+      "xaxis": "250",
+      "yaxis": "300",
+      "width": "100",
+      "height": "100",
       "keyReq": "none",
       "keyError": "none"
     },
@@ -180,7 +180,7 @@
       "keyError": "none"
     },
   {
-    "name" : "Treasure room key",
+    "name" : "Treasure Room Key",
     "description" : "Key earned by defeating Skull King, to access the treasure room",
     "value": "0",
     "cost": "0",

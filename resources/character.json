@@ -1,13 +1,13 @@
 [
     {
-      "name": "sad traveler",
+      "name": "Sad Traveler",
       "quote": {
         "quest" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
         "initial" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
         "quit" : "Safe travels, kid..."
         },
       "items": [
-        "map"
+        "Map"
         ],
       "hp": "10",
       "isFriendly": true,
@@ -22,7 +22,7 @@
       "type": "quest"
     },
     {
-      "name": "boat captain",
+      "name": "Boat Captain",
       "quote": {
         "initial": "\nAhoy adventurer, I am Captain Ron.\n",
         "quest" : "\nIf it’s a ship you seek, I will not help you.\nYou see it’s my lucky PARROT, Polly. A fallen mango spooked the ole girl, and she flew into the mango forest.\nI will not set sail without her, for it would surely lead me to a doomed fate at sea.\nHey, if you are able to find her and bring my Polly back, I would take you anywhere you want.\nWould you find her for me? [yes/no]\n",
@@ -33,7 +33,7 @@
         "quit": "\nArrggh\n"
       },
       "items": [
-        "cracker"
+        "Cracker"
       ],
       "hp": "10",
       "isFriendly": true,
@@ -50,7 +50,7 @@
       "type": "quest"
     },
     {
-      "name": "trader1",
+      "name": "Trader Jane",
       "quote": {
         "initial": "Hi, My name is Joe. \nI am the best trader you can find on this island.",
         "quit" : "Come back to trade your life anytime."
@@ -69,13 +69,13 @@
       "type": "trader"
     },
     {
-      "name": "uncle",
+      "name": "Uncle",
       "quote": {
         "initial": "\nHey Nephew, it’s great to see you. I’ve heard you are on a big adventure.\nIt’s a dangerous world out there, so I fashioned you this SWORD to take.\nAlso, take this MANGO, if you fall ill it will replenish 5pts. of your health. Be safe out there.\n",
         "quit" : "Come back to visit anytime Nephew."
       },
       "items": [
-        "sword", "redkey"
+        "Sword", "Redkey"
       ],
       "hp": "10",
       "isFriendly": true,
@@ -90,7 +90,7 @@
       "type": "quest"
     },
     {
-      "name": "gambler1",
+      "name": "Rambo Gambler",
       "quote": {
         "initial": "",
         "quit" : "Come back to win anytime."
@@ -109,9 +109,9 @@
       "type": "friendly"
     },
     {
-      "name": "ugly pirate",
+      "name": "Ugly Pirate",
       "quote": {"initial": ""},
-      "items": ["mango"],
+      "items": ["Mango"],
       "hp": "10",
       "isFriendly": false,
       "dp" : "5",
@@ -125,12 +125,12 @@
       "type": "enemy"
     },
     {
-      "name": "dirty pirate",
+      "name": "Dirty Pirate",
       "quote": {
         "initial": "",
         "quit" : ""
       },
-      "items": ["mango"],
+      "items": ["Mango"],
       "hp": "10",
       "isFriendly": false,
       "dp" : "5",
@@ -144,7 +144,7 @@
       "type": "enemy"
     },
     {
-      "name": "boss pirate",
+      "name": "Boss Pirate",
       "quote": {
         "initial": "",
         "quit" : ""
@@ -163,7 +163,7 @@
       "type": "enemy"
     },
     {
-      "name": "helmsman1",
+      "name": "Helmsman Jerry",
       "quote": {"initial": "Where to sail Pirate ??"},
       "items": [],
       "hp": "10",
@@ -179,7 +179,7 @@
       "type": "boat"
     },
     {
-      "name": "helmsman2",
+      "name": "Helmsman Barry",
       "quote": {"initial": "Where to sail Pirate ??"},
       "items": [],
       "hp": "10",
@@ -195,7 +195,7 @@
       "type": "boat"
     },
     {
-      "name": "helmsman3",
+      "name": "Helmsman Harry",
       "quote": {"initial": "Where to sail Pirate ??"},
       "items": [],
       "hp": "10",
@@ -211,13 +211,13 @@
       "type": "boat"
     },
     {
-      "name": "monkey pirate",
+      "name": "Monkey Pirate",
       "quote": {
         "initial" : "",
         "quit" : "Safe travels,..."
       },
       "items": [
-        "map"
+        "Map"
       ],
       "hp": "10",
       "isFriendly": true,
@@ -232,7 +232,7 @@
       "type": "friendly"
     },
     {
-      "name": "trader2",
+      "name": "Trader Joe",
       "quote": {
         "initial": "",
         "quit" : "Come back to trade your life anytime."
@@ -251,7 +251,7 @@
       "type": "shop"
     },
     {
-      "name": "gambler2",
+      "name": "Gambler Gal",
       "quote": {
         "initial": "",
         "quit" : "Come back to win anytime."
@@ -270,7 +270,7 @@
       "type": "gamble"
     },
     {
-      "name": "monkeyman",
+      "name": "Monkeyman",
       "quote": {"initial": ""},
       "items": [],
       "hp": "10",
@@ -286,14 +286,14 @@
       "type": "friendly"
     },
     {
-      "name": "monkey king",
+      "name": "Monkey King",
       "quote": {
       "initial": "\nI am the Monkey King.",
       "quest" : "\nI have no time to speak with outsiders. There are vile monsters invading our Bananas stash in the west, and my son the Monkey Prince has not returned from playing in the Eastern jungle.",
       "reward" : "\nImpressive outsider, you have restored peace to our bananas stash, and saved the Prince from his folly. As a reward I give you this key.\nIt is said to be the key to opening the secret treasure of Skull Island.\nSkull Island is a dangerous place, take one of our sacred bananas. If you fall ill, it will replenish 10pts. of your health.\n",
       "quit" : "Hmmmm farewell..."
     },
-      "items": ["banana"],
+      "items": ["Banana"],
       "hp": "10",
       "isFriendly": true,
       "dp" : "10",
@@ -307,11 +307,11 @@
       "type": "quest"
     },
     {
-      "name": "monkey prince",
+      "name": "Monkey Prince",
       "quote": {
         "initial": "\nHello I am the monkey prince!\nI wasn't lost I was monkeying around, I will tell my father that you found me. Show this pin to my father and you will earn his respect."
     },
-      "items": ["monkey pin"],
+      "items": ["Monkey Pin"],
       "hp": "10",
       "isFriendly": true,
       "dp" : "1",
@@ -325,12 +325,12 @@
       "type": "quest"
     },
     {
-      "name": "skull king",
+      "name": "Skull King",
       "quote": {
         "initial": "\nFOOOL, your journey ends now. You will never unlock the treasure of Skull island. You shall perish."
       },
       "items": [
-        "treasure room key"
+        "Treasure Room Key"
       ],
       "hp": "13",
       "isFriendly": false,
@@ -345,9 +345,9 @@
       "type": "enemy"
     },
     {
-      "name": "skeleton beast",
+      "name": "Skeleton Beast",
       "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
-      "items": ["beast skull"],
+      "items": ["Beast Skull"],
       "hp": "5",
       "isFriendly": false,
       "dp": "2",
@@ -361,9 +361,9 @@
       "type": "enemy"
     },
     {
-      "name": "skeleton soldier",
+      "name": "Skeleton Soldier",
       "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
-      "items": ["mango"],
+      "items": ["Mango"],
       "hp": "5",
       "isFriendly": true,
       "dp": "2",
@@ -377,9 +377,9 @@
       "type": "enemy"
     },
     {
-      "name": "skull captain",
+      "name": "Skull Captain",
       "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
-      "items": ["banana"],
+      "items": ["Banana"],
       "hp": "5",
       "isFriendly": true,
       "dp": "2",
