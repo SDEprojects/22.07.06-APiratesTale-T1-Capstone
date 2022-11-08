@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-class FileGetter {
+public class FileGetter {
 
     public InputStream fileGetter(String fileName) {
 
