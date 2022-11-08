@@ -2,7 +2,7 @@
     {
       "name": "Beach Shack",
       "description" : "Your home on Mango Island",
-      "NPC" : ["sad traveler"],
+      "NPC" : ["Sad Traveler"],
       "items" : [],
       "directions": {
         "north" : "Mango Docks",
@@ -16,7 +16,7 @@
     {
       "name": "Mango Docks",
       "description" : "Where pirate captains dock their ships.",
-      "NPC" : ["boat captain"],
+      "NPC" : ["Boat Captain"],
       "items" : [],
       "directions": {
         "east" : "Boat1",
@@ -29,7 +29,7 @@
     {
       "name": "Mango Trade Center",
       "description" : "Where you can trade, gamble, buy, sell and loose things.",
-      "NPC" : ["trader1", "gambler1", "uncle"],
+      "NPC" : ["Trader Jane", "Rambo Gambler", "Uncle"],
       "items" : [],
       "directions": {
         "west" : "Beach Shack"
@@ -41,7 +41,7 @@
     {
       "name": "Mango Jungle North",
       "description" : "The North jungle that has delicious mangos and ugly pirates.",
-      "NPC" : ["ugly pirate"],
+      "NPC" : ["Ugly Pirate"],
       "items" : ["Mango"],
       "directions": {
         "north" : "Beach Shack",
@@ -54,7 +54,7 @@
     {
       "name": "Mango Jungle South",
       "description" : "The South jungle that has delicious mangos and dirty pirates.",
-      "NPC" : ["dirty pirate"],
+      "NPC" : ["Dirty Pirate"],
       "items" : ["Mango"],
       "directions": {
         "north" : "Mango Jungle North",
@@ -68,7 +68,7 @@
     {
       "name": "Mango Jungle SouthWest",
       "description" : "The SouthWest jungle that has naughty parrot and boss pirate.",
-      "NPC" : ["boss pirate"],
+      "NPC" : ["Boss Pirate"],
       "items" : ["Parrot"],
       "directions": {
         "east" : "Mango Jungle South"
@@ -92,7 +92,7 @@
     {
       "name": "Boat1",
       "description" : "A clean pirate ship, with a strong smell of sasporilla.",
-      "NPC" : ["helmsman1"],
+      "NPC" : ["Helmsman Jerry"],
       "items" : [],
       "directions": {
         "west" : "Mango Docks",
@@ -106,7 +106,7 @@
     {
       "name": "Boat2",
       "description" : "A clean pirate ship, with a strong smell of sasporilla.",
-      "NPC" : ["helmsman2"],
+      "NPC" : ["Helmsman Barry"],
       "items" : [],
       "directions": {
         "north" : "Monkey Docks",
@@ -120,7 +120,7 @@
     {
       "name": "Boat3",
       "description" : "A clean pirate ship, with a strong smell of sasporilla.",
-      "NPC" : ["helmsman3"],
+      "NPC" : ["Helmsman Harry"],
       "items" : [],
       "directions": {
         "north" : "Skull Docks",
@@ -134,7 +134,7 @@
     {
       "name": "Monkey Docks",
       "description" : "The beautiful southern beach with docks of Monkey Island.",
-      "NPC" : ["monkey pirate"],
+      "NPC" : ["Monkey Pirate"],
       "items" : [],
       "directions": {
         "north" : "Monkey Fields",
@@ -148,7 +148,7 @@
     {
       "name": "Monkey Trade Center",
       "description" : "Where you can trade, gamble, buy, sell and loose things.",
-      "NPC" : ["trader2", "gambler2"],
+      "NPC" : ["Trader Joe", "Gambler Gal"],
       "items" : [],
       "directions": {
         "west" : "Monkey Docks"
@@ -188,7 +188,7 @@
     {
       "name": "Monkey Jungle West",
       "description" : "The western jungle is a dark jungle filled with goons.",
-      "NPC" : ["monkeyman"],
+      "NPC" : ["Monkeyman"],
       "items" : ["Banana"],
       "directions": {
         "east" : "Monkey Jungle East",
@@ -201,7 +201,7 @@
     {
       "name": "Monkey Jungle NorthWest",
       "description" : "The northern jungle is filled with monkeys and banana trees.",
-      "NPC" : ["monkey prince"],
+      "NPC" : ["Monkey Prince"],
       "items" : ["Banana"],
       "directions": {
         "south" : "Monkey Jungle West"
@@ -213,7 +213,7 @@
     {
       "name": "Banana Stash",
       "description" : "The monkey troop’s sacred banana stash.",
-      "NPC" : ["skeleton beast"],
+      "NPC" : ["Skeleton Beast"],
       "items" : ["Banana"],
       "directions": {
         "west" : "Monkey Fields"
@@ -226,7 +226,7 @@
     {
       "name": "Monkey Temple",
       "description" : "Home of the Monkey King and his troop.",
-      "NPC" : ["monkey king"],
+      "NPC" : ["Monkey King"],
       "items" : [],
       "directions": {
         "south" : "Monkey Fields"
@@ -266,7 +266,7 @@
     {
       "name": "Northern Cavern",
       "description" : "The cold, dark northern cavern populated by hundreds of bats.",
-      "NPC" : ["skeleton soldier"],
+      "NPC" : ["Skeleton Soldier"],
       "items" : [],
       "directions": {
         "south" : "Skull Cave"
@@ -278,7 +278,7 @@
     {
       "name": "Southern Cavern",
       "description" : "The southern cavern which is flowing with molten lava.",
-      "NPC" : ["skull captain"],
+      "NPC" : ["Skull Captain"],
       "items" : [],
       "directions": {
         "north" : "Skull Cave"
@@ -290,7 +290,7 @@
     {
       "name": "Throne Room",
       "description" : "A candlelit throne room. Filled with skeleton art work.",
-      "NPC" : ["skull king"],
+      "NPC" : ["Skull King"],
       "items" : [],
       "directions": {
         "east" : "Treasure Room",
