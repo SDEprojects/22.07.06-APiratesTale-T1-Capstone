@@ -1,16 +1,15 @@
 package com.company.view;
 
 import com.company.client.GameMain;
-import com.company.models.FileGetter;
-import com.company.models.Items;
-import com.company.models.Locations;
-import com.company.models.Characters;
+import com.company.models.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedInputStream;
@@ -37,6 +36,7 @@ public class UI {
     private JPanel invPanel, settingPanel, statusPanel,textPanel, hpPanel, currentEquipPanel;
     private JButton invBag, equipWeapon, settingIcon, helpIcon;
     private JTextArea area, hp, currentWeapon, npcName;
+    private JToggleButton musicToggle;
     ArrayList<JPanel> bgPanel= new ArrayList<>();
     ArrayList<JLabel> bgLabel= new ArrayList<>();
     JPanel playerBag = new JPanel();
@@ -44,9 +44,11 @@ public class UI {
     JPanel help = new JPanel();
     JPanel settings = new JPanel();
     JPanel map = new JPanel();
+    Music music = new Music();
     public JList<String> inventoryList = new JList<>();
     public DefaultListModel inventory = new DefaultListModel();
     private String selectedItem;
+    private String musicFile = "pirate-music.wav";
 
 //    JPanel bgPanel[];
 //    JLabel bgLabel[];
@@ -68,8 +70,9 @@ public class UI {
         playerBag.setVisible(false);
         playerEquipment = eventPanel(100, 100, (int) (windowWidth*.6), (int) (windowHeight*.6), "playerEquipment");
         playerEquipment.setVisible(false);
-
-
+        settings = eventPanel(700, 100, 400, 200, "settings");
+        settings.setVisible(false);
+        settingMenuOption();
     }
 
     private void fontCreate(){
@@ -217,14 +220,6 @@ public class UI {
         getNpcName().setForeground(Color.black);
         getNpcName().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         getStatusPanel().add(getNpcName());
-        //setHp(new JLabel("HP: " + (gm.getPlayer().getHp())));
-//        getHp().setBounds((int) (0*windowWidth), (int) (0*windowHeight), (int) (.05*windowWidth), (int) (.05*windowHeight));
-//        getHp().setFont(getOldRetro().deriveFont(Font.ITALIC,10));
-//        getStatusPanel().add(getHp());
-//        setPlayerCurrentLocation(new JLabel("Current Location: " + gm.getPlayer().getCurrentRoom()));
-//        getPlayerCurrentLocation().setBounds((int) (.06*windowWidth), (int) (0*windowHeight), (int) (.56*windowWidth), (int) (.05*windowHeight));
-//        getPlayerCurrentLocation().setFont(getOldRetro().deriveFont(Font.ITALIC, 10));
-//        getStatusPanel().add(getPlayerCurrentLocation());
 
         setSettingPanel(new JPanel());
         getSettingPanel().setBounds((int)(.82*windowWidth), (int) (0*windowHeight), (int) (.10*windowWidth), (int) (.08*windowHeight));
@@ -239,6 +234,8 @@ public class UI {
         getSettingPanel().add(getSettingIcon());
         ImageIcon sIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/gear.png")));
         getSettingIcon().setIcon(sIcon);
+        getSettingIcon().addActionListener(gm.aHandler);
+        getSettingIcon().setActionCommand("setting");
         setHelpIcon(new JButton());
         getHelpIcon().setBounds(60,0,50,50);
         getHelpIcon().setOpaque(false);
@@ -305,6 +302,26 @@ public class UI {
 
         ImageIcon bgIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(bgFileName)));
         label.setIcon(bgIcon);
+    }
+
+    public void settingMenuOption(){
+        setMusicToggle(new JToggleButton("Music"));
+        getMusicToggle().setBounds(150,50,75,25);
+        getMusicToggle().setBackground(Color.BLUE);
+        settings.add(getMusicToggle());
+        ItemListener itemListener = new ItemListener() {
+            public void itemStateChanged(ItemEvent itemEvent)
+            {
+                int state = itemEvent.getStateChange();
+                if (state == ItemEvent.SELECTED) {
+                    music.playMusic(getMusicFile());
+                }
+                else {
+                    music.stopMusic(getMusicFile());
+                }
+            }
+        };
+        getMusicToggle().addItemListener(itemListener);
     }
 
     public JPanel eventPanel(int x, int y, int width, int height, String target){
@@ -960,5 +977,21 @@ public class UI {
 
     public void setSelectedItem(String selectedItem) {
         this.selectedItem = selectedItem;
+    }
+
+    public JToggleButton getMusicToggle() {
+        return musicToggle;
+    }
+
+    public void setMusicToggle(JToggleButton musicToggle) {
+        this.musicToggle = musicToggle;
+    }
+
+    public String getMusicFile() {
+        return musicFile;
+    }
+
+    public void setMusicFile(String musicFile) {
+        this.musicFile = musicFile;
     }
 }
