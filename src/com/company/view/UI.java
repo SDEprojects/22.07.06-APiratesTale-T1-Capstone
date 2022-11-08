@@ -155,19 +155,19 @@ public class UI {
         getEquipWeapon().setActionCommand("equipment");
 
         setTextPanel(new JPanel());
-        getTextPanel().setBounds((int)(.05*windowWidth), (int) (.03*windowHeight), (int) (.30*windowWidth), (int) (.05*windowHeight));
+        getTextPanel().setBounds((int)(.05*windowWidth), (int) (.03*windowHeight), (int) (.42*windowWidth), (int) (.05*windowHeight));
         getTextPanel().setBackground(Color.BLUE);
         getTextPanel().setLayout(null);
         getTextPanel().setOpaque(false);
 
         setHpPanel(new JPanel());
-        getHpPanel().setBounds((int)(.36*windowWidth), (int) (.03*windowHeight), (int) (.06*windowWidth), (int) (.05*windowHeight));
+        getHpPanel().setBounds((int)(.48*windowWidth), (int) (.03*windowHeight), (int) (.06*windowWidth), (int) (.05*windowHeight));
         getHpPanel().setBackground(Color.BLUE);
         getHpPanel().setLayout(null);
         getHpPanel().setOpaque(false);
 
         setCurrentEquipPanel(new JPanel());
-        getCurrentEquipPanel().setBounds((int)(.43*windowWidth), (int) (.03*windowHeight), (int) (.32*windowWidth), (int) (.05*windowHeight));
+        getCurrentEquipPanel().setBounds((int)(.54*windowWidth), (int) (.03*windowHeight), (int) (.28*windowWidth), (int) (.05*windowHeight));
         getCurrentEquipPanel().setBackground(Color.BLUE);
         getCurrentEquipPanel().setLayout(null);
         getCurrentEquipPanel().setOpaque(false);
@@ -227,12 +227,12 @@ public class UI {
 //        getStatusPanel().add(getPlayerCurrentLocation());
 
         setSettingPanel(new JPanel());
-        getSettingPanel().setBounds((int)(.76*windowWidth), (int) (0*windowHeight), (int) (.18*windowWidth), (int) (.08*windowHeight));
+        getSettingPanel().setBounds((int)(.82*windowWidth), (int) (0*windowHeight), (int) (.10*windowWidth), (int) (.08*windowHeight));
         getSettingPanel().setBackground(Color.BLUE);
         getSettingPanel().setLayout(null);
         getSettingPanel().setOpaque(false);
         setSettingIcon(new JButton());
-        getSettingIcon().setBounds(100,0,50,50);
+        getSettingIcon().setBounds(0,0,50,50);
         getSettingIcon().setOpaque(false);
         getSettingIcon().setContentAreaFilled(false);
         getSettingIcon().setBorderPainted(false);
@@ -240,7 +240,7 @@ public class UI {
         ImageIcon sIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/gear.png")));
         getSettingIcon().setIcon(sIcon);
         setHelpIcon(new JButton());
-        getHelpIcon().setBounds(160,0,50,50);
+        getHelpIcon().setBounds(60,0,50,50);
         getHelpIcon().setOpaque(false);
         getHelpIcon().setContentAreaFilled(false);
         getHelpIcon().setBorderPainted(false);
@@ -310,16 +310,25 @@ public class UI {
     public JPanel eventPanel(int x, int y, int width, int height, String target){
         JPanel panelBuilder = new JPanel();
         panelBuilder.setBounds(x, y, width, height);
-        panelBuilder.setBackground(Color.black);
+        //panelBuilder.setBackground(Color.black);
         panelBuilder.setLayout(null);
         panelBuilder.setName("Player Bag");
+        panelBuilder.setOpaque(false);
+        inventoryListBuilder();
+        JLabel textBorder = new JLabel();
+        textBorder.setBounds(25, 0, 400, 180);
+        //panelBuilder.setOpaque(false);
+        panelBuilder.add(textBorder);
+        ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
+        textBorder.setIcon(textBorderIcon);
+
         window.add(panelBuilder);
 
         JButton exitButton = new JButton("X");
         exitButton.setForeground(Color.black);
         exitButton.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         exitButton.setOpaque(false);
-        exitButton.setBounds((int) (width-30),0,30,30);
+        exitButton.setBounds(325,0,30,30);
         exitButton.setBackground(Color.GRAY);
         exitButton.addActionListener(gm.aHandler);
         exitButton.setActionCommand("close "+target);
@@ -339,6 +348,8 @@ public class UI {
         inventoryList.setLayoutOrientation(JList.VERTICAL);
         inventoryList.setVisibleRowCount(-1);
         inventoryList.setBounds(50,50, 250, 80);
+        inventoryList.setOpaque(false);
+        inventoryList.setFont(oldRetro.deriveFont(Font.ITALIC,10));
         JScrollPane listScroller = new JScrollPane(inventoryList);
         listScroller.setPreferredSize(new Dimension(250, 80));
 
