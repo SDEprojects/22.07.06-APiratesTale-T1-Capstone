@@ -333,7 +333,7 @@ public class UI {
         panelBuilder.setOpaque(false);
         JLabel textBorder = new JLabel();
         textBorder.setBounds(25, 0, 400, 180);
-        //panelBuilder.setOpaque(false);
+        panelBuilder.setOpaque(false);
         panelBuilder.add(textBorder);
         ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
         textBorder.setIcon(textBorderIcon);
@@ -364,11 +364,34 @@ public class UI {
         inventoryList.setLayoutOrientation(JList.VERTICAL);
         inventoryList.setVisibleRowCount(-1);
         inventoryList.setBounds(50,50, 250, 80);
-        inventoryList.setOpaque(false);
+        inventoryList.setOpaque(true);
         inventoryList.setFont(oldRetro.deriveFont(Font.ITALIC,10));
         JScrollPane listScroller = new JScrollPane(inventoryList);
         listScroller.setPreferredSize(new Dimension(250, 80));
 
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem menuItem[] = new JMenuItem[4];
+        menuItem[0] = new JMenuItem("drop");
+        menuItem[0].addActionListener(gm.aHandler);
+//        menuItem[0].setActionCommand("drop " + inventoryList.getSelectedValue());
+        menuItem[0].setName(inventoryList.getSelectedValue());
+        popupMenu.add(menuItem[0]);
+
+        menuItem[1] = new JMenuItem("use");
+        menuItem[1].addActionListener(gm.aHandler);
+        menuItem[1].setName(inventoryList.getSelectedValue());
+        popupMenu.add(menuItem[1]);
+
+
+        menuItem[2] = new JMenuItem("equip");
+        menuItem[2].addActionListener(gm.aHandler);
+        menuItem[2].setName(inventoryList.getSelectedValue());
+        popupMenu.add(menuItem[2]);
+
+        menuItem[3] = new JMenuItem("inspect");
+        menuItem[3].addActionListener(gm.aHandler);
+        menuItem[3].setName(inventoryList.getSelectedValue());
+        popupMenu.add(menuItem[3]);
 
         ListSelectionListener listSelect = new ListSelectionListener() {
             @Override
@@ -384,26 +407,15 @@ public class UI {
                         @Override
                         public void mousePressed(MouseEvent e) {
                             if (SwingUtilities.isLeftMouseButton(e)) {
-                                JPopupMenu popupMenu = new JPopupMenu();
-                                JMenuItem menuItem[] = new JMenuItem[4];
-                                menuItem[0] = new JMenuItem("drop");
-                                menuItem[0].addActionListener(gm.aHandler);
+
                                 menuItem[0].setActionCommand("drop " + inventoryList.getSelectedValue());
-                                menuItem[0].setName(inventoryList.getSelectedValue());
-                                popupMenu.add(menuItem[0]);
 
-                                menuItem[1] = new JMenuItem("use");
-                                menuItem[1].addActionListener(gm.aHandler);
                                 menuItem[1].setActionCommand("use "+ inventoryList.getSelectedValue());
-                                menuItem[1].setName(inventoryList.getSelectedValue());
-                                popupMenu.add(menuItem[1]);
 
-
-                                menuItem[2] = new JMenuItem("equip");
-                                menuItem[2].addActionListener(gm.aHandler);
                                 menuItem[2].setActionCommand("equip "+ inventoryList.getSelectedValue());
-                                menuItem[2].setName(inventoryList.getSelectedValue());
-                                popupMenu.add(menuItem[2]);
+
+                                menuItem[3].setActionCommand("inspect "+ inventoryList.getSelectedValue());
+
                                 inventoryList.getSelectedValue();
                                 popupMenu.show(inventoryList, e.getX(), e.getY());
                             }

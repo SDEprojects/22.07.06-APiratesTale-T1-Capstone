@@ -86,6 +86,10 @@ public class ActionHandler implements ActionListener {
             case "close":
                 gm.getUi().eventPanelClose(inputSplit[1]);
                 break;
+            case "inspect":
+                Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(inputSplit[1])).findFirst().orElse(null);
+                gm.getUi().messageText.setText("item : "+ inputSplit[1] + " | Description: "+ itemInstance.getDescription() + " | Gold Value: "+itemInstance.getCost());
+                break;
             case "start":
                 gm.sc.showScreen(1);
                 gm.getUi().createMessageViewer();
