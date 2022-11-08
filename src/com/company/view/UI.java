@@ -315,12 +315,12 @@ public class UI {
         panelBuilder.setName("Player Bag");
         panelBuilder.setOpaque(false);
         inventoryListBuilder();
-        JLabel textBorder = new JLabel();
-        textBorder.setBounds(25, 0, 400, 180);
-        //panelBuilder.setOpaque(false);
-        panelBuilder.add(textBorder);
-        ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
-        textBorder.setIcon(textBorderIcon);
+//        JLabel textBorder = new JLabel();
+//        textBorder.setBounds(25, 0, 400, 180);
+//        //panelBuilder.setOpaque(false);
+//        panelBuilder.add(textBorder);
+//        ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
+//        textBorder.setIcon(textBorderIcon);
 
         window.add(panelBuilder);
 
