@@ -80,6 +80,9 @@ public class ActionHandler implements ActionListener {
             case "equipment":
                 gm.getUi().playerEquipment.setVisible(true);
                 break;
+            case "setting":
+                gm.getUi().settings.setVisible(true);
+                break;
             case "close":
                 gm.getUi().eventPanelClose(inputSplit[1]);
                 break;

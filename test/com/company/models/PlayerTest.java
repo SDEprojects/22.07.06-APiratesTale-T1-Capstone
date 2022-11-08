@@ -5,8 +5,11 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
+import java.util.stream.Collectors;
 
 public class PlayerTest extends TestCase {
 
@@ -44,5 +47,22 @@ public class PlayerTest extends TestCase {
         System.out.println(result);
         System.out.println(p1.getInventory());
         assertEquals(result, p1.getInventory());
+    }
+
+    @Test(expected = EmptyStackException.class)
+    public  void testFileInputStreamIfEmptyException() throws IOException {
+        FileGetter emptyStream = new FileGetter();
+        emptyStream.fileGetter("");
+    }
+
+    @Test
+    public void testFileNotEmpty(){
+        FileGetter fileGetter = new FileGetter();
+        String expected = "Press_Start_2P/PressStart2P-Regular.ttf";
+        InputStream is = new BufferedInputStream(fileGetter.fileGetter("Press_Start_2P/PressStart2P-Regular.ttf"));
+        String result = new BufferedReader(new InputStreamReader(is))
+                .lines().collect(Collectors.joining("\n"));
+
+        System.out.println(result);
     }
 }
