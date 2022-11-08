@@ -98,6 +98,7 @@ public class ActionHandler implements ActionListener {
             gm.getUi().getHp().setText("HP: " + gm.getPlayer().getHp());
             //gm.getUi().getCurrentWeapon().setText("Weapon: " + (if(items.getName());
         }
+        //if (gm.getPlayer().attack(inputSplit[1]))
 
     }
 }

@@ -7,6 +7,8 @@ import com.apps.util.Prompter;
 import com.company.client.GameMain;
 import com.company.view.Home;
 
+import javax.swing.*;
+
 public class Player {
     public String name = "wilson";
     public int hp = 10;
@@ -290,11 +292,11 @@ public class Player {
         Characters NPCInstance = gm.getGame().getCharacters().stream().filter(npc -> npc.getName().equals(name)).findFirst().orElse(null);
         if (locationStuff.getNPC().contains(name)) {
             boolean isFighting = true;
+            String[] options = {"fight", "run", "bag"};
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/fight.png")));
             while (isFighting) {
-                //added switchcase to make fights feel like an event
-                gm.getUi().messageText.setText("fight, run, bag");
-                String battleAction = prompter.prompt("fight, run, bag");
-                switch (battleAction) {
+                String selected = (String) JOptionPane.showInputDialog(null,"What do you want to do?", "You decided to fight", JOptionPane.QUESTION_MESSAGE, icon,options,options[0]);
+                switch (selected) {
                     case "fight":
                         System.out.println(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp());
                         System.out.println("You are attacking: " + NPCInstance.getName());
