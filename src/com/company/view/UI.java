@@ -57,6 +57,7 @@ public class UI {
     public UI(GameMain gm, double resolutionChanger) {
 
         this.gm = gm;
+        music.playMusic(getMusicFile());
         fontCreate();
         setResolutionChanger(resolutionChanger);
         setWindowHeight((int) (getWindowHeight()*getResolutionChanger()));
@@ -95,7 +96,6 @@ public class UI {
         window.setLayout(null);
         window.setResizable(false);
         window.setLocationRelativeTo(null);
-
     }
 
     public void createMessageViewer(){
@@ -305,6 +305,32 @@ public class UI {
     }
 
     public void settingMenuOption(){
+//        JPanel musicPanel = new JPanel();
+//        musicPanel.setBounds(25,5,300,170);
+//        musicPanel.setBackground(Color.white);
+//        String select[] = {"ON", "OFF"};
+//        JComboBox musicStatus = new JComboBox(select);
+//        JComboBox soundFXStatus = new JComboBox(select);
+//        JLabel musicLabel = new JLabel("Music");
+//        JLabel soundFxLabel = new JLabel("SoundFX");
+//        JButton selected = new JButton("Selected");
+//
+//        musicStatus.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+//        soundFXStatus.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+//        musicLabel.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+//        soundFxLabel.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+//        musicLabel.setBounds(80,50,75,25);
+//        soundFxLabel.setBounds(80,100,75,25);
+//        musicStatus.setBounds(150,50,85,25);
+//        soundFXStatus.setBounds(150,100,85,25);
+//
+//        settings.add(soundFxLabel);
+//        settings.add(musicLabel);
+//        settings.add(musicStatus);
+//        settings.add(soundFXStatus);
+//        settings.add(musicPanel);
+
+
         setMusicToggle(new JToggleButton("Music"));
         getMusicToggle().setBounds(150,50,75,25);
         getMusicToggle().setBackground(Color.BLUE);
