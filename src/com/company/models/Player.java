@@ -219,8 +219,57 @@ public class Player {
             }
             switch (NPCInstance.getType()) {
                 case "quest":
+                    if (NPCInstance.getItems().isEmpty()){
+                        gm.getUi().messageText.setText(NPCInstance.getQuote().get("initial"));
+                    }
+                    else {
+                        if (NPCInstance.getQuestReq().isEmpty()){
+                            for (String item:
+                                    NPCInstance.getReward()) {
+                                gm.getUi().getInventory().addElement(item);
+                                inventory.add(item);
+                                NPCInstance.getItems().remove(item);
+                                System.out.println("recieved item");
+                                //NPCInstance.getReward().remove(item);
+                            }
+                            gm.getUi().messageText.setText(NPCInstance.getQuote().get("reward"));
+                        }
+                        else {
+                            int i = 0;
+                            for (String questReq:NPCInstance.getQuestReq()
+                                 ) {
+                                if (inventory.contains(questReq)){
+                                    i=i+1;
+                                }
+                            }
+                            if (NPCInstance.getQuestReq().size()==i){
+                                //give rewards
+                                for (String item:
+                                        NPCInstance.getReward()) {
+                                    gm.getUi().getInventory().addElement(item);
+                                    inventory.add(item);
+                                    NPCInstance.getItems().remove(item);
+                                    NPCInstance.getQuestReq().remove(item);
+                                    System.out.println("received quest reward item");
+                            }
+                                gm.getUi().messageText.setText(NPCInstance.getQuote().get("reward"));
+
+                        }else {
+                                //quest text
+                                //gives item that helps quest...
+                                gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
+                                try {
+                                    gm.getUi().getInventory().addElement(NPCInstance.getQuote().get("gives"));
+                                    inventory.add(NPCInstance.getQuote().get("gives"));
+                                    System.out.println("received item");
+                                } catch (Exception ignored) {
+
+                                }
+
+                            }
+                    }}
                     //need to replace with a quest method and button response
-                    gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
+                    //gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
                     break;
                 case "enemy":
                     gm.getUi().messageText.setText(NPCInstance.getQuote().get("initial"));
