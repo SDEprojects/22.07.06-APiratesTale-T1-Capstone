@@ -2,6 +2,7 @@ package com.company.view;
 
 import com.company.client.GameMain;
 import com.company.models.Items;
+import com.company.models.Music;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -64,6 +65,7 @@ public class ActionHandler implements ActionListener {
             case "talk":
                 gm.getPlayer().talk(inputSplit[1]);
                 gm.getUi().getNpcName().setText(inputSplit[1]);
+
                 break;
             case "trade":
                 gm.getUi().messageText.setText("You try and trade with "+ inputSplit[1]);

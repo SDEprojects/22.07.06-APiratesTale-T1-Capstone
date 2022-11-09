@@ -24,8 +24,17 @@ public class Music {
             Clip audioClip = AudioSystem.getClip();
             audioClip.open(audioStream);
             //Added loop
-            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-            playCompleted = false;
+            if (musicLocation.equals("pirate-music.wav")){
+                audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+                playCompleted = false;
+            }
+            if (musicLocation.equals("arrr.wav")){
+                audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+                Thread.sleep(1000);
+                playCompleted = true;
+            }
+
+           // playCompleted = false;
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -42,7 +51,7 @@ public class Music {
             });
             thread.start();
 
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             ex.printStackTrace();
         }
 

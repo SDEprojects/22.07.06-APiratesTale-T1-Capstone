@@ -4,7 +4,8 @@
       "quote": {
         "quest" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
         "initial" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
-        "quit" : "Safe travels, kid..."
+        "quit" : "Safe travels, kid...",
+        "sfx": "arrr.wav"
         },
       "items": [
         "Map"
@@ -30,7 +31,8 @@
         "no": "\nArrggh, then away with you!",
         "parrot": "",
         "reward":"\nOh jolly, you found Polly. Thank you so much! Hey it’s a dangerous world out there.\nGo see the blacksmith for a SWORD, and then we will set sail when you're ready.\nBoard the ship, and type GO followed by the name of your desired island, and we can get sailing.\n",
-        "quit": "\nArrggh\n"
+        "quit": "\nArrggh\n",
+        "sfx": "arrr.wav"
       },
       "items": [
         "Cracker"
@@ -53,7 +55,8 @@
       "name": "Trader Jane",
       "quote": {
         "initial": "Hi, My name is Joe. \nI am the best trader you can find on this island.",
-        "quit" : "Come back to trade your life anytime."
+        "quit" : "Come back to trade your life anytime.",
+        "sfx": "help_trader1.wav"
       },
       "items": [],
       "hp": "10",
