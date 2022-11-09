@@ -59,10 +59,10 @@ public class PlayerTest extends TestCase {
     public void testFileNotEmpty(){
         FileGetter fileGetter = new FileGetter();
         String expected = "Press_Start_2P/PressStart2P-Regular.ttf";
-        InputStream is = new BufferedInputStream(fileGetter.fileGetter("Press_Start_2P/PressStart2P-Regular.ttf"));
+        InputStream is = new BufferedInputStream(fileGetter.fileGetter("test.text"));
         String result = new BufferedReader(new InputStreamReader(is))
                 .lines().collect(Collectors.joining("\n"));
 
-        System.out.println(result);
+        assertEquals(expected,result);
     }
 }

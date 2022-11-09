@@ -8,10 +8,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,13 +27,16 @@ public class UI {
     int windowWidth = 1280;
     public JTextArea messageText;
     private Font oldRetro;
-    private JPanel directionPanel;
+    private JPanel directionPanel, musicPanel;
     private JButton northButton, southButton, eastButton, westButton;
     private JButton invButton, equipButton, settingButton, helpButton;
     private JPanel invPanel, settingPanel, statusPanel,textPanel, hpPanel, currentEquipPanel;
     private JButton invBag, equipWeapon, settingIcon, helpIcon;
     private JTextArea area, hp, currentWeapon, npcName;
     private JToggleButton musicToggle;
+    private JComboBox musicStatus, soundFXStatus;
+    private JLabel musicLabel,soundFxLabel;
+    private JButton volumeUp, volumeDown;
     ArrayList<JPanel> bgPanel= new ArrayList<>();
     ArrayList<JLabel> bgLabel= new ArrayList<>();
     JPanel playerBag = new JPanel();
@@ -305,49 +305,88 @@ public class UI {
     }
 
     public void settingMenuOption(){
-//        JPanel musicPanel = new JPanel();
-//        musicPanel.setBounds(25,5,300,170);
-//        musicPanel.setBackground(Color.white);
-//        String select[] = {"ON", "OFF"};
-//        JComboBox musicStatus = new JComboBox(select);
-//        JComboBox soundFXStatus = new JComboBox(select);
-//        JLabel musicLabel = new JLabel("Music");
-//        JLabel soundFxLabel = new JLabel("SoundFX");
-//        JButton selected = new JButton("Selected");
-//
-//        musicStatus.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
-//        soundFXStatus.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
-//        musicLabel.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
-//        soundFxLabel.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
-//        musicLabel.setBounds(80,50,75,25);
-//        soundFxLabel.setBounds(80,100,75,25);
-//        musicStatus.setBounds(150,50,85,25);
-//        soundFXStatus.setBounds(150,100,85,25);
-//
-//        settings.add(soundFxLabel);
-//        settings.add(musicLabel);
-//        settings.add(musicStatus);
-//        settings.add(soundFXStatus);
-//        settings.add(musicPanel);
-
-
-        setMusicToggle(new JToggleButton("Music"));
-        getMusicToggle().setBounds(150,50,75,25);
-        getMusicToggle().setBackground(Color.BLUE);
-        settings.add(getMusicToggle());
-        ItemListener itemListener = new ItemListener() {
-            public void itemStateChanged(ItemEvent itemEvent)
-            {
-                int state = itemEvent.getStateChange();
-                if (state == ItemEvent.SELECTED) {
+        setMusicPanel(new JPanel());
+        getMusicPanel().setBounds(25,5,300,170);
+        getMusicPanel().setBackground(Color.white);
+        String select[] = {"ON", "OFF"};
+        setMusicStatus(new JComboBox(select));
+        setSoundFXStatus(new JComboBox(select));
+        setMusicLabel(new JLabel("Music"));
+        setSoundFxLabel(new JLabel("SoundFX"));
+        setVolumeDown(new JButton("Volume Down"));
+        setVolumeUp(new JButton("Volume Up"));
+        getVolumeDown().setBounds(80,100,150,25);
+        getVolumeUp().setBounds(80,70,150,25);
+        getVolumeDown().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                music.volumeDown();
+            }
+        });
+        getVolumeUp().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                music.volumeUp();
+            }
+        });
+        musicStatus.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String state = (String) musicStatus.getSelectedItem();
+                if (state.equals("ON")){
                     music.playMusic(getMusicFile());
-                }
-                else {
+                }else{
                     music.stopMusic(getMusicFile());
                 }
             }
-        };
-        getMusicToggle().addItemListener(itemListener);
+        });
+        soundFXStatus.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String state = (String) musicStatus.getSelectedItem();
+                if (state.equals("ON")){
+                    music.playMusic(getMusicFile());
+                }else{
+                    music.stopMusic(getMusicFile());
+                }
+            }
+        });
+
+        musicStatus.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+        soundFXStatus.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+        musicLabel.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+        soundFxLabel.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+        musicLabel.setBounds(80,10,75,25);
+        soundFxLabel.setBounds(80,40,75,25);
+        musicStatus.setBounds(150,10,85,25);
+        soundFXStatus.setBounds(150,40,85,25);
+
+        settings.add(getVolumeDown());
+        settings.add(getVolumeUp());
+        settings.add(soundFxLabel);
+        settings.add(musicLabel);
+        settings.add(musicStatus);
+        settings.add(soundFXStatus);
+        settings.add(musicPanel);
+
+
+//        setMusicToggle(new JToggleButton("Music"));
+//        getMusicToggle().setBounds(150,50,75,25);
+//        getMusicToggle().setBackground(Color.BLUE);
+//        settings.add(getMusicToggle());
+//        ItemListener itemListener = new ItemListener() {
+//            public void itemStateChanged(ItemEvent itemEvent)
+//            {
+//                int state = itemEvent.getStateChange();
+//                if (state == ItemEvent.SELECTED) {
+//                    music.playMusic(getMusicFile());
+//                }
+//                else {
+//                    music.stopMusic(getMusicFile());
+//                }
+//            }
+//        };
+//        getMusicToggle().addItemListener(itemListener);
     }
 
     public JPanel eventPanel(int x, int y, int width, int height, String target){
@@ -1031,5 +1070,61 @@ public class UI {
 
     public void setMusicFile(String musicFile) {
         this.musicFile = musicFile;
+    }
+
+    public JPanel getMusicPanel() {
+        return musicPanel;
+    }
+
+    public void setMusicPanel(JPanel musicPanel) {
+        this.musicPanel = musicPanel;
+    }
+
+    public JComboBox getMusicStatus() {
+        return musicStatus;
+    }
+
+    public void setMusicStatus(JComboBox musicStatus) {
+        this.musicStatus = musicStatus;
+    }
+
+    public JComboBox getSoundFXStatus() {
+        return soundFXStatus;
+    }
+
+    public void setSoundFXStatus(JComboBox soundFXStatus) {
+        this.soundFXStatus = soundFXStatus;
+    }
+
+    public JLabel getMusicLabel() {
+        return musicLabel;
+    }
+
+    public void setMusicLabel(JLabel musicLabel) {
+        this.musicLabel = musicLabel;
+    }
+
+    public JLabel getSoundFxLabel() {
+        return soundFxLabel;
+    }
+
+    public void setSoundFxLabel(JLabel soundFxLabel) {
+        this.soundFxLabel = soundFxLabel;
+    }
+
+    public JButton getVolumeUp() {
+        return volumeUp;
+    }
+
+    public void setVolumeUp(JButton volumeUp) {
+        this.volumeUp = volumeUp;
+    }
+
+    public JButton getVolumeDown() {
+        return volumeDown;
+    }
+
+    public void setVolumeDown(JButton volumeDown) {
+        this.volumeDown = volumeDown;
     }
 }

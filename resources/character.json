@@ -5,7 +5,7 @@
         "quest" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
         "initial" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
         "quit" : "Safe travels, kid...",
-        "sfx": "arrr.wav"
+        "sfx": "takealook around.wav"
         },
       "items": [
         "Map"
@@ -75,7 +75,8 @@
       "name": "Uncle",
       "quote": {
         "initial": "\nHey Nephew, it’s great to see you. I’ve heard you are on a big adventure.\nIt’s a dangerous world out there, so I fashioned you this SWORD to take.\nAlso, take this MANGO, if you fall ill it will replenish 5pts. of your health. Be safe out there.\n",
-        "quit" : "Come back to visit anytime Nephew."
+        "quit" : "Come back to visit anytime Nephew.",
+        "sfx": "tradeguil.wav"
       },
       "items": [
         "Sword", "Redkey"
@@ -96,7 +97,8 @@
       "name": "Rambo Gambler",
       "quote": {
         "initial": "",
-        "quit" : "Come back to win anytime."
+        "quit" : "Come back to win anytime.",
+        "sfx": "how can i help you.wav"
       },
       "items": [],
       "hp": "10",
@@ -238,7 +240,8 @@
       "name": "Trader Joe",
       "quote": {
         "initial": "",
-        "quit" : "Come back to trade your life anytime."
+        "quit" : "Come back to trade your life anytime.",
+        "sfx": "letstrade.wav"
       },
       "items": [],
       "hp": "10",
@@ -257,7 +260,8 @@
       "name": "Gambler Gal",
       "quote": {
         "initial": "",
-        "quit" : "Come back to win anytime."
+        "quit" : "Come back to win anytime.",
+        "sfx": "arrr.wav"
       },
       "items": [],
       "hp": "10",

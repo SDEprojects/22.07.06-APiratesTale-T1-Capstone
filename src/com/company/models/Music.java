@@ -15,6 +15,8 @@ public class Music {
     Scanner scanner = new Scanner(System.in);
     File file = new File("");
     boolean playCompleted;
+    private float currentVolume = 0;
+    private FloatControl floatControl;
 
     public void playMusic(String musicLocation) {
 
@@ -23,16 +25,16 @@ public class Music {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(fileGetter.fileGetter(musicLocation)));
             Clip audioClip = AudioSystem.getClip();
             audioClip.open(audioStream);
+            setFloatControl((FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN));
             //Added loop
             if (musicLocation.equals("pirate-music.wav")){
                 audioClip.loop(Clip.LOOP_CONTINUOUSLY);
                 playCompleted = false;
             }
-            if (musicLocation.equals("arrr.wav")){
-                audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-                Thread.sleep(1000);
-                playCompleted = true;
+            else{
+                audioClip.start();
             }
+            getFloatControl().setValue(getCurrentVolume());
 
            // playCompleted = false;
             Thread thread = new Thread(new Runnable() {
@@ -51,10 +53,26 @@ public class Music {
             });
             thread.start();
 
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
             ex.printStackTrace();
         }
 
+    }
+
+    public void volumeUp(){
+        currentVolume += 1.0f;
+        if (getCurrentVolume() > 6.0f){
+            setCurrentVolume(6.0f);
+        }
+        getFloatControl().setValue(getCurrentVolume());
+    }
+
+    public void volumeDown(){
+        currentVolume -= 1.0f;
+        if (getCurrentVolume() < -80.0f){
+            setCurrentVolume(-80.0f);
+        }
+        getFloatControl().setValue(getCurrentVolume());
     }
 
     public void update(LineEvent event) {
@@ -66,4 +84,19 @@ public class Music {
         playCompleted = true;
     }
 
+    public float getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(float currentVolume) {
+        this.currentVolume = currentVolume;
+    }
+
+    public FloatControl getFloatControl() {
+        return floatControl;
+    }
+
+    public void setFloatControl(FloatControl floatControl) {
+        this.floatControl = floatControl;
+    }
 }
