@@ -55,9 +55,6 @@ public class ActionHandler implements ActionListener {
                 gm.getPlayer().dropItem(inputSplit[1]);
                 //gm.getUi().messageText.setText("You try to drop "+ inputSplit[1]);
                 break;
-            case "equip":
-                gm.getUi().messageText.setText("You try to equip "+ inputSplit[1]);
-                break;
             case "fight":
                 gm.getUi().messageText.setText("You try to fight "+ inputSplit[1]);
                 gm.getPlayer().attack(inputSplit[1]);
@@ -96,6 +93,9 @@ public class ActionHandler implements ActionListener {
                 gm.sc.showScreen(1);
                 gm.getUi().createMessageViewer();
                 break;
+            case "equip":
+                gm.getPlayer().equipItem(inputSplit[1]);
+                break;
             default:
                 break;
         }
@@ -105,7 +105,9 @@ public class ActionHandler implements ActionListener {
         if (gm.getPlayer().getHp() > 0){
             gm.getUi().getArea().setText("Current location: " + gm.getPlayer().getCurrentRoom());
             gm.getUi().getHp().setText("HP: " + gm.getPlayer().getHp());
-            //gm.getUi().getCurrentWeapon().setText("Weapon: " + (if(items.getName());
+            String item = gm.getPlayer().getEquipedItem();
+            Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
+            gm.getUi().getCurrentWeapon().setText("Weapon: " + gm.getPlayer().getEquipedItem() + " (DP: +" + itemInstance.getStrength() + ")" );
         }
         //if (gm.getPlayer().attack(inputSplit[1]))
 

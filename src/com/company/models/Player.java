@@ -23,6 +23,7 @@ public class Player {
     private Map<String, String> directions;
     private boolean playGame;
     GameMain gm;
+    private String equipedItem;
 
     Prompter prompter = new Prompter(new Scanner(System.in));
     ArrayList<Map<String, Object>> locationData = tools.readJson("location.json");
@@ -109,6 +110,19 @@ public class Player {
             }
         }
 
+    }
+
+    // EquipItem
+    public void equipItem(String item){
+        Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
+        locationStuff.getItems().add(item);
+        try {
+            gm.getUi().getInventory().addElement(equipedItem);
+        } catch (Exception ignored) {
+        }
+        gm.getUi().getInventory().removeElement(item);
+        gm.getPlayer().setEquipedItem(item);
+        gm.getUi().messageText.setText("You are equipped with " + item + "!");
     }
 
 //        if (!item.equals("parrot") && !item.equals("treasure chest") && locationItems.contains(item)) {
@@ -590,5 +604,13 @@ public class Player {
 
     public void setInventory(List<String> inventory) {
         this.inventory = inventory;
+    }
+
+    public String getEquipedItem() {
+        return equipedItem;
+    }
+
+    public void setEquipedItem(String equipedItem) {
+        this.equipedItem = equipedItem;
     }
 }
