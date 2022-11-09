@@ -3,8 +3,8 @@
       "name": "Sad Traveler",
       "quote": {
         "quest" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
-        "initial" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
-        "quit" : "Safe travels, kid...",
+        "initial" : "Safe travels, kid...",
+        "reward" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
         "sfx": "takealook around.wav"
         },
       "items": [
@@ -14,7 +14,7 @@
       "isFriendly": true,
       "dp" : "1",
       "questReq" : [],
-      "reward" : [],
+      "reward" : ["Map"],
       "img": "img/traveler.png",
       "xaxis": "500",
       "yaxis": "65",
@@ -25,22 +25,19 @@
     {
       "name": "Boat Captain",
       "quote": {
-        "initial": "\nAhoy adventurer, I am Captain Ron.\n",
-        "quest" : "\nIf it’s a ship you seek, I will not help you.\nYou see it’s my lucky PARROT, Polly. A fallen mango spooked the ole girl, and she flew into the mango forest.\nI will not set sail without her, for it would surely lead me to a doomed fate at sea.\nHey, if you are able to find her and bring my Polly back, I would take you anywhere you want.\nWould you find her for me? [yes/no]\n",
-        "yes": "\nThank you adventurer, this is her favorite CRACKER, if she sees it she will surely come to you.\n",
-        "no": "\nArrggh, then away with you!",
-        "parrot": "",
+        "initial": "\nArrggh!!!!\n",
+        "quest" : "\nAhoy adventurer, I am Captain Ron! If it’s a ship you seek, I will not help you.\nYou see it’s my lucky PARROT, Polly. A fallen mango spooked the ole girl, and she flew into the mango forest.\nI will not set sail without her, for it would surely lead me to a doomed fate at sea.\nHey, if you are able to find her and bring my Polly back, I would take you anywhere you want.\nThis is her favorite CRACKER, if she sees it she will surely come to you.\n",
+        "gives" : "Cracker",
         "reward":"\nOh jolly, you found Polly. Thank you so much! Hey it’s a dangerous world out there.\nGo see the blacksmith for a SWORD, and then we will set sail when you're ready.\nBoard the ship, and type GO followed by the name of your desired island, and we can get sailing.\n",
-        "quit": "\nArrggh\n",
         "sfx": "arrr.wav"
       },
       "items": [
-        "Cracker"
+        "Cracker", "Boat Pass"
       ],
       "hp": "10",
       "isFriendly": true,
       "dp" : "5",
-      "questReq" : ["parrot"],
+      "questReq" : ["Parrot"],
       "reward" : [
         "Boat Pass"
       ],
@@ -74,8 +71,8 @@
     {
       "name": "Uncle",
       "quote": {
-        "initial": "\nHey Nephew, it’s great to see you. I’ve heard you are on a big adventure.\nIt’s a dangerous world out there, so I fashioned you this SWORD to take.\nAlso, take this MANGO, if you fall ill it will replenish 5pts. of your health. Be safe out there.\n",
-        "quit" : "Come back to visit anytime Nephew.",
+        "reward": "\nHey Nephew, it’s great to see you. I’ve heard you are on a big adventure.\nIt’s a dangerous world out there, so I fashioned you this SWORD to take.\nAlso, take this MANGO, if you fall ill it will replenish 5pts. of your health. Be safe out there.\n",
+        "initial" : "Come back to visit anytime Nephew.",
         "sfx": "tradeguil.wav"
       },
       "items": [
@@ -85,7 +82,7 @@
       "isFriendly": true,
       "dp" : "5",
       "questReq" : [],
-      "reward" : [],
+      "reward" : ["Sword", "Redkey"],
       "img": "img/uncle.png",
       "xaxis": "60",
       "yaxis": "65",
