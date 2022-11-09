@@ -40,6 +40,7 @@ public class UI {
     ArrayList<JPanel> bgPanel= new ArrayList<>();
     ArrayList<JLabel> bgLabel= new ArrayList<>();
     JPanel playerBag = new JPanel();
+    JPanel gambleGame = new JPanel();
     JPanel playerEquipment = new JPanel();
     JPanel help = new JPanel();
     JPanel settings = new JPanel();
@@ -71,6 +72,8 @@ public class UI {
         playerBag.setVisible(false);
         playerEquipment = eventPanel(100, 100, (int) (windowWidth*.6), (int) (windowHeight*.6), "playerEquipment");
         playerEquipment.setVisible(false);
+//        gambleGame = eventPanel(100, 100, 1000, 300, "gambleGame");
+//        gambleGame.setVisible(true);
         settings = eventPanel(700, 100, 400, 200, "settings");
         settings.setVisible(false);
         settingMenuOption();
@@ -394,14 +397,17 @@ public class UI {
         panelBuilder.setBounds(x, y, width, height);
         //panelBuilder.setBackground(Color.black);
         panelBuilder.setLayout(null);
-        panelBuilder.setName("Player Bag");
+        panelBuilder.setName(target);
         panelBuilder.setOpaque(false);
         JLabel textBorder = new JLabel();
-        textBorder.setBounds(25, 0, 400, 180);
+        textBorder.setBounds(25, 0, width-60,height);
         panelBuilder.setOpaque(false);
         panelBuilder.add(textBorder);
+
         ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
-        textBorder.setIcon(textBorderIcon);
+        Image image = textBorderIcon.getImage().getScaledInstance(width-60,height, Image.SCALE_DEFAULT);
+        ImageIcon imageResized = new ImageIcon(image);
+        textBorder.setIcon(imageResized);
 
         window.add(panelBuilder);
 
@@ -409,7 +415,7 @@ public class UI {
         exitButton.setForeground(Color.black);
         exitButton.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         exitButton.setOpaque(false);
-        exitButton.setBounds(325,0,30,30);
+        exitButton.setBounds(width-30,0,30,30);
         exitButton.setBackground(Color.GRAY);
         exitButton.addActionListener(gm.aHandler);
         exitButton.setActionCommand("close "+target);
@@ -524,6 +530,9 @@ public class UI {
                 break;
             case "playerEquipment":
                 playerEquipment.setVisible(false);
+                break;
+            case "gambleGame":
+                gambleGame.setVisible(false);
                 break;
             case "map":
                 map.setVisible(false);

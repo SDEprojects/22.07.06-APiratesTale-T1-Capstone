@@ -2,6 +2,8 @@ package com.company.models;
 
 import com.company.client.GameMain;
 import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,10 +20,11 @@ public class PlayerTest extends TestCase {
     Game game = new Game(gm);
 
 
-
     @Test
     public void testUseItem() {
-        p1.setCurrentRoom("Mango Jungle");
+        String direction = "south";
+        gm.sc.screenPicker(direction);
+        p1.setCurrentRoom("Mango Jungle North");
         System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getName());
         System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getItems());
         System.out.println(p1.hp);
@@ -34,7 +37,8 @@ public class PlayerTest extends TestCase {
 
     @Test
     public void testGrabItemWhenNoReq(){
-        p1.setCurrentRoom("Mango Jungle");
+        String direction = "south";
+        gm.sc.screenPicker(direction);
         System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getName());
         System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getItems());
         System.out.println(p1.getInventory());
