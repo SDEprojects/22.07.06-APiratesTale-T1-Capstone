@@ -16,7 +16,7 @@ public class Game {
     ArrayList<Locations> locations = new ArrayList<>();
     ArrayList<Items> items = new ArrayList<>();
     ArrayList<Characters> characters = new ArrayList<>();
-    private Music musicObject = new Music();
+//    private Music musicObject = new Music();
     JsonTools tools = new JsonTools();
     GameMain gm;
 

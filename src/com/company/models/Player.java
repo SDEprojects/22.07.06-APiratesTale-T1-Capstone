@@ -198,10 +198,10 @@ public class Player {
         Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Characters NPCInstance = gm.getGame().getCharacters().stream().filter(npc -> npc.getName().equals(name)).findFirst().orElse(null);
         if (locationStuff.getNPC().contains(name)) {
-            Music music = new Music();
             try {
-                music.playMusic(NPCInstance.getQuote().get("sfx"));
-            } catch (Exception ignore) {
+                gm.getMusic().playMusic(NPCInstance.getQuote().get("sfx"));
+            } catch (Exception e) {
+                System.out.println("ERROR");
             }
             switch (NPCInstance.getType()) {
                 case "quest":

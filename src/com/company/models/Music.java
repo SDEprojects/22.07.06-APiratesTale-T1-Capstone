@@ -1,5 +1,6 @@
 package com.company.models;
 import com.apps.util.Prompter;
+import com.company.client.GameMain;
 
 
 import java.io.BufferedInputStream;
@@ -17,6 +18,12 @@ public class Music {
     boolean playCompleted;
     private float currentVolume = 0;
     private FloatControl floatControl;
+    private boolean fxOff;
+    private GameMain gm;
+
+    public Music(GameMain gm){
+        this.gm = gm;
+    }
 
     public void playMusic(String musicLocation) {
 
@@ -32,7 +39,10 @@ public class Music {
                 playCompleted = false;
             }
             else{
-                audioClip.start();
+                if (!fxOff){
+                    playCompleted = false;
+                    audioClip.start();
+                }
             }
             getFloatControl().setValue(getCurrentVolume());
 
@@ -84,6 +94,10 @@ public class Music {
         playCompleted = true;
     }
 
+    public void stopFx(){
+        setFxOff(true);
+    }
+
     public float getCurrentVolume() {
         return currentVolume;
     }
@@ -98,5 +112,13 @@ public class Music {
 
     public void setFloatControl(FloatControl floatControl) {
         this.floatControl = floatControl;
+    }
+
+    public boolean isFxOff() {
+        return fxOff;
+    }
+
+    public void setFxOff(boolean fxOff) {
+        this.fxOff = fxOff;
     }
 }
