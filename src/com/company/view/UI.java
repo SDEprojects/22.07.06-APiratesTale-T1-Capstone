@@ -48,10 +48,6 @@ public class UI {
     private String selectedItem;
     private String musicFile = "pirate-music.wav";
 
-//    JPanel bgPanel[];
-//    JLabel bgLabel[];
-
-
     public UI(GameMain gm, double resolutionChanger) {
 
         this.gm = gm;
@@ -342,10 +338,8 @@ public class UI {
             public void itemStateChanged(ItemEvent e) {
                 String state = (String) getSoundFXStatus().getSelectedItem();
                 if (state.equals("ON")){
-//                    music.playMusic(getMusicFile());
                     gm.getMusic().setFxOff(false);
                 }else{
-//                    music.stopMusic(getMusicFile());
                     gm.getMusic().stopFx();
                 }
             }

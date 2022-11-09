@@ -42,7 +42,6 @@ public class Music {
                 if (!fxOff){
                     playCompleted = false;
                     audioClip.start();
-                    System.out.println("This is inside IF");
                 }
             }
             getFloatControl().setValue(getCurrentVolume());
@@ -97,7 +96,6 @@ public class Music {
 
     public void stopFx(){
         setFxOff(true);
-        System.out.println("StopFX");
     }
 
     public float getCurrentVolume() {
