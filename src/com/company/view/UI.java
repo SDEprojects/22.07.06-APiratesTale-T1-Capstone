@@ -10,7 +10,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -44,7 +43,6 @@ public class UI {
     JPanel help = new JPanel();
     JPanel settings = new JPanel();
     JPanel map = new JPanel();
-    Music music = new Music();
     public JList<String> inventoryList = new JList<>();
     public DefaultListModel inventory = new DefaultListModel();
     private String selectedItem;
@@ -57,7 +55,6 @@ public class UI {
     public UI(GameMain gm, double resolutionChanger) {
 
         this.gm = gm;
-        music.playMusic(getMusicFile());
         fontCreate();
         setResolutionChanger(resolutionChanger);
         setWindowHeight((int) (getWindowHeight()*getResolutionChanger()));
@@ -320,53 +317,55 @@ public class UI {
         getVolumeDown().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                music.volumeDown();
+                gm.getMusic().volumeDown();
             }
         });
         getVolumeUp().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                music.volumeUp();
+                gm.getMusic().volumeUp();
             }
         });
-        musicStatus.addItemListener(new ItemListener() {
+        getMusicStatus().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                String state = (String) musicStatus.getSelectedItem();
+                String state = (String) getMusicStatus().getSelectedItem();
                 if (state.equals("ON")){
-                    music.playMusic(getMusicFile());
+                    gm.getMusic().playMusic(getMusicFile());
                 }else{
-                    music.stopMusic(getMusicFile());
+                    gm.getMusic().stopMusic(getMusicFile());
                 }
             }
         });
-        soundFXStatus.addItemListener(new ItemListener() {
+        getSoundFXStatus().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                String state = (String) musicStatus.getSelectedItem();
+                String state = (String) getSoundFXStatus().getSelectedItem();
                 if (state.equals("ON")){
-                    music.playMusic(getMusicFile());
+//                    music.playMusic(getMusicFile());
+                    gm.getMusic().setFxOff(false);
                 }else{
-                    music.stopMusic(getMusicFile());
+//                    music.stopMusic(getMusicFile());
+                    gm.getMusic().stopFx();
                 }
             }
         });
 
-        musicStatus.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
-        soundFXStatus.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
-        musicLabel.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
-        soundFxLabel.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
-        musicLabel.setBounds(80,10,75,25);
-        soundFxLabel.setBounds(80,40,75,25);
-        musicStatus.setBounds(150,10,85,25);
-        soundFXStatus.setBounds(150,40,85,25);
+        getMusicStatus().setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+        getSoundFXStatus().setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+        getMusicLabel().setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+        getSoundFxLabel().setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+        getMusicLabel().setBounds(80,10,75,25);
+        getSoundFxLabel().setBounds(80,40,75,25);
+        getMusicStatus().setBounds(150,10,85,25);
+        getSoundFXStatus().setBounds(150,40,85,25);
 
         settings.add(getVolumeDown());
         settings.add(getVolumeUp());
-        settings.add(soundFxLabel);
-        settings.add(musicLabel);
-        settings.add(musicStatus);
-        settings.add(soundFXStatus);
+        settings.add(getSoundFxLabel());
+        settings.add(getMusicLabel());
+        settings.add(getMusicStatus());
+        settings.add(getSoundFXStatus());
         settings.add(musicPanel);
 
 

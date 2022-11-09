@@ -1,6 +1,7 @@
 package com.company.client;
 
 import com.company.models.Game;
+import com.company.models.Music;
 import com.company.models.Player;
 import com.company.view.ActionHandler;
 import com.company.view.SceneChanger;
@@ -15,6 +16,7 @@ public class GameMain {
     public SceneChanger sc = new SceneChanger(this);
     private final Player player = new Player(this);
     private final Game game = new Game(this);
+    private Music music = new Music(this);
 
 
 
@@ -25,6 +27,7 @@ public class GameMain {
     public GameMain(){
         getGame().buildWorld();
         getUi().generate();
+        getMusic().playMusic("pirate-music.wav");
         sc.showScreen(0);
     }
 
@@ -54,5 +57,13 @@ public class GameMain {
 
     public void setaHandler(ActionHandler aHandler) {
         this.aHandler = aHandler;
+    }
+
+    public Music getMusic() {
+        return music;
+    }
+
+    public void setMusic(Music music) {
+        this.music = music;
     }
 }
