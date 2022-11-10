@@ -324,8 +324,8 @@
       "name": "Monkey Prince",
       "quote": {
         "quest": "",
-        "reward":"",
-        "initial": "\nHello I am the monkey prince!\nI wasn't lost I was just monkeying around, Tell my father that you found me. \nShow this pin to my father and you will earn his respect.",
+        "reward": "\nHello I am the monkey prince!\nI wasn't lost I was just monkeying around, Tell my father that you found me. \nShow this pin to my father and you will earn his respect.",
+        "initial": "\nRemember to enjoy a banana for good health!",
         "sfx":""
     },
       "items": ["Monkey Pin"],
