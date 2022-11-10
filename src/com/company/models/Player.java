@@ -153,12 +153,23 @@ public class Player {
     public void useItem(String item) { //replace hard coding
         Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
-        if (locationStuff.getItems().contains(item)) {
-            setHp(getHp() + itemInstance.getValue());
-            locationStuff.getItems().remove(item);
-            gm.getUi().deleteObject(item);
-            gm.getUi().messageText.setText("You ate " + item + " and replenished your health by " + itemInstance.getValue());
+        if (itemInstance.getType().equals("food")){
+            if (locationStuff.getItems().contains(item)) {
+                setHp(getHp() + itemInstance.getValue());
+                locationStuff.getItems().remove(item);
+                gm.getUi().deleteObject(item);
+                gm.getUi().messageText.setText("You ate " + item + " and replenished your health by " + itemInstance.getValue());
+            }
+            else if (inventory.contains(item)){
+                setHp(getHp() + itemInstance.getValue());
+                inventory.remove(item);
+                gm.getUi().getInventory().removeElement(item);
+                gm.getUi().messageText.setText("You ate " + item + " and replenished your health by " + itemInstance.getValue());
+            }
+        } else{
+            gm.getUi().messageText.setText("That is not something you want to eat");
         }
+
     }
 
 //
