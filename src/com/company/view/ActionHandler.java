@@ -85,6 +85,10 @@ public class ActionHandler implements ActionListener {
             case "setting":
                 gm.getUi().settings.setVisible(true);
                 break;
+            case "help":
+                gm.getUi().help.setVisible(true);
+                gm.getUi().helpText.setText(gm.getUi().textHelp());
+                break;
             case "close":
                 gm.getUi().eventPanelClose(inputSplit[1]);
                 break;
@@ -104,7 +108,15 @@ public class ActionHandler implements ActionListener {
         }
         if (gm.getPlayer().getHp() > 0){
             gm.getUi().getArea().setText("Current location: " + gm.getPlayer().getCurrentRoom());
-            gm.getUi().getHp().setText("HP: " + gm.getPlayer().getHp());
+            Timer timer = new Timer(1000, new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    gm.getUi().getHp().setText("HP: " + gm.getPlayer().getHp());
+                }
+            });
+            timer.start();
+
             //gm.getUi().getCurrentWeapon().setText("Weapon: " + (if(items.getName());
         }
         //if (gm.getPlayer().attack(inputSplit[1]))

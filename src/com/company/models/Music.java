@@ -34,7 +34,7 @@ public class Music {
             audioClip.open(audioStream);
             setFloatControl((FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN));
             //Added loop
-            if (musicLocation.equals("pirate-music.wav")){
+            if (musicLocation.equals(gm.getUi().getMusicFile())){
                 audioClip.loop(Clip.LOOP_CONTINUOUSLY);
                 playCompleted = false;
             }
