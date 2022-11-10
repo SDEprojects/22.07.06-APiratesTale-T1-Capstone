@@ -2,8 +2,7 @@
   {
     "name": "Map",
     "quote": {
-      "sfx": " ",
-      "quest" : "Come back to trade your life anytime."
+      "sfx": " "
     },
     "description": "this map is worthless",
     "value": "0",
@@ -21,8 +20,7 @@
     {
       "name": "Sword",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
       "description": "Durable blade forged by your uncle, used for offensive attacks. Increases damage points to 5pts.",
       "value": "0",
@@ -40,8 +38,7 @@
     {
       "name": "Parrot",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
       "description": "The Pirate Captain’s lucky Parrot",
       "value": "0",
@@ -54,13 +51,12 @@
       "width": "150",
       "height": "225",
       "keyReq": "Cracker",
-      "keyError": "you need to find a cracker to grab the parrot"
+      "keyError": "You need to find a cracker to grab the parrot"
     },
   {
     "name" : "Monkey Pin",
     "quote": {
-      "sfx": " ",
-      "quest" : "Come back to trade your life anytime."
+      "sfx": " "
     },
     "description" : "Awarded from saving the monkey prince, to win respect of monkey king.",
     "value": "0",
@@ -78,8 +74,7 @@
     {
       "name": "Mango",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
       "description": "Delicious fruit found on Mango Island. Restores health by 5pts.",
       "value": "5",
@@ -97,8 +92,7 @@
     {
       "name": "Cracker",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
       "description": "Cracker given by the Pirate Captain, to entice the Parrot",
       "value": "2",
@@ -116,8 +110,7 @@
     {
       "name": "Note",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
       "description": "Banana, Monkey Business, Monkey see monkey do",
       "value": "0",
@@ -135,8 +128,7 @@
     {
       "name": "Banana",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
       "description": "Delicious fruit found on Monkey Island. Restores health by 10 pts",
       "value": "10",
@@ -154,8 +146,7 @@
     {
       "name": "Left Boss Key",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
       "description": "Left key to unlock the Boss Door",
       "value": "0",
@@ -173,8 +164,7 @@
     {
       "name": "Right Boss Key",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
       "description": "Right key to unlock the Boss Door",
       "value": "0",
@@ -192,8 +182,7 @@
     {
       "name": "Treasure Key",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
       "description": "Key awarded by earning favor of the Monkey King. Fabled to be the lost key to the secret treasures of Skull Island",
       "value": "0",
@@ -211,10 +200,27 @@
     {
       "name": "Treasure Chest",
       "quote": {
-        "sfx": " ",
-        "quest" : "Come back to trade your life anytime."
+        "sfx": " "
       },
-      "description": "Congratulations Adventurer, you conquered a great quest",
+      "description": "Congratulations Adventurer, you conquered a great quest.",
+      "value": "0",
+      "cost": "0",
+      "strength": "0",
+      "type": "quest",
+      "img": "img/chest.png",
+      "xaxis": "450",
+      "yaxis": "125",
+      "width": "300",
+      "height": "300",
+      "keyReq": "none",
+      "keyError": "none"
+    },
+    {
+      "name" : "Treasure Room Key",
+      "quote": {
+        "sfx": " "
+      },
+      "description" : "Key earned by defeating Skull King, to access the treasure room",
       "value": "0",
       "cost": "0",
       "strength": "0",
@@ -227,59 +233,76 @@
       "keyReq": "none",
       "keyError": "none"
     },
-  {
-    "name" : "Treasure Room Key",
-    "quote": {
-      "sfx": " ",
-      "quest" : "Come back to trade your life anytime."
+    {
+      "name" : "Boat Pass",
+      "quote": {
+        "sfx": " "
+      },
+      "description" : "Boarding pass from the Pirate Captain, allows you access to the boat.",
+      "value": "0",
+      "cost": "0",
+      "strength": "0",
+      "type": "quest",
+      "img": "img/boatPass.png",
+      "xaxis": "450",
+      "yaxis": "300",
+      "width": "147",
+      "height": "100",
+      "keyReq": "none",
+      "keyError": "none"
     },
-    "description" : "Key earned by defeating Skull King, to access the treasure room",
-    "value": "0",
-    "cost": "0",
-    "strength": "0",
-    "type": "quest",
-    "img": "img/parrot.png",
-    "xaxis": "970",
-    "yaxis": "140",
-    "width": "150",
-    "height": "225",
-    "keyReq": "none",
-    "keyError": "none"
-  },
-  {
-    "name" : "Boat Pass",
-    "quote": {
-      "sfx": " ",
-      "quest" : "Come back to trade your life anytime."
+    {
+      "name" :  "Temple Pass",
+      "quote": {
+        "sfx": " "
+      },
+      "description" :  "Ribbon for solving the Monkey Temple guards riddles, allows you access to the temple.",
+      "value": "0",
+      "cost": "0",
+      "strength": "0",
+      "type": "quest",
+      "img": "img/parrot.png",
+      "xaxis": "970",
+      "yaxis": "140",
+      "width": "150",
+      "height": "225",
+      "keyReq": "none",
+      "keyError": "none"
     },
-    "description" : "Boarding pass from the Pirate Captain, allows you access to the boat.",
-    "value": "0",
-    "cost": "0",
-    "strength": "0",
-    "type": "quest",
-    "img": "img/boatPass.png",
-    "xaxis": "450",
-    "yaxis": "300",
-    "width": "147",
-    "height": "100",
-    "keyReq": "none",
-    "keyError": "none"
-  },
-  {"name" :  "Temple Pass",
-    "quote": {
-      "sfx": " ",
-      "quest" : "Come back to trade your life anytime."
+      {
+      "name" : "Beast Skull",
+      "quote": {
+        "sfx": " "
+      },
+      "description" : "Beast Skull is earned by defeating Skeleton Beast, to access the treasure room.",
+      "value": "0",
+      "cost": "0",
+      "strength": "0",
+      "type": "quest",
+      "img": "img/parrot.png",
+      "xaxis": "970",
+      "yaxis": "140",
+      "width": "150",
+      "height": "225",
+      "keyReq": "none",
+      "keyError": "none"
     },
-  "description" :  "Ribbon for solving the Monkey Temple guards riddles, allows you access to the temple.",
-    "value": "0",
-    "cost": "0",
-    "strength": "0",
-    "type": "quest",
-    "img": "img/parrot.png",
-    "xaxis": "970",
-    "yaxis": "140",
-    "width": "150",
-    "height": "225",
-    "keyReq": "none",
-    "keyError": "none"}
-  ]
+    {
+      "name": "Red Key",
+      "quote": {
+        "sfx": " "
+      },
+      "description": "Key awarded by talking to Uncle on Mango Island.",
+      "value": "0",
+      "cost": "0",
+      "strength": "0",
+      "type": "quest",
+      "img": "img/parrot.png",
+      "xaxis": "370",
+      "yaxis": "50",
+      "width": "150",
+      "height": "225",
+      "keyReq": "none",
+      "keyError": "none"
+    }
+]

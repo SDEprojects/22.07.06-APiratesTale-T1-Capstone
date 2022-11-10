@@ -71,6 +71,23 @@ public class PlayerTest extends TestCase {
         assertEquals(expected,result);
     }
 
+    @Test
+    public void testDropItem(){
+        String direction = "south";
+        gm.sc.screenPicker(direction);
+        p1.setCurrentRoom("Mango Jungle North");
+        System.out.println(p1.getInventory());
+        p1.grabItem("Mango");
+        System.out.println("grabbed Mango");
+        System.out.println(p1.getInventory());
+        ArrayList<String> inv = new ArrayList<>();
+        String direction1 = "north";
+        gm.sc.screenPicker(direction1);
+        p1.dropItem("Mango");
+        System.out.println("dropped Mango");
+        System.out.println(p1.getInventory());
+        assertEquals(inv, p1.getInventory());
 
+    }
 
-}
+    }

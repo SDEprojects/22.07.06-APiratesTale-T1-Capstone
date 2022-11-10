@@ -426,9 +426,6 @@ public class UI {
     }
 
 
-
-
-
     public void inventoryListBuilder(){
 
         inventoryList.setModel(inventory);
