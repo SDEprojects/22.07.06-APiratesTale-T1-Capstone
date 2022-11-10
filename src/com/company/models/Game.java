@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Game {
     Prompter prompter = new Prompter(new Scanner(System.in));
     //private final Player player;
-    ArrayList<Locations> locations = new ArrayList<>();
+    public ArrayList<Locations> locations = new ArrayList<>();
     ArrayList<Items> items = new ArrayList<>();
     ArrayList<Characters> characters = new ArrayList<>();
 //    private Music musicObject = new Music();
@@ -241,9 +241,4 @@ public class Game {
     public void setCharacters(ArrayList<Characters> characters) {
         this.characters = characters;
     }
-//    public void loadGame() {
-//    }
-//
-//    public void saveGame() {
-//    }
 }

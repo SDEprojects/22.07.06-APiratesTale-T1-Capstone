@@ -1,5 +1,6 @@
 package com.company.models;
 
+import java.awt.event.ActionEvent;
 import java.util.*;
 
 import com.apps.util.Console;
@@ -109,7 +110,6 @@ public class Player {
                 gm.getUi().messageText.setText(itemInstance.getKeyError());
             }
         }
-
     }
 
     // EquipItem
@@ -160,7 +160,6 @@ public class Player {
             gm.getUi().messageText.setText("You ate " + item + " and replenished your health by " + itemInstance.getValue());
         }
     }
-
 
 //
 //        String file = "item.json";
@@ -279,59 +278,6 @@ public class Player {
                     gm.getUi().messageText.setText(NPCInstance.getQuote().get("initial"));
                     break;
             }
-        }
-    }
-//        if (locationNPC.contains(name)) {
-//            for (Map<String, Object> entry : characterData) {
-//                // refactor to isFriendly
-//                if (entry.get("name").equals(name) && !entry.get("name").equals("skeleton beast") && !entry.get("name").equals("skull king") && !entry.get("name").equals("skeleton soldier") && !entry.get("name").equals("skeleton captain")) {
-//                    while (true) {
-//                        System.out.println("Speaking to: " + entry.get("name"));
-//                        Map<String, String> dialogue = (Map<String, String>) entry.get("quote");
-//                        System.out.println(dialogue.get("initial"));
-//                        if (dialogue.containsKey("quest")) {
-//                            handleQuest(entry, dialogue);
-//                            break;
-//                        } else if (entry.containsKey("items")) {
-//                            ArrayList<String> itemsArray = (ArrayList<String>) entry.get("items");
-//                            for (String item : itemsArray) {
-//                                inventory.add(item);
-//                                System.out.println(item + " was added to inventory.\n");
-//                            }
-//                            entry.remove("items");
-//                        }
-//                        break;
-//                    }
-//                }
-//
-//            }
-//        } else {
-//            System.out.println("Invalid Name");
-//        }
-//    }
-
-    public void go(String directionInput) throws NullPointerException {
-        ArrayList<String> bossKeys = new ArrayList<String>(Arrays.asList("left boss key", "right boss key"));
-        // refactor to "doors method"
-        if (directions.containsKey(directionInput)) {
-            String location = directions.get(directionInput);
-            if (!location.equals("Boat") && !location.equals("Treasure Room")) {
-                currentRoom = location;
-            } else if (inventory.contains("Boat Pass") && location.equals("Boat")) {
-                currentRoom = location;
-            } else if (!inventory.contains("Boat Pass") && location.equals("Boat")) {
-                System.out.println("Get a Boat Pass from a Pirate Captain\n");
-//            } else if (inventory.containsAll(bossKeys) && location.equals("Skull King Throne Room")) {
-//                currentRoom = location;
-//            } else if (!inventory.containsAll(bossKeys) && location.equals("Skull King Throne Room")) {
-//                System.out.println("Find the boss door keys, the local enemies may be carrying them.");
-            } else if (inventory.contains("treasure room key") && location.equals("Treasure Room")) {
-                currentRoom = location;
-            } else if (!inventory.contains("treasure room key") && location.equals("Treasure Room")) {
-                System.out.println("You must defeat the Skull King to get the key.");
-            }
-        } else {
-            System.out.println("Invalid Direction");
         }
     }
 

@@ -3,13 +3,11 @@
       "name": "Sad Traveler",
       "quote": {
         "quest" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
-        "initial" : "Safe travels, kid...",
         "reward" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned paper and see if your luck is any better than mine.\n",
-        "sfx": "takealook around.wav"
+        "initial" : "Safe travels, kid...",
+        "sfx": "music/takealook around.wav"
         },
-      "items": [
-        "Map"
-        ],
+      "items": ["Map"],
       "hp": "10",
       "isFriendly": true,
       "dp" : "1",
@@ -25,11 +23,11 @@
     {
       "name": "Boat Captain",
       "quote": {
-        "initial": "\nArrggh!!!!\n",
-        "quest" : "\nAhoy adventurer, I am Captain Ron! If it’s a ship you seek, I will not help you.\nYou see it’s my lucky PARROT, Polly. A fallen mango spooked the ole girl, and she flew into the mango forest.\nI will not set sail without her, for it would surely lead me to a doomed fate at sea.\nHey, if you are able to find her and bring my Polly back, I would take you anywhere you want.\nThis is her favorite CRACKER, if she sees it she will surely come to you.\n",
+        "quest" : "\nAhoy adventurer, I am Captain Ron! If it’s a ship you seek, I will not help you.\nMy lucky PARROT, Polly flew into the mango forest.\nI will not set sail without her, for it would surely lead me to a doomed fate at sea.\nIf you are able to find and bring my Polly back, I would take you anywhere you want.\n-> This is her favorite CRACKER, if she sees it she will surely come to you.\n",
         "gives" : "Cracker",
         "reward":"\nOh jolly, you found Polly. Thank you so much! Hey it’s a dangerous world out there.\nGo see the blacksmith for a SWORD, and then we will set sail when you're ready.\nBoard the ship, and type GO followed by the name of your desired island, and we can get sailing.\n",
-        "sfx": "arrr.wav"
+        "initial": "\nArrggh!!!!\n",
+        "sfx": "music/arrr.wav"
       },
       "items": [
         "Cracker", "Boat Pass"
@@ -38,9 +36,7 @@
       "isFriendly": true,
       "dp" : "5",
       "questReq" : ["Parrot"],
-      "reward" : [
-        "Boat Pass"
-      ],
+      "reward" : ["Cracker", "Boat Pass"],
       "img": "img/pirate1.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -51,9 +47,9 @@
     {
       "name": "Trader Jane",
       "quote": {
-        "initial": "Hi, My name is Joe. \nI am the best trader you can find on this island.",
+        "initial": "Hi, My name is Jane. \nI am the best trader you can find on this island.",
         "quit" : "Come back to trade your life anytime.",
-        "sfx": "help_trader1.wav"
+        "sfx": "music/help_trader1.wav"
       },
       "items": [],
       "hp": "10",
@@ -73,16 +69,16 @@
       "quote": {
         "reward": "\nHey Nephew, it’s great to see you. I’ve heard you are on a big adventure.\nIt’s a dangerous world out there, so I fashioned you this SWORD to take.\nAlso, take this MANGO, if you fall ill it will replenish 5pts. of your health. Be safe out there.\n",
         "initial" : "Come back to visit anytime Nephew.",
-        "sfx": "tradeguil.wav"
+        "sfx": "music/tradeguil.wav"
       },
       "items": [
-        "Sword", "Redkey"
+        "Sword", "Red Key"
       ],
       "hp": "10",
       "isFriendly": true,
       "dp" : "5",
       "questReq" : [],
-      "reward" : ["Sword", "Redkey"],
+      "reward" : ["Sword", "Red Key"],
       "img": "img/uncle.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -93,9 +89,9 @@
     {
       "name": "Rambo Gambler",
       "quote": {
-        "initial": "",
+        "initial": "Aye little Pirate, come here. I give you best deal.",
         "quit" : "Come back to win anytime.",
-        "sfx": "how can i help you.wav"
+        "sfx": "music/how can i help you.wav"
       },
       "items": [],
       "hp": "10",
@@ -112,7 +108,10 @@
     },
     {
       "name": "Ugly Pirate",
-      "quote": {"initial": ""},
+      "quote": {
+        "initial": "Precious....\n Looking for Precious....? \nPrecious GOLD.. Precious Treasure..",
+        "sfx":""
+      },
       "items": ["Mango"],
       "hp": "10",
       "isFriendly": false,
@@ -129,15 +128,15 @@
     {
       "name": "Dirty Pirate",
       "quote": {
-        "initial": "",
-        "quit" : ""
+        "initial": "Come here you little piece....",
+        "sfx":""
       },
       "items": ["Mango"],
       "hp": "10",
       "isFriendly": false,
       "dp" : "5",
       "questReq" : [],
-      "reward" : [],
+      "reward" : ["Mango"],
       "img": "img/badpirate2.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -148,8 +147,8 @@
     {
       "name": "Boss Pirate",
       "quote": {
-        "initial": "",
-        "quit" : ""
+        "initial": "Aye.. Beg for mercy.... ",
+        "sfx":""
       },
       "items": [],
       "hp": "10",
@@ -166,7 +165,10 @@
     },
     {
       "name": "Helmsman Jerry",
-      "quote": {"initial": "Where to sail Pirate ??"},
+      "quote": {
+        "initial": "Where to sail Pirate ??",
+        "sfx":""
+      },
       "items": [],
       "hp": "10",
       "isFriendly": true,
@@ -182,7 +184,10 @@
     },
     {
       "name": "Helmsman Barry",
-      "quote": {"initial": "Where to sail Pirate ??"},
+      "quote": {
+        "initial": "Where to sail Pirate ??",
+        "sfx":""
+      },
       "items": [],
       "hp": "10",
       "isFriendly": true,
@@ -198,7 +203,10 @@
     },
     {
       "name": "Helmsman Harry",
-      "quote": {"initial": "Where to sail Pirate ??"},
+      "quote": {
+        "initial": "Where to sail Pirate ??",
+        "sfx":""
+      },
       "items": [],
       "hp": "10",
       "isFriendly": true,
@@ -215,12 +223,10 @@
     {
       "name": "Monkey Pirate",
       "quote": {
-        "initial" : "",
-        "quit" : "Safe travels,..."
+        "initial" : "Hey you... Go seek shelter in Monkey Temple on top of the North hill....\nAnd eat banana to stay alive. ",
+        "sfx":""
       },
-      "items": [
-        "Map"
-      ],
+      "items": [],
       "hp": "10",
       "isFriendly": true,
       "dp" : "1",
@@ -236,9 +242,9 @@
     {
       "name": "Trader Joe",
       "quote": {
-        "initial": "",
+        "initial": "Hey, lets trade something here.. ",
         "quit" : "Come back to trade your life anytime.",
-        "sfx": "letstrade.wav"
+        "sfx": "music/letstrade.wav"
       },
       "items": [],
       "hp": "10",
@@ -256,9 +262,9 @@
     {
       "name": "Gambler Gal",
       "quote": {
-        "initial": "",
+        "initial": "Hiii, I'm Gambler Gal... Gamble and win some gold here.",
         "quit" : "Come back to win anytime.",
-        "sfx": "arrr.wav"
+        "sfx": "music/trade_trader2.wav"
       },
       "items": [],
       "hp": "10",
@@ -275,7 +281,10 @@
     },
     {
       "name": "Monkeyman",
-      "quote": {"initial": ""},
+      "quote": {
+        "initial": "Aye, you have made a mistake coming here.\nNow fight or die.",
+        "sfx":""
+       },
       "items": [],
       "hp": "10",
       "isFriendly": false,
@@ -287,22 +296,23 @@
       "yaxis": "65",
       "width": "350",
       "height": "350",
-      "type": "friendly"
+      "type": "enemy"
     },
     {
       "name": "Monkey King",
       "quote": {
-      "initial": "\nI am the Monkey King.",
-      "quest" : "\nI have no time to speak with outsiders. There are vile monsters invading our Bananas stash in the west, and my son the Monkey Prince has not returned from playing in the Eastern jungle.",
-      "reward" : "\nImpressive outsider, you have restored peace to our bananas stash, and saved the Prince from his folly. As a reward I give you this key.\nIt is said to be the key to opening the secret treasure of Skull Island.\nSkull Island is a dangerous place, take one of our sacred bananas. If you fall ill, it will replenish 10pts. of your health.\n",
-      "quit" : "Hmmmm farewell..."
+        "quest" : "\nI have no time to speak with outsiders. There are vile monsters invading our Bananas stash in the east, \n and my son the MONKEY PRINCE has not returned from playing in the Eastern jungle.",
+        "reward" : "\nImpressive outsider, you have restored peace to our bananas stash, and saved the Prince from his folly. As a reward I give you this key.\nIt is said to be the key to opening the secret treasure of Skull Island.\nSkull Island is a dangerous place, take one of our sacred bananas. If you fall ill, it will replenish 10pts. of your health.\n",
+        "initial": "\nI am the Monkey King.",
+        "quit" : "Hmmmm farewell...",
+        "sfx":""
     },
-      "items": ["Banana"],
+      "items": ["Treasure Key", "Banana"],
       "hp": "10",
       "isFriendly": true,
       "dp" : "10",
-      "questReq" : ["monkey pin", "beast skull"],
-      "reward" : ["treasure key", "banana"],
+      "questReq" : ["Monkey Pin", "Beast Skull"],
+      "reward" : ["Treasure Key", "Banana"],
       "img": "img/monkeyking.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -313,14 +323,17 @@
     {
       "name": "Monkey Prince",
       "quote": {
-        "initial": "\nHello I am the monkey prince!\nI wasn't lost I was monkeying around, I will tell my father that you found me. Show this pin to my father and you will earn his respect."
+        "quest": "",
+        "reward":"",
+        "initial": "\nHello I am the monkey prince!\nI wasn't lost I was just monkeying around, Tell my father that you found me. \nShow this pin to my father and you will earn his respect.",
+        "sfx":""
     },
       "items": ["Monkey Pin"],
       "hp": "10",
       "isFriendly": true,
       "dp" : "1",
       "questReq" : [],
-      "reward" : [],
+      "reward" : ["Monkey Pin"],
       "img": "img/monkeyprince.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -331,16 +344,15 @@
     {
       "name": "Skull King",
       "quote": {
-        "initial": "\nFOOOL, your journey ends now. You will never unlock the treasure of Skull island. You shall perish."
+        "initial": "\nFOOOL, your journey ends here. You will never unlock the treasure of Skull island. You shall perish.",
+        "sfx":""
       },
-      "items": [
-        "Treasure Room Key"
-      ],
+      "items": ["Treasure Room Key"],
       "hp": "13",
       "isFriendly": false,
       "dp": "4",
       "questReq" : [],
-      "reward" : [],
+      "reward" : ["Treasure Room Key"],
       "img": "img/skullking.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -350,13 +362,16 @@
     },
     {
       "name": "Skeleton Beast",
-      "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
+      "quote": {
+        "initial" : "\nclink clank, ahhhhhhh!",
+        "sfx":""
+      },
       "items": ["Beast Skull"],
       "hp": "5",
       "isFriendly": false,
       "dp": "2",
       "questReq" : [],
-      "reward" : [],
+      "reward" : ["Beast Skull"],
       "img": "img/skullgoon.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -366,13 +381,16 @@
     },
     {
       "name": "Skeleton Soldier",
-      "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
+      "quote": {
+        "initial" : "\nI'm a soldier. Solider for life.. Solider for Death.",
+        "sfx":""
+      },
       "items": ["Mango"],
       "hp": "5",
-      "isFriendly": true,
+      "isFriendly": false,
       "dp": "2",
       "questReq" : [],
-      "reward" : [],
+      "reward" : ["Mango"],
       "img": "img/skullgoon.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -382,13 +400,16 @@
     },
     {
       "name": "Skull Captain",
-      "quote": {"initial" : "\nclink clank, ahhhhhhh!"},
+      "quote": {
+        "initial" : "\nCame here to Die... Die hard now!!",
+        "sfx":""
+      },
       "items": ["Banana"],
       "hp": "5",
-      "isFriendly": true,
+      "isFriendly": false,
       "dp": "2",
       "questReq" : [],
-      "reward" : [],
+      "reward" : ["Banana"],
       "img": "img/skullcaptain.png",
       "xaxis": "60",
       "yaxis": "65",
