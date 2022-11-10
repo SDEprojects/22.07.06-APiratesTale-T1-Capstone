@@ -82,6 +82,10 @@ public class ActionHandler implements ActionListener {
             case "setting":
                 gm.getUi().settings.setVisible(true);
                 break;
+            case "help":
+                gm.getUi().help.setVisible(true);
+                gm.getUi().helpText.setText(gm.getUi().textHelp());
+                break;
             case "close":
                 gm.getUi().eventPanelClose(inputSplit[1]);
                 break;
@@ -104,7 +108,16 @@ public class ActionHandler implements ActionListener {
         }
         if (gm.getPlayer().getHp() > 0){
             gm.getUi().getArea().setText("Current location: " + gm.getPlayer().getCurrentRoom());
-            gm.getUi().getHp().setText("HP: " + gm.getPlayer().getHp());
+
+            Timer timer = new Timer(1000, new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    gm.getUi().getHp().setText("HP: " + gm.getPlayer().getHp());
+                }
+            });
+            timer.start();
+
             String item = gm.getPlayer().getEquipedItem();
             Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
             gm.getUi().getCurrentWeapon().setText("Weapon: " + gm.getPlayer().getEquipedItem() + " (DP: +" + itemInstance.getStrength() + ")" );

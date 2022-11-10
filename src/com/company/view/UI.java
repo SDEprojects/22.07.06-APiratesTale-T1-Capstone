@@ -24,7 +24,7 @@ public class UI {
     double resolutionChanger;
     int windowHeight = 720;
     int windowWidth = 1280;
-    public JTextArea messageText;
+    public JTextArea messageText, helpText;
     private Font oldRetro;
     private JPanel directionPanel, musicPanel;
     private JButton northButton, southButton, eastButton, westButton;
@@ -69,7 +69,10 @@ public class UI {
 //        gambleGame.setVisible(true);
         settings = eventPanel(700, 100, 400, 200, "settings");
         settings.setVisible(false);
+        help = eventPanel(500, 100, 600, 400, "help");
+        help.setVisible(false);
         settingMenuOption();
+        helpOption();
     }
 
     private void fontCreate(){
@@ -240,6 +243,8 @@ public class UI {
         getSettingPanel().add(getHelpIcon());
         ImageIcon helpIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/help.png")));
         getHelpIcon().setIcon(helpIcon);
+        getHelpIcon().addActionListener(gm.aHandler);
+        getHelpIcon().setActionCommand("help");
 
         messageText = new JTextArea();
         messageText.setBounds((int) (.13*windowWidth), (int) (.74*windowHeight), (int) (.62*windowWidth), (int) (.19*windowHeight));
@@ -300,9 +305,31 @@ public class UI {
         label.setIcon(bgIcon);
     }
 
+    public void helpOption(){
+        helpText = new JTextArea();
+        helpText.setBounds(30, 20,530, 360);
+        //helpText.setBackground(Color.BLUE);
+        helpText.setForeground(Color.black);
+        helpText.setEditable(false);
+        helpText.setLineWrap(true);
+        helpText.setWrapStyleWord(true);
+        helpText.setFont(getOldRetro().deriveFont(Font.ITALIC, 20));
+        help.add(helpText);
+    }
+
+    public String textHelp(){
+        String result = "   \n\n\n**  Left click to interact with object on the screen.\n\n" +
+                "**   Gear icon to change music and sound effects.\n\n" +
+                "**   Bag icon for inventory.\n\n" +
+                "**   Directional movement N-North, W-West, S-South, E-East.\n";
+        return result;
+    }
+
+
+
     public void settingMenuOption(){
         setMusicPanel(new JPanel());
-        getMusicPanel().setBounds(25,5,300,170);
+        getMusicPanel().setBounds(25,5,340,180);
         getMusicPanel().setBackground(Color.white);
         String select[] = {"ON", "OFF"};
         setMusicStatus(new JComboBox(select));
@@ -311,8 +338,8 @@ public class UI {
         setSoundFxLabel(new JLabel("SoundFX"));
         setVolumeDown(new JButton("Volume Down"));
         setVolumeUp(new JButton("Volume Up"));
-        getVolumeDown().setBounds(80,100,150,25);
-        getVolumeUp().setBounds(80,70,150,25);
+        getVolumeDown().setBounds(80,120,150,25);
+        getVolumeUp().setBounds(80,90,150,25);
         getVolumeDown().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -352,10 +379,10 @@ public class UI {
         getSoundFXStatus().setFont(oldRetro.deriveFont(Font.ITALIC, 10));
         getMusicLabel().setFont(oldRetro.deriveFont(Font.ITALIC, 10));
         getSoundFxLabel().setFont(oldRetro.deriveFont(Font.ITALIC, 10));
-        getMusicLabel().setBounds(80,10,75,25);
-        getSoundFxLabel().setBounds(80,40,75,25);
-        getMusicStatus().setBounds(150,10,85,25);
-        getSoundFXStatus().setBounds(150,40,85,25);
+        getMusicLabel().setBounds(80,30,75,25);
+        getSoundFxLabel().setBounds(80,60,75,25);
+        getMusicStatus().setBounds(150,30,85,25);
+        getSoundFXStatus().setBounds(150,60,85,25);
 
         settings.add(getVolumeDown());
         settings.add(getVolumeUp());
@@ -364,25 +391,6 @@ public class UI {
         settings.add(getMusicStatus());
         settings.add(getSoundFXStatus());
         settings.add(musicPanel);
-
-
-//        setMusicToggle(new JToggleButton("Music"));
-//        getMusicToggle().setBounds(150,50,75,25);
-//        getMusicToggle().setBackground(Color.BLUE);
-//        settings.add(getMusicToggle());
-//        ItemListener itemListener = new ItemListener() {
-//            public void itemStateChanged(ItemEvent itemEvent)
-//            {
-//                int state = itemEvent.getStateChange();
-//                if (state == ItemEvent.SELECTED) {
-//                    music.playMusic(getMusicFile());
-//                }
-//                else {
-//                    music.stopMusic(getMusicFile());
-//                }
-//            }
-//        };
-//        getMusicToggle().addItemListener(itemListener);
     }
 
     public JPanel eventPanel(int x, int y, int width, int height, String target){
@@ -533,6 +541,8 @@ public class UI {
             case "settings":
                 settings.setVisible(false);
                 break;
+            case "help":
+                help.setVisible(false);
         }
     }
 

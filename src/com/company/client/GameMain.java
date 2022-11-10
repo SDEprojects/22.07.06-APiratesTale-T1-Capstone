@@ -27,7 +27,7 @@ public class GameMain {
     public GameMain(){
         getGame().buildWorld();
         getUi().generate();
-        getMusic().playMusic("pirate-music.wav");
+        getMusic().playMusic(getUi().getMusicFile());
         sc.showScreen(0);
     }
 
