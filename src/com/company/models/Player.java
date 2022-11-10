@@ -93,19 +93,19 @@ public class Player {
     public void grabItem(String item) { //grab needs overhauled this is a lot of hard coding
         Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
-        if (locationStuff.getItems().contains(item)){
+        if (locationStuff.getItems().contains(item)) {
             if (itemInstance.getKeyReq().equals("none")) {
                 getInventory().add(item);
                 gm.getUi().getInventory().addElement(item);
                 locationStuff.getItems().remove(item);
                 gm.getUi().deleteObject(item);
-                gm.getUi().messageText.setText("you picked up "+ item);
+                gm.getUi().messageText.setText("you picked up " + item);
             } else if (inventory.contains(itemInstance.getKeyReq())) {
                 getInventory().add(item);
                 gm.getUi().getInventory().addElement(item);
                 locationStuff.getItems().remove(item);
                 gm.getUi().deleteObject(item);
-                gm.getUi().messageText.setText("you picked up "+ item);
+                gm.getUi().messageText.setText("you picked up " + item);
             } else {
                 gm.getUi().messageText.setText(itemInstance.getKeyError());
             }
@@ -113,7 +113,7 @@ public class Player {
     }
 
     // EquipItem
-    public void equipItem(String item){
+    public void equipItem(String item) {
         Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         locationStuff.getItems().add(item);
         try {
@@ -154,7 +154,7 @@ public class Player {
         Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
         if (locationStuff.getItems().contains(item)) {
-            setHp(getHp() +  itemInstance.getValue());
+            setHp(getHp() + itemInstance.getValue());
             locationStuff.getItems().remove(item);
             gm.getUi().deleteObject(item);
             gm.getUi().messageText.setText("You ate " + item + " and replenished your health by " + itemInstance.getValue());
@@ -194,7 +194,7 @@ public class Player {
         gm.getUi().getInventory().removeElement(item);
         gm.getUi().messageText.setText("You dropped " + item + "!");
         gm.getUi().addObject(item);
-        }
+    }
 
 //        if (!item.equals("parrot") && inventory.contains(item)) {
 //            //add to location
@@ -218,55 +218,7 @@ public class Player {
             }
             switch (NPCInstance.getType()) {
                 case "quest":
-                    if (NPCInstance.getItems().isEmpty()){
-                        gm.getUi().messageText.setText(NPCInstance.getQuote().get("initial"));
-                    }
-                    else {
-                        if (NPCInstance.getQuestReq().isEmpty()){
-                            for (String item:
-                                    NPCInstance.getReward()) {
-                                gm.getUi().getInventory().addElement(item);
-                                inventory.add(item);
-                                NPCInstance.getItems().remove(item);
-                                System.out.println("recieved item");
-                                //NPCInstance.getReward().remove(item);
-                            }
-                            gm.getUi().messageText.setText(NPCInstance.getQuote().get("reward"));
-                        }
-                        else {
-                            int i = 0;
-                            for (String questReq:NPCInstance.getQuestReq()
-                                 ) {
-                                if (inventory.contains(questReq)){
-                                    i=i+1;
-                                }
-                            }
-                            if (NPCInstance.getQuestReq().size()==i){
-                                //give rewards
-                                for (String item:
-                                        NPCInstance.getReward()) {
-                                    gm.getUi().getInventory().addElement(item);
-                                    inventory.add(item);
-                                    NPCInstance.getItems().remove(item);
-                                    NPCInstance.getQuestReq().remove(item);
-                                    System.out.println("received quest reward item");
-                            }
-                                gm.getUi().messageText.setText(NPCInstance.getQuote().get("reward"));
-
-                        }else {
-                                //quest text
-                                //gives item that helps quest...
-                                gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
-                                try {
-                                    gm.getUi().getInventory().addElement(NPCInstance.getQuote().get("gives"));
-                                    inventory.add(NPCInstance.getQuote().get("gives"));
-                                    System.out.println("received item");
-                                } catch (Exception ignored) {
-
-                                }
-
-                            }
-                    }}
+                    handleQuest(name);
                     //need to replace with a quest method and button response
                     //gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
                     break;
@@ -285,7 +237,7 @@ public class Player {
         Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
         if (locationStuff.getItems().contains(item)) {
-            gm.getUi().messageText.setText("You look at "+item+", "+itemInstance.getDescription());
+            gm.getUi().messageText.setText("You look at " + item + ", " + itemInstance.getDescription());
         }
     }
 //        String file = "item.json";
@@ -309,21 +261,21 @@ public class Player {
             String[] options = {"fight", "run", "bag"};
             ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/fight.png")));
             while (isFighting) {
-                String selected = (String) JOptionPane.showInputDialog(null,"What do you want to do?", "You decided to fight", JOptionPane.QUESTION_MESSAGE, icon,options,options[0]);
+                String selected = (String) JOptionPane.showInputDialog(null, "What do you want to do?", "You decided to fight", JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
                 switch (selected) {
                     case "fight":
                         System.out.println(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp());
                         System.out.println("You are attacking: " + NPCInstance.getName());
                         if (NPCInstance.getHp() > 0) {
-                            NPCInstance.setHp(NPCInstance.getHp()- gm.getPlayer().dp);
+                            NPCInstance.setHp(NPCInstance.getHp() - gm.getPlayer().dp);
                             System.out.println(NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp());
                             //second if condition to only hit back if NPC still living
                             if (NPCInstance.getHp() > 0) {
                                 int damage = NPCInstance.getDp();
                                 gm.getPlayer().setHp(gm.getPlayer().getHp() - damage);
-                                gm.getUi().messageText.setText(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp()+"\n"+"You are attacking: " + NPCInstance.getName()+"\n"+NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp()+"\n"+NPCInstance.getName() + " was able to attack you back. Your HP is now " + gm.getPlayer().getHp());
+                                gm.getUi().messageText.setText(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp() + "\n" + "You are attacking: " + NPCInstance.getName() + "\n" + NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp() + "\n" + NPCInstance.getName() + " was able to attack you back. Your HP is now " + gm.getPlayer().getHp());
                                 System.out.println(NPCInstance.getName() + " was able to attack you back. Your HP is now " + gm.getPlayer().getHp());
-                                }
+                            }
                         }
                         if (gm.getPlayer().getHp() <= 0) {
                             //gameOver();
@@ -498,44 +450,97 @@ public class Player {
 //        } else {
 //            System.out.println("Invalid Target");
 //        }
-        //
+    //
 //    }
 
     // dialogue to accept quest from NPC
-    private void handleQuest(Map<String, Object> entry, Map<String, String> dialogue) {
-
-        List<String> req = (List<String>) entry.get("questReq");
-        if (inventory.containsAll(req)) {
-            System.out.println(dialogue.get("reward"));
-            if (entry.containsKey("reward")) {
-                ArrayList<String> rewardsArray = (ArrayList<String>) entry.get("reward");
-                for (String reward : rewardsArray) {
-                    inventory.add(reward);
-                    System.out.println(reward + " was added to inventory.\n");
-                }
-                entry.remove("reward");
-                inventory.removeAll(req);
-            }
+    private void handleQuest(String name) {
+        Characters NPCInstance = gm.getGame().getCharacters().stream().filter(npc -> npc.getName().equals(name)).findFirst().orElse(null);
+        if (NPCInstance.getItems().isEmpty()) {  //if quest npc has no items do normal talk
+            gm.getUi().messageText.setText(NPCInstance.getQuote().get("initial"));
         } else {
-            System.out.println(dialogue.get("quest"));
-            if (dialogue.containsKey("yes")) {
-                String userInput = prompter.prompt("");
-                if (userInput.equals("yes")) {
-                    System.out.println(dialogue.get("yes"));
-                    if (entry.containsKey("items")) {
-                        ArrayList<String> itemsArray = (ArrayList<String>) entry.get("items");
-                        for (String item : itemsArray) {
-                            inventory.add(item);
-                            System.out.println(item + " was added to inventory.\n");
-                        }
-                        entry.remove("items");
+            if (NPCInstance.getQuestReq().isEmpty()) {  //if NPC has items w/ no requirement just give items
+                for (String item :
+                        NPCInstance.getReward()) {
+                    gm.getUi().getInventory().addElement(item);
+                    inventory.add(item);
+                    NPCInstance.getItems().remove(item);
+                    System.out.println("received item");
+                    //NPCInstance.getReward().remove(item);
+                }
+                gm.getUi().messageText.setText(NPCInstance.getQuote().get("reward"));
+            } else {  //else figure out if the player has the required items
+                int i = 0;
+                for (String questReq : NPCInstance.getQuestReq()
+                ) {
+                    if (inventory.contains(questReq)) {
+                        i = i + 1;
                     }
                 }
-                if (userInput.equals("no")) {
-                    System.out.println(dialogue.get("no"));
+                if (NPCInstance.getQuestReq().size() == i) {  //if player has all items required
+
+                    for (String questReq : NPCInstance.getQuestReq()) {//for each required item remove them
+                        inventory.remove(questReq);
+                        gm.getUi().getInventory().removeElement(questReq);
+                    }
+                    for (String item :  //for each reward give player an item and delete the item from inventory
+                            NPCInstance.getReward()) {
+                        gm.getUi().getInventory().addElement(item);
+                        inventory.add(item);
+                        NPCInstance.getItems().remove(item);
+                        System.out.println("received quest reward item");
+                    }
+                    gm.getUi().messageText.setText(NPCInstance.getQuote().get("reward"));
+                    System.out.println("npc items: " + NPCInstance.getItems());
+
+                } else {  //if player doesnt haver required quest items do this
+                    //quest text
+                    //gives item that helps quest...
+                    gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
+                    try {
+                        gm.getUi().getInventory().addElement(NPCInstance.getQuote().get("gives"));
+                        inventory.add(NPCInstance.getQuote().get("gives"));
+                        System.out.println("received item");
+                    } catch (Exception ignored) {
+
+                    }
+
                 }
             }
         }
+
+//        List<String> req = (List<String>) entry.get("questReq");
+//        if (inventory.containsAll(req)) {
+//            System.out.println(dialogue.get("reward"));
+//            if (entry.containsKey("reward")) {
+//                ArrayList<String> rewardsArray = (ArrayList<String>) entry.get("reward");
+//                for (String reward : rewardsArray) {
+//                    inventory.add(reward);
+//                    System.out.println(reward + " was added to inventory.\n");
+//                }
+//                entry.remove("reward");
+//                inventory.removeAll(req);
+//            }
+//        } else {
+//            System.out.println(dialogue.get("quest"));
+//            if (dialogue.containsKey("yes")) {
+//                String userInput = prompter.prompt("");
+//                if (userInput.equals("yes")) {
+//                    System.out.println(dialogue.get("yes"));
+//                    if (entry.containsKey("items")) {
+//                        ArrayList<String> itemsArray = (ArrayList<String>) entry.get("items");
+//                        for (String item : itemsArray) {
+//                            inventory.add(item);
+//                            System.out.println(item + " was added to inventory.\n");
+//                        }
+//                        entry.remove("items");
+//                    }
+//                }
+//                if (userInput.equals("no")) {
+//                    System.out.println(dialogue.get("no"));
+//                }
+//            }
+//        }
     }
 
     public void gameOver() {

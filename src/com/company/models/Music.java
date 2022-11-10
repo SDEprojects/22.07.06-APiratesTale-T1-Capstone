@@ -63,8 +63,7 @@ public class Music {
             });
             thread.start();
 
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
-            ex.printStackTrace();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ignored) {
         }
 
     }

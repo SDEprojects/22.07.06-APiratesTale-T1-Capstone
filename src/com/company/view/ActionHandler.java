@@ -36,20 +36,11 @@ public class ActionHandler implements ActionListener {
                 gm.getUi().getNpcName().setText(inputSplit[1]);
                 break;
             case "grab":
-                System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getName());
-                System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getItems());
-                System.out.println(gm.getPlayer().getInventory());
-                gm.getUi().messageText.setText("You grab "+ inputSplit[1]);
                 gm.getPlayer().grabItem(inputSplit[1]);
                 break;
             case "eat":
-                System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getItems());
-                System.out.println(gm.getPlayer().getHp());
-                gm.getUi().messageText.setText("You try to eat "+ inputSplit[1]);
                 gm.getUi().getNpcName().setText(inputSplit[1]);
                 gm.getPlayer().useItem(inputSplit[1]);
-                System.out.println(gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null).getItems());
-                System.out.println(gm.getPlayer().getHp());
                 break;
             case "drop":
                 gm.getPlayer().dropItem(inputSplit[1]);
@@ -62,7 +53,6 @@ public class ActionHandler implements ActionListener {
             case "talk":
                 gm.getPlayer().talk(inputSplit[1]);
                 gm.getUi().getNpcName().setText(inputSplit[1]);
-
                 break;
             case "trade":
                 gm.getUi().messageText.setText("You try and trade with "+ inputSplit[1]);
@@ -118,9 +108,13 @@ public class ActionHandler implements ActionListener {
             });
             timer.start();
 
-            String item = gm.getPlayer().getEquipedItem();
-            Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
-            gm.getUi().getCurrentWeapon().setText("Weapon: " + gm.getPlayer().getEquipedItem() + " (DP: +" + itemInstance.getStrength() + ")" );
+
+            try {
+                String item = gm.getPlayer().getEquipedItem();
+                Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
+                gm.getUi().getCurrentWeapon().setText("Weapon: " + gm.getPlayer().getEquipedItem() + " (DP: +" + itemInstance.getStrength() + ")" );
+            } catch (Exception ignored) {
+            }
         }
         //if (gm.getPlayer().attack(inputSplit[1]))
 
