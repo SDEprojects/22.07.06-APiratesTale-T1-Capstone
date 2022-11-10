@@ -23,6 +23,7 @@ public class Player {
     private Map<String, String> directions;
     private boolean playGame;
     GameMain gm;
+    private String equipedItem;
 
     Prompter prompter = new Prompter(new Scanner(System.in));
     ArrayList<Map<String, Object>> locationData = tools.readJson("location.json");
@@ -109,6 +110,19 @@ public class Player {
             }
         }
 
+    }
+
+    // EquipItem
+    public void equipItem(String item){
+        Locations locationStuff = gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
+        locationStuff.getItems().add(item);
+        try {
+            gm.getUi().getInventory().addElement(equipedItem);
+        } catch (Exception ignored) {
+        }
+        gm.getUi().getInventory().removeElement(item);
+        gm.getPlayer().setEquipedItem(item);
+        gm.getUi().messageText.setText("You are equipped with " + item + "!");
     }
 
 //        if (!item.equals("parrot") && !item.equals("treasure chest") && locationItems.contains(item)) {
@@ -205,8 +219,57 @@ public class Player {
             }
             switch (NPCInstance.getType()) {
                 case "quest":
+                    if (NPCInstance.getItems().isEmpty()){
+                        gm.getUi().messageText.setText(NPCInstance.getQuote().get("initial"));
+                    }
+                    else {
+                        if (NPCInstance.getQuestReq().isEmpty()){
+                            for (String item:
+                                    NPCInstance.getReward()) {
+                                gm.getUi().getInventory().addElement(item);
+                                inventory.add(item);
+                                NPCInstance.getItems().remove(item);
+                                System.out.println("recieved item");
+                                //NPCInstance.getReward().remove(item);
+                            }
+                            gm.getUi().messageText.setText(NPCInstance.getQuote().get("reward"));
+                        }
+                        else {
+                            int i = 0;
+                            for (String questReq:NPCInstance.getQuestReq()
+                                 ) {
+                                if (inventory.contains(questReq)){
+                                    i=i+1;
+                                }
+                            }
+                            if (NPCInstance.getQuestReq().size()==i){
+                                //give rewards
+                                for (String item:
+                                        NPCInstance.getReward()) {
+                                    gm.getUi().getInventory().addElement(item);
+                                    inventory.add(item);
+                                    NPCInstance.getItems().remove(item);
+                                    NPCInstance.getQuestReq().remove(item);
+                                    System.out.println("received quest reward item");
+                            }
+                                gm.getUi().messageText.setText(NPCInstance.getQuote().get("reward"));
+
+                        }else {
+                                //quest text
+                                //gives item that helps quest...
+                                gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
+                                try {
+                                    gm.getUi().getInventory().addElement(NPCInstance.getQuote().get("gives"));
+                                    inventory.add(NPCInstance.getQuote().get("gives"));
+                                    System.out.println("received item");
+                                } catch (Exception ignored) {
+
+                                }
+
+                            }
+                    }}
                     //need to replace with a quest method and button response
-                    gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
+                    //gm.getUi().messageText.setText(NPCInstance.getQuote().get("quest"));
                     break;
                 case "enemy":
                     gm.getUi().messageText.setText(NPCInstance.getQuote().get("initial"));
@@ -590,5 +653,13 @@ public class Player {
 
     public void setInventory(List<String> inventory) {
         this.inventory = inventory;
+    }
+
+    public String getEquipedItem() {
+        return equipedItem;
+    }
+
+    public void setEquipedItem(String equipedItem) {
+        this.equipedItem = equipedItem;
     }
 }
