@@ -446,7 +446,7 @@ public class UI {
         menuItem[0].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[0]);
 
-        menuItem[1] = new JMenuItem("use");
+        menuItem[1] = new JMenuItem("eat");
         menuItem[1].addActionListener(gm.aHandler);
         menuItem[1].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[1]);
@@ -479,7 +479,7 @@ public class UI {
 
                                 menuItem[0].setActionCommand("drop " + inventoryList.getSelectedValue());
 
-                                menuItem[1].setActionCommand("use "+ inventoryList.getSelectedValue());
+                                menuItem[1].setActionCommand("eat "+ inventoryList.getSelectedValue());
 
                                 menuItem[2].setActionCommand("equip "+ inventoryList.getSelectedValue());
 
@@ -512,8 +512,7 @@ public class UI {
         inventoryList.addListSelectionListener(listSelect);
 
         playerBag.add(inventoryList);
-
-
+        
     }
 
     private String selectItem(){
