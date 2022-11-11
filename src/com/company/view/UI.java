@@ -2,6 +2,7 @@ package com.company.view;
 
 import com.company.client.GameMain;
 import com.company.models.*;
+import com.company.models.Character;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -19,11 +20,11 @@ import java.util.Objects;
 
 public class UI {
 
-    JFrame window;
-    GameMain gm;
-    int windowHeight = 720;
-    int windowWidth = 1280;
-    public JTextArea messageText, helpText;
+    private JFrame window;
+    private GameMain gm;
+    private int windowHeight = 720;
+    private int windowWidth = 1280;
+    private JTextArea messageText, helpText;
     private Font oldRetro;
     private JPanel directionPanel, musicPanel, winPanel;
     private JButton northButton, southButton, eastButton, westButton;
@@ -35,16 +36,16 @@ public class UI {
     private JComboBox musicStatus, soundFXStatus;
     private JLabel musicLabel,soundFxLabel;
     private JButton volumeUp, volumeDown;
-    ArrayList<JPanel> bgPanel= new ArrayList<>();
-    ArrayList<JLabel> bgLabel= new ArrayList<>();
-    JPanel playerBag = new JPanel();
-    JPanel gambleGame = new JPanel();
-    JPanel playerEquipment = new JPanel();
-    JPanel help = new JPanel();
-    JPanel settings = new JPanel();
-    JPanel map = new JPanel();
-    public JList<String> inventoryList = new JList<>();
-    public DefaultListModel inventory = new DefaultListModel();
+    private ArrayList<JPanel> bgPanel= new ArrayList<>();
+    private ArrayList<JLabel> bgLabel= new ArrayList<>();
+    private JPanel playerBag = new JPanel();
+    private JPanel gambleGame = new JPanel();
+    private JPanel playerEquipment = new JPanel();
+    private JPanel help = new JPanel();
+    private JPanel settings = new JPanel();
+    private JPanel map = new JPanel();
+    private JList<String> inventoryList = new JList<>();
+    private DefaultListModel inventory = new DefaultListModel();
     private String selectedItem;
     private String musicFile = "pirate-music.wav";
 
@@ -129,13 +130,13 @@ public class UI {
         getWestButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         getEastButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         getSouthButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
-        getNorthButton().addActionListener(gm.getaHandler());
+        getNorthButton().addActionListener(gm.getActionHandler());
         getNorthButton().setActionCommand("move north");
-        getSouthButton().addActionListener(gm.getaHandler());
+        getSouthButton().addActionListener(gm.getActionHandler());
         getSouthButton().setActionCommand("move south");
-        getWestButton().addActionListener(gm.getaHandler());
+        getWestButton().addActionListener(gm.getActionHandler());
         getWestButton().setActionCommand("move west");
-        getEastButton().addActionListener(gm.getaHandler());
+        getEastButton().addActionListener(gm.getActionHandler());
         getEastButton().setActionCommand("move east");
         getDirectionPanel().add(getSouthButton());
         getDirectionPanel().add(getEastButton());
@@ -156,7 +157,7 @@ public class UI {
         getInvPanel().add(getInvBag());
         ImageIcon bagIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/bag.png")));
         getInvBag().setIcon(bagIcon);
-        getInvBag().addActionListener(gm.getaHandler());
+        getInvBag().addActionListener(gm.getActionHandler());
         getInvBag().setActionCommand("inventory");
         setEquipWeapon(new JButton());
         getEquipWeapon().setBounds(10,80,72,72);
@@ -166,7 +167,7 @@ public class UI {
         getInvPanel().add(getEquipWeapon());
         ImageIcon eqIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/equipped.png")));
         getEquipWeapon().setIcon(eqIcon);
-        getEquipWeapon().addActionListener(gm.getaHandler());
+        getEquipWeapon().addActionListener(gm.getActionHandler());
         getEquipWeapon().setActionCommand("equipment");
 
         setTextPanel(new JPanel());
@@ -246,7 +247,7 @@ public class UI {
         getSettingPanel().add(getSettingIcon());
         ImageIcon sIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/gear.png")));
         getSettingIcon().setIcon(sIcon);
-        getSettingIcon().addActionListener(gm.getaHandler());
+        getSettingIcon().addActionListener(gm.getActionHandler());
         getSettingIcon().setActionCommand("setting");
         setHelpIcon(new JButton());
         getHelpIcon().setBounds(60,0,50,50);
@@ -256,7 +257,7 @@ public class UI {
         getSettingPanel().add(getHelpIcon());
         ImageIcon helpIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/help.png")));
         getHelpIcon().setIcon(helpIcon);
-        getHelpIcon().addActionListener(gm.getaHandler());
+        getHelpIcon().addActionListener(gm.getActionHandler());
         getHelpIcon().setActionCommand("help");
 
         messageText = new JTextArea();
@@ -422,7 +423,7 @@ public class UI {
         exitButton.setOpaque(false);
         exitButton.setBounds(width-30,0,30,30);
         exitButton.setBackground(Color.GRAY);
-        exitButton.addActionListener(gm.getaHandler());
+        exitButton.addActionListener(gm.getActionHandler());
         exitButton.setActionCommand("close "+target);
         panelBuilder.add(exitButton);
 
@@ -445,24 +446,24 @@ public class UI {
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem menuItem[] = new JMenuItem[4];
         menuItem[0] = new JMenuItem("drop");
-        menuItem[0].addActionListener(gm.getaHandler());
+        menuItem[0].addActionListener(gm.getActionHandler());
 //        menuItem[0].setActionCommand("drop " + inventoryList.getSelectedValue());
         menuItem[0].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[0]);
 
         menuItem[1] = new JMenuItem("eat");
-        menuItem[1].addActionListener(gm.getaHandler());
+        menuItem[1].addActionListener(gm.getActionHandler());
         menuItem[1].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[1]);
 
 
         menuItem[2] = new JMenuItem("equip");
-        menuItem[2].addActionListener(gm.getaHandler());
+        menuItem[2].addActionListener(gm.getActionHandler());
         menuItem[2].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[2]);
 
         menuItem[3] = new JMenuItem("inspect");
-        menuItem[3].addActionListener(gm.getaHandler());
+        menuItem[3].addActionListener(gm.getActionHandler());
         menuItem[3].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[3]);
 
@@ -591,12 +592,12 @@ public class UI {
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem menuItem[] = new JMenuItem[4];
         menuItem[0] = new JMenuItem(choice1);
-        menuItem[0].addActionListener(gm.getaHandler());
+        menuItem[0].addActionListener(gm.getActionHandler());
         menuItem[0].setActionCommand(choice1 +" "+ target);
         popupMenu.add(menuItem[0]);
 
         menuItem[1] = new JMenuItem(choice2);
-        menuItem[1].addActionListener(gm.getaHandler());
+        menuItem[1].addActionListener(gm.getActionHandler());
         menuItem[1].setActionCommand(choice2 +" "+ target);
         menuItem[1].setName(target);
         popupMenu.add(menuItem[1]);
@@ -604,7 +605,7 @@ public class UI {
 
         if (choices == 3){
             menuItem[2] = new JMenuItem(choice3);
-            menuItem[2].addActionListener(gm.getaHandler());
+            menuItem[2].addActionListener(gm.getActionHandler());
             menuItem[2].setActionCommand(choice3 +" "+ target);
             menuItem[2].setName(target);
             popupMenu.add(menuItem[2]);
@@ -612,13 +613,13 @@ public class UI {
 
         if (choices == 4) {
             menuItem[2] = new JMenuItem(choice3);
-            menuItem[2].addActionListener(gm.getaHandler());
+            menuItem[2].addActionListener(gm.getActionHandler());
             menuItem[2].setActionCommand(choice3 +" "+ target);
             menuItem[2].setName(target);
             popupMenu.add(menuItem[2]);
 
             menuItem[3] = new JMenuItem(choice4);
-            menuItem[3].addActionListener(gm.getaHandler());
+            menuItem[3].addActionListener(gm.getActionHandler());
             menuItem[3].setActionCommand(choice4 +" "+ target);
             menuItem[3].setName(target);
             popupMenu.add(menuItem[3]);
@@ -674,7 +675,7 @@ public class UI {
         arrowButton.setFocusPainted(false);
         arrowButton.setBorderPainted(false);
         arrowButton.setIcon(arrowIcon);
-        arrowButton.addActionListener(gm.getaHandler());
+        arrowButton.addActionListener(gm.getActionHandler());
         arrowButton.setActionCommand(command + " " + target);
         bgPanel.get(bgNum).add(arrowButton);
     }
@@ -686,7 +687,7 @@ public class UI {
         startButton.setOpaque(false);
         startButton.setBounds(x,y,width,height);
         startButton.setBackground(Color.GRAY);
-        startButton.addActionListener(gm.getaHandler());
+        startButton.addActionListener(gm.getActionHandler());
         startButton.setActionCommand(command + " " + target);
         bgPanel.get(0).add(startButton);
 
@@ -700,7 +701,7 @@ public class UI {
 
     public void addObject(String name){
         int panel = findPanelIndex(gm.getPlayer().getCurrentRoom());
-        Items itemBuild = gm.getGame().getItems().stream().filter(itemSeek -> itemSeek.getName().equals(name)).findFirst().orElse(null);
+        Item itemBuild = gm.getGame().getItems().stream().filter(itemSeek -> itemSeek.getName().equals(name)).findFirst().orElse(null);
         gm.getUi().createObject(panel, itemBuild.getXaxis(), itemBuild.getYaxis(), itemBuild.getWidth(), itemBuild.getHeight(),
                 itemBuild.getImg(), itemBuild.getType(), itemBuild.getName());
         gm.getSc().showScreen(panel);
@@ -752,7 +753,7 @@ public class UI {
 
     public void generate() {
         int i = 1;
-        for (Locations location:gm.getGame().getLocations()
+        for (Location location:gm.getGame().getLocations()
         ) {
             generateScenes(i,location.getImg(),location.getItems(),location.getNPC(),location.getDirections(), location.getName());
             i++;
@@ -765,14 +766,14 @@ public class UI {
 
         for (String item:items
              ) {
-            Items itemBuild = gm.getGame().getItems().stream().filter(itemSeek -> itemSeek.getName().equals(item)).findFirst().orElse(null);
+            Item itemBuild = gm.getGame().getItems().stream().filter(itemSeek -> itemSeek.getName().equals(item)).findFirst().orElse(null);
             gm.getUi().createObject(sceneNum, itemBuild.getXaxis(), itemBuild.getYaxis(), itemBuild.getWidth(), itemBuild.getHeight(),
                     itemBuild.getImg(), itemBuild.getType(), itemBuild.getName());
         }
 
         for (String npc:npcs
         ) {
-            Characters characterBuild = gm.getGame().getCharacters().stream().filter(characterSeek -> characterSeek.getName().equals(npc)).findFirst().orElse(null);
+            Character characterBuild = gm.getGame().getCharacters().stream().filter(characterSeek -> characterSeek.getName().equals(npc)).findFirst().orElse(null);
             String type = "notFriendly";
             if (characterBuild.isFriendly()){
                 type = "Friendly";
@@ -1120,5 +1121,85 @@ public class UI {
 
     public void setMessageText(JTextArea messageText) {
         this.messageText = messageText;
+    }
+
+    public JFrame getWindow() {
+        return window;
+    }
+
+    public void setWindow(JFrame window) {
+        this.window = window;
+    }
+
+    public GameMain getGm() {
+        return gm;
+    }
+
+    public void setGm(GameMain gm) {
+        this.gm = gm;
+    }
+
+    public JTextArea getHelpText() {
+        return helpText;
+    }
+
+    public void setHelpText(JTextArea helpText) {
+        this.helpText = helpText;
+    }
+
+    public JPanel getWinPanel() {
+        return winPanel;
+    }
+
+    public void setWinPanel(JPanel winPanel) {
+        this.winPanel = winPanel;
+    }
+
+    public JPanel getPlayerBag() {
+        return playerBag;
+    }
+
+    public void setPlayerBag(JPanel playerBag) {
+        this.playerBag = playerBag;
+    }
+
+    public JPanel getPlayerEquipment() {
+        return playerEquipment;
+    }
+
+    public void setPlayerEquipment(JPanel playerEquipment) {
+        this.playerEquipment = playerEquipment;
+    }
+
+    public JPanel getHelp() {
+        return help;
+    }
+
+    public void setHelp(JPanel help) {
+        this.help = help;
+    }
+
+    public JPanel getSettings() {
+        return settings;
+    }
+
+    public void setSettings(JPanel settings) {
+        this.settings = settings;
+    }
+
+    public JPanel getMap() {
+        return map;
+    }
+
+    public void setMap(JPanel map) {
+        this.map = map;
+    }
+
+    public JList<String> getInventoryList() {
+        return inventoryList;
+    }
+
+    public void setInventoryList(JList<String> inventoryList) {
+        this.inventoryList = inventoryList;
     }
 }
