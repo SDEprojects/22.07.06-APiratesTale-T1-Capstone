@@ -302,7 +302,7 @@
         "east" : "Treasure Room",
         "west" : "Skull Cave",
         "lock": "Treasure Room",
-        "key": "Treasure Room Key",
+        "key": "Skull Key",
         "keyError": "You need the Treasure Room Key, Defeat the Skull King and get the key..."
       },
       "img": "img/village.png",
