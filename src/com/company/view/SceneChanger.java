@@ -1,10 +1,9 @@
 package com.company.view;
 
 import com.company.client.GameMain;
-import com.company.models.Locations;
+import com.company.models.Location;
 
 import javax.swing.*;
-import java.util.List;
 
 public class SceneChanger {
     GameMain gm;
@@ -15,7 +14,7 @@ public class SceneChanger {
 
     public void screenPicker(String direction){
 
-            Locations currentLocation = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null);
+            Location currentLocation = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null);
             String nextRoom = currentLocation.getDirections().get(direction);
 
 
@@ -26,12 +25,12 @@ public class SceneChanger {
                 showScreen(roomSelect);
             }
         } catch (Exception e) {
-            gm.getUi().messageText.setText("Location not available to move to!");
+            gm.getUi().getMessageText().setText("Location not available to move to!");
         }
         try {
             if (currentLocation.getDirections().get("lock").equals(nextRoom)){
                 if (!gm.getPlayer().getInventory().contains(currentLocation.getDirections().get("key"))){
-                    gm.getUi().messageText.setText("Can't go that way, "+ currentLocation.getDirections().get("keyError"));
+                    gm.getUi().getMessageText().setText("Can't go that way, "+ currentLocation.getDirections().get("keyError"));
                     int roomSelect = gm.getUi().findPanelIndex(currentLocation.getName());
                     gm.getPlayer().setCurrentRoom(currentLocation.getName());
                     showScreen(roomSelect);

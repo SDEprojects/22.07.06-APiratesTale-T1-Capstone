@@ -2,7 +2,7 @@ package com.company.models;
 
 import java.util.Map;
 
-public class Items {
+public class Item {
     //Fields
     private String name;
     private Map<String,String> quote;
@@ -22,7 +22,7 @@ public class Items {
     //Constructor
 
 
-    public Items(String name, Map<String, String> quote, String description, int value, int cost, int strength, String type, String img, int xaxis, int yaxis, int width, int height, String keyReq, String keyError) {
+    public Item(String name, Map<String, String> quote, String description, int value, int cost, int strength, String type, String img, int xaxis, int yaxis, int width, int height, String keyReq, String keyError) {
         this.name = name;
         this.quote = quote;
         this.description = description;

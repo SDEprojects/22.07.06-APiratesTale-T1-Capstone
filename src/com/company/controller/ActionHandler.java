@@ -1,8 +1,7 @@
-package com.company.view;
+package com.company.controller;
 
 import com.company.client.GameMain;
-import com.company.models.Items;
-import com.company.models.Music;
+import com.company.models.Item;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -47,7 +46,7 @@ public class ActionHandler implements ActionListener {
                 //gm.getUi().messageText.setText("You try to drop "+ inputSplit[1]);
                 break;
             case "fight":
-                gm.getUi().messageText.setText("You try to fight "+ inputSplit[1]);
+                gm.getUi().getMessageText().setText("You try to fight "+ inputSplit[1]);
                 gm.getPlayer().attack(inputSplit[1]);
                 break;
             case "talk":
@@ -55,34 +54,34 @@ public class ActionHandler implements ActionListener {
                 gm.getUi().getNpcName().setText(inputSplit[1]);
                 break;
             case "trade":
-                gm.getUi().messageText.setText("You try and trade with "+ inputSplit[1]);
+                gm.getUi().getMessageText().setText("You try and trade with "+ inputSplit[1]);
                 break;
             case "move":
                 String direction = inputSplit[1];
-                gm.getUi().messageText.setText("you went to area "+ inputSplit[1]);
+                gm.getUi().getMessageText().setText("you went to area "+ inputSplit[1]);
                 gm.getSc().screenPicker(direction);
                 gm.getUi().getNpcName().setText("");
 
                 break;
             case "inventory":
-                gm.getUi().playerBag.setVisible(true);
+                gm.getUi().getPlayerBag().setVisible(true);
                 break;
             case "equipment":
-                gm.getUi().playerEquipment.setVisible(true);
+                gm.getUi().getPlayerEquipment().setVisible(true);
                 break;
             case "setting":
-                gm.getUi().settings.setVisible(true);
+                gm.getUi().getSettings().setVisible(true);
                 break;
             case "help":
-                gm.getUi().help.setVisible(true);
-                gm.getUi().helpText.setText(gm.getUi().textHelp());
+                gm.getUi().getHelp().setVisible(true);
+                gm.getUi().getHelpText().setText(gm.getUi().textHelp());
                 break;
             case "close":
                 gm.getUi().eventPanelClose(inputSplit[1]);
                 break;
             case "inspect":
-                Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(inputSplit[1])).findFirst().orElse(null);
-                gm.getUi().messageText.setText("item : "+ inputSplit[1] + " | Description: "+ itemInstance.getDescription() + " | Gold Value: "+itemInstance.getCost());
+                Item itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(inputSplit[1])).findFirst().orElse(null);
+                gm.getUi().getMessageText().setText("item : "+ inputSplit[1] + " | Description: "+ itemInstance.getDescription() + " | Gold Value: "+itemInstance.getCost());
                 break;
             case "start":
                 gm.getSc().showScreen(1);
@@ -115,7 +114,7 @@ public class ActionHandler implements ActionListener {
 
             try {
                 String item = gm.getPlayer().getEquipedItem();
-                Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
+                Item itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
                 gm.getUi().getCurrentWeapon().setText("Weapon: " + gm.getPlayer().getEquipedItem() + " (DP: +" + itemInstance.getStrength() + ")" );
 
             } catch (Exception ignored) {

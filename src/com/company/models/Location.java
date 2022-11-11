@@ -3,7 +3,7 @@ package com.company.models;
 import java.util.List;
 import java.util.Map;
 
-public class Locations {
+public class Location {
 
     private String name;
     private String description;
@@ -14,7 +14,7 @@ public class Locations {
     private String island;
     private String grid;
 
-    public Locations(String name, String description, List<String> NPC, List<String> items, Map<String, String> directions, String img, String island, String grid) {
+    public Location(String name, String description, List<String> NPC, List<String> items, Map<String, String> directions, String img, String island, String grid) {
         this.name = name;
         this.description = description;
         this.NPC = NPC;

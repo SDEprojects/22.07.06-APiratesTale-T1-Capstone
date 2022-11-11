@@ -4,14 +4,14 @@ import com.company.models.Gamble;
 import com.company.models.Game;
 import com.company.models.Music;
 import com.company.models.Player;
-import com.company.view.ActionHandler;
+import com.company.controller.ActionHandler;
 import com.company.view.SceneChanger;
 import com.company.view.UI;
 
 public class GameMain {
 
 
-    private ActionHandler aHandler = new ActionHandler(this);
+    private ActionHandler actionHandler = new ActionHandler(this);
     private final UI ui = new UI(this);
     private SceneChanger sc = new SceneChanger(this);
     private final Player player = new Player(this);
@@ -50,12 +50,12 @@ public class GameMain {
         this.sc = sc;
     }
 
-    public ActionHandler getaHandler() {
-        return aHandler;
+    public ActionHandler getActionHandler() {
+        return actionHandler;
     }
 
-    public void setaHandler(ActionHandler aHandler) {
-        this.aHandler = aHandler;
+    public void setActionHandler(ActionHandler actionHandler) {
+        this.actionHandler = actionHandler;
     }
 
     public Music getMusic() {
