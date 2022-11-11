@@ -65,14 +65,30 @@ public class UI {
         playerBag.setVisible(false);
         playerEquipment = eventPanel(100, 100, (int) (windowWidth*.6), (int) (windowHeight*.6), "playerEquipment");
         playerEquipment.setVisible(false);
-//        gambleGame = eventPanel(100, 100, 1000, 300, "gambleGame");
-//        gambleGame.setVisible(true);
+        gambleGame = eventPanel(100, 100, 1000, 300, "gambleGame");
+        gambleGame.setVisible(false);
         settings = eventPanel(700, 100, 400, 200, "settings");
         settings.setVisible(false);
         help = eventPanel(500, 100, 600, 400, "help");
         help.setVisible(false);
         settingMenuOption();
         helpOption();
+    }
+
+
+    private JLabel borderAdd(int width, int height){ //use at the end of your panel
+        JLabel textBorder = new JLabel();
+        textBorder.setBounds(25, 0, width-60,height);
+        //panelBuilder.setOpaque(false);
+        //panel.add(textBorder);
+
+
+        ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
+        Image image = textBorderIcon.getImage().getScaledInstance(width-60,height, Image.SCALE_DEFAULT);
+        ImageIcon imageResized = new ImageIcon(image);
+        textBorder.setIcon(imageResized);
+
+        return textBorder;
     }
 
     private void fontCreate(){
@@ -416,17 +432,22 @@ public class UI {
         panelBuilder.setLayout(null);
         panelBuilder.setName(target);
         panelBuilder.setOpaque(false);
-        JLabel textBorder = new JLabel();
-        textBorder.setBounds(25, 0, width-60,height);
-        panelBuilder.setOpaque(false);
-        panelBuilder.add(textBorder);
-
-        ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
-        Image image = textBorderIcon.getImage().getScaledInstance(width-60,height, Image.SCALE_DEFAULT);
-        ImageIcon imageResized = new ImageIcon(image);
-        textBorder.setIcon(imageResized);
 
         window.add(panelBuilder);
+
+
+//        JLabel textBorder = new JLabel();
+//        textBorder.setBounds(25, 0, width-60,height);
+//        //panelBuilder.setOpaque(false);
+//        panelBuilder.add(textBorder);
+//
+//
+//        ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
+//        Image image = textBorderIcon.getImage().getScaledInstance(width-60,height, Image.SCALE_DEFAULT);
+//        ImageIcon imageResized = new ImageIcon(image);
+//        textBorder.setIcon(imageResized);
+
+
 
         JButton exitButton = new JButton("X");
         exitButton.setForeground(Color.black);
@@ -462,7 +483,7 @@ public class UI {
         menuItem[0].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[0]);
 
-        menuItem[1] = new JMenuItem("use");
+        menuItem[1] = new JMenuItem("eat");
         menuItem[1].addActionListener(gm.aHandler);
         menuItem[1].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[1]);
@@ -495,7 +516,7 @@ public class UI {
 
                                 menuItem[0].setActionCommand("drop " + inventoryList.getSelectedValue());
 
-                                menuItem[1].setActionCommand("use "+ inventoryList.getSelectedValue());
+                                menuItem[1].setActionCommand("eat "+ inventoryList.getSelectedValue());
 
                                 menuItem[2].setActionCommand("equip "+ inventoryList.getSelectedValue());
 
@@ -528,13 +549,15 @@ public class UI {
         inventoryList.addListSelectionListener(listSelect);
 
         playerBag.add(inventoryList);
-
+        playerBag.add(borderAdd(400, 180));
 
     }
+
 
     private String selectItem(){
         return "drop "+ getSelectedItem();
     }
+
 
 
     public void eventPanelClose(String name){
@@ -563,6 +586,7 @@ public class UI {
         String choice1 = null;
         String choice2 = null;
         String choice3 = null;
+        String choice4 = null;
         int choices = 0;
 
         switch (type){
@@ -593,7 +617,8 @@ public class UI {
                 choice1 = "talk";
                 choice2 = "look";
                 choice3 = "fight";
-                choices = 3;
+                choice4 = "gamble";
+                choices = 4;
                 break;
         }
 
@@ -618,6 +643,21 @@ public class UI {
             menuItem[2].setName(target);
             popupMenu.add(menuItem[2]);
         }
+
+        if (choices == 4) {
+            menuItem[2] = new JMenuItem(choice3);
+            menuItem[2].addActionListener(gm.aHandler);
+            menuItem[2].setActionCommand(choice3 +" "+ target);
+            menuItem[2].setName(target);
+            popupMenu.add(menuItem[2]);
+
+            menuItem[3] = new JMenuItem(choice4);
+            menuItem[3].addActionListener(gm.aHandler);
+            menuItem[3].setActionCommand(choice4 +" "+ target);
+            menuItem[3].setName(target);
+            popupMenu.add(menuItem[3]);
+        }
+
 
         JLabel objectLabel = new JLabel();
         objectLabel.setBounds(objX,objY,objWidth,ObjHeight);
@@ -1153,11 +1193,20 @@ public class UI {
         this.volumeDown = volumeDown;
     }
 
+
     public JPanel getWinPanel() {
         return winPanel;
     }
 
     public void setWinPanel(JPanel winPanel) {
         this.winPanel = winPanel;
+
+    public JPanel getGambleGame() {
+        return gambleGame;
+    }
+
+    public void setGambleGame(JPanel gambleGame) {
+        this.gambleGame = gambleGame;
+
     }
 }

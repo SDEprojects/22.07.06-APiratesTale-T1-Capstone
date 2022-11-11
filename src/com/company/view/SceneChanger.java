@@ -17,6 +17,8 @@ public class SceneChanger {
 
             Locations currentLocation = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null);
             String nextRoom = currentLocation.getDirections().get(direction);
+
+
         try {
             if (!nextRoom.isEmpty()){
                 gm.getPlayer().setCurrentRoom(nextRoom);
@@ -24,9 +26,20 @@ public class SceneChanger {
                 showScreen(roomSelect);
             }
         } catch (Exception e) {
-            System.out.println("Room not found");
+            gm.getUi().messageText.setText("Location not available to move to!");
         }
+        try {
+            if (currentLocation.getDirections().get("lock").equals(nextRoom)){
+                if (!gm.getPlayer().inventory.contains(currentLocation.getDirections().get("key"))){
+                    gm.getUi().messageText.setText("Can't go that way, "+ currentLocation.getDirections().get("keyError"));
+                    int roomSelect = gm.getUi().findPanelIndex(currentLocation.getName());
+                    gm.getPlayer().setCurrentRoom(currentLocation.getName());
+                    showScreen(roomSelect);
+                }
+            }
+        } catch (Exception ignored) {
 
+        }
 
         //gm.getUi().getBgPanel().stream().filter(name -> name.getName().equals(nextRoom)).findFirst().orElse(null);
 
