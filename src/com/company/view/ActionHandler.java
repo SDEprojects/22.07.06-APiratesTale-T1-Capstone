@@ -65,10 +65,6 @@ public class ActionHandler implements ActionListener {
                 gm.sc.screenPicker(direction);
                 gm.getUi().getNpcName().setText("");
                 gm.getUi().messageText.setText("you went to area "+ inputSplit[1]);
-                if (gm.getPlayer().getCurrentRoom().equals("Boat1") && !gm.getPlayer().inventory.contains("Boat Pass")){
-                    gm.getUi().messageText.setText("Get a Boat Pass from a Pirate Captain");
-                    gm.getUi().getEastButton().setVisible(false);
-                }
                 break;
             case "inventory":
                 gm.getUi().playerBag.setVisible(true);
