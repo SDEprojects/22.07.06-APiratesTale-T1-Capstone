@@ -3,7 +3,7 @@ package com.company.models;
 import java.util.List;
 import java.util.Map;
 
-public class Characters {
+public class Character {
     private String name;
     private Map<String,String> quote;
     private List<String> items;
@@ -19,7 +19,7 @@ public class Characters {
     private int height;
     private String type;
 
-    public Characters(String name, Map<String, String> quote, List<String> items, int hp, boolean isFriendly, int dp, List<String> questReq, List<String> reward, String img, int xaxis, int yaxis, int width, int height, String type) {
+    public Character(String name, Map<String, String> quote, List<String> items, int hp, boolean isFriendly, int dp, List<String> questReq, List<String> reward, String img, int xaxis, int yaxis, int width, int height, String type) {
         this.name = name;
         this.quote = quote;
         this.items = items;
