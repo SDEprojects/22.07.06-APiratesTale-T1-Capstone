@@ -25,6 +25,7 @@ public class Player {
     private boolean playGame;
     GameMain gm;
     private String equipedItem;
+    private int gold = 50;
 
     Prompter prompter = new Prompter(new Scanner(System.in));
     ArrayList<Map<String, Object>> locationData = tools.readJson("location.json");
@@ -619,5 +620,13 @@ public class Player {
 
     public void setEquipedItem(String equipedItem) {
         this.equipedItem = equipedItem;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 }

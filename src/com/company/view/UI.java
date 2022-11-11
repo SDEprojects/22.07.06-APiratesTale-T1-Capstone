@@ -75,22 +75,6 @@ public class UI {
         helpOption();
     }
 
-
-    private JLabel borderAdd(int width, int height){ //use at the end of your panel
-        JLabel textBorder = new JLabel();
-        textBorder.setBounds(25, 0, width-60,height);
-        //panelBuilder.setOpaque(false);
-        //panel.add(textBorder);
-
-
-        ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
-        Image image = textBorderIcon.getImage().getScaledInstance(width-60,height, Image.SCALE_DEFAULT);
-        ImageIcon imageResized = new ImageIcon(image);
-        textBorder.setIcon(imageResized);
-
-        return textBorder;
-    }
-
     private void fontCreate(){
         try {
             FileGetter fileGetter = new FileGetter();
@@ -428,10 +412,10 @@ public class UI {
     public JPanel eventPanel(int x, int y, int width, int height, String target){
         JPanel panelBuilder = new JPanel();
         panelBuilder.setBounds(x, y, width, height);
-        //panelBuilder.setBackground(Color.black);
+        panelBuilder.setBackground(Color.white);
         panelBuilder.setLayout(null);
         panelBuilder.setName(target);
-        panelBuilder.setOpaque(false);
+        panelBuilder.setOpaque(true);
 
         window.add(panelBuilder);
 
@@ -549,7 +533,6 @@ public class UI {
         inventoryList.addListSelectionListener(listSelect);
 
         playerBag.add(inventoryList);
-        playerBag.add(borderAdd(400, 180));
 
     }
 
@@ -1193,14 +1176,6 @@ public class UI {
         this.volumeDown = volumeDown;
     }
 
-
-    public JPanel getWinPanel() {
-        return winPanel;
-    }
-
-    public void setWinPanel(JPanel winPanel) {
-        this.winPanel = winPanel;
-
     public JPanel getGambleGame() {
         return gambleGame;
     }
@@ -1208,5 +1183,13 @@ public class UI {
     public void setGambleGame(JPanel gambleGame) {
         this.gambleGame = gambleGame;
 
+    }
+
+    public JTextArea getMessageText() {
+        return messageText;
+    }
+
+    public void setMessageText(JTextArea messageText) {
+        this.messageText = messageText;
     }
 }
