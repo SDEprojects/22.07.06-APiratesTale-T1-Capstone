@@ -21,7 +21,6 @@ public class UI {
 
     JFrame window;
     GameMain gm;
-    double resolutionChanger;
     int windowHeight = 720;
     int windowWidth = 1280;
     public JTextArea messageText, helpText;
@@ -49,15 +48,13 @@ public class UI {
     private String selectedItem;
     private String musicFile = "pirate-music.wav";
 
-    public UI(GameMain gm, double resolutionChanger) {
+    public UI(GameMain gm) {
 
         this.gm = gm;
         fontCreate();
-        setResolutionChanger(resolutionChanger);
-        setWindowHeight((int) (getWindowHeight()*getResolutionChanger()));
-        setWindowWidth((int) (getWindowWidth()*getResolutionChanger()));
+        setWindowHeight((int) (getWindowHeight()));
+        setWindowWidth((int) (getWindowWidth()));
         createMainField();
-        System.out.println("Generating main splash");
         generateSplashScene();
         window.setVisible(true);
         playerBag = eventPanel(300, 300, 400, 180, "playerBag");
@@ -132,13 +129,13 @@ public class UI {
         getWestButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         getEastButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         getSouthButton().setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
-        getNorthButton().addActionListener(gm.aHandler);
+        getNorthButton().addActionListener(gm.getaHandler());
         getNorthButton().setActionCommand("move north");
-        getSouthButton().addActionListener(gm.aHandler);
+        getSouthButton().addActionListener(gm.getaHandler());
         getSouthButton().setActionCommand("move south");
-        getWestButton().addActionListener(gm.aHandler);
+        getWestButton().addActionListener(gm.getaHandler());
         getWestButton().setActionCommand("move west");
-        getEastButton().addActionListener(gm.aHandler);
+        getEastButton().addActionListener(gm.getaHandler());
         getEastButton().setActionCommand("move east");
         getDirectionPanel().add(getSouthButton());
         getDirectionPanel().add(getEastButton());
@@ -159,7 +156,7 @@ public class UI {
         getInvPanel().add(getInvBag());
         ImageIcon bagIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/bag.png")));
         getInvBag().setIcon(bagIcon);
-        getInvBag().addActionListener(gm.aHandler);
+        getInvBag().addActionListener(gm.getaHandler());
         getInvBag().setActionCommand("inventory");
         setEquipWeapon(new JButton());
         getEquipWeapon().setBounds(10,80,72,72);
@@ -169,7 +166,7 @@ public class UI {
         getInvPanel().add(getEquipWeapon());
         ImageIcon eqIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/equipped.png")));
         getEquipWeapon().setIcon(eqIcon);
-        getEquipWeapon().addActionListener(gm.aHandler);
+        getEquipWeapon().addActionListener(gm.getaHandler());
         getEquipWeapon().setActionCommand("equipment");
 
         setTextPanel(new JPanel());
@@ -249,7 +246,7 @@ public class UI {
         getSettingPanel().add(getSettingIcon());
         ImageIcon sIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/gear.png")));
         getSettingIcon().setIcon(sIcon);
-        getSettingIcon().addActionListener(gm.aHandler);
+        getSettingIcon().addActionListener(gm.getaHandler());
         getSettingIcon().setActionCommand("setting");
         setHelpIcon(new JButton());
         getHelpIcon().setBounds(60,0,50,50);
@@ -259,7 +256,7 @@ public class UI {
         getSettingPanel().add(getHelpIcon());
         ImageIcon helpIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/help.png")));
         getHelpIcon().setIcon(helpIcon);
-        getHelpIcon().addActionListener(gm.aHandler);
+        getHelpIcon().addActionListener(gm.getaHandler());
         getHelpIcon().setActionCommand("help");
 
         messageText = new JTextArea();
@@ -418,28 +415,14 @@ public class UI {
         panelBuilder.setOpaque(true);
 
         window.add(panelBuilder);
-
-
-//        JLabel textBorder = new JLabel();
-//        textBorder.setBounds(25, 0, width-60,height);
-//        //panelBuilder.setOpaque(false);
-//        panelBuilder.add(textBorder);
-//
-//
-//        ImageIcon textBorderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/textborder.png")));
-//        Image image = textBorderIcon.getImage().getScaledInstance(width-60,height, Image.SCALE_DEFAULT);
-//        ImageIcon imageResized = new ImageIcon(image);
-//        textBorder.setIcon(imageResized);
-
-
-
+        
         JButton exitButton = new JButton("X");
         exitButton.setForeground(Color.black);
         exitButton.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         exitButton.setOpaque(false);
         exitButton.setBounds(width-30,0,30,30);
         exitButton.setBackground(Color.GRAY);
-        exitButton.addActionListener(gm.aHandler);
+        exitButton.addActionListener(gm.getaHandler());
         exitButton.setActionCommand("close "+target);
         panelBuilder.add(exitButton);
 
@@ -462,24 +445,24 @@ public class UI {
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem menuItem[] = new JMenuItem[4];
         menuItem[0] = new JMenuItem("drop");
-        menuItem[0].addActionListener(gm.aHandler);
+        menuItem[0].addActionListener(gm.getaHandler());
 //        menuItem[0].setActionCommand("drop " + inventoryList.getSelectedValue());
         menuItem[0].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[0]);
 
         menuItem[1] = new JMenuItem("eat");
-        menuItem[1].addActionListener(gm.aHandler);
+        menuItem[1].addActionListener(gm.getaHandler());
         menuItem[1].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[1]);
 
 
         menuItem[2] = new JMenuItem("equip");
-        menuItem[2].addActionListener(gm.aHandler);
+        menuItem[2].addActionListener(gm.getaHandler());
         menuItem[2].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[2]);
 
         menuItem[3] = new JMenuItem("inspect");
-        menuItem[3].addActionListener(gm.aHandler);
+        menuItem[3].addActionListener(gm.getaHandler());
         menuItem[3].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[3]);
 
@@ -608,12 +591,12 @@ public class UI {
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem menuItem[] = new JMenuItem[4];
         menuItem[0] = new JMenuItem(choice1);
-        menuItem[0].addActionListener(gm.aHandler);
+        menuItem[0].addActionListener(gm.getaHandler());
         menuItem[0].setActionCommand(choice1 +" "+ target);
         popupMenu.add(menuItem[0]);
 
         menuItem[1] = new JMenuItem(choice2);
-        menuItem[1].addActionListener(gm.aHandler);
+        menuItem[1].addActionListener(gm.getaHandler());
         menuItem[1].setActionCommand(choice2 +" "+ target);
         menuItem[1].setName(target);
         popupMenu.add(menuItem[1]);
@@ -621,7 +604,7 @@ public class UI {
 
         if (choices == 3){
             menuItem[2] = new JMenuItem(choice3);
-            menuItem[2].addActionListener(gm.aHandler);
+            menuItem[2].addActionListener(gm.getaHandler());
             menuItem[2].setActionCommand(choice3 +" "+ target);
             menuItem[2].setName(target);
             popupMenu.add(menuItem[2]);
@@ -629,13 +612,13 @@ public class UI {
 
         if (choices == 4) {
             menuItem[2] = new JMenuItem(choice3);
-            menuItem[2].addActionListener(gm.aHandler);
+            menuItem[2].addActionListener(gm.getaHandler());
             menuItem[2].setActionCommand(choice3 +" "+ target);
             menuItem[2].setName(target);
             popupMenu.add(menuItem[2]);
 
             menuItem[3] = new JMenuItem(choice4);
-            menuItem[3].addActionListener(gm.aHandler);
+            menuItem[3].addActionListener(gm.getaHandler());
             menuItem[3].setActionCommand(choice4 +" "+ target);
             menuItem[3].setName(target);
             popupMenu.add(menuItem[3]);
@@ -684,8 +667,6 @@ public class UI {
 
     public void createArrowButton(int bgNum, int x, int y, int width, int height, String arrowFileName, String command, String target){
         ImageIcon arrowIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(arrowFileName)));
-        //Image image = arrowIcon.getImage().getScaledInstance(width*1,height*1, Image.SCALE_DEFAULT);
-        //example of resizing
         JButton arrowButton = new JButton();
         arrowButton.setBounds(x,y,width,height);
         arrowButton.setBackground(null);
@@ -693,7 +674,7 @@ public class UI {
         arrowButton.setFocusPainted(false);
         arrowButton.setBorderPainted(false);
         arrowButton.setIcon(arrowIcon);
-        arrowButton.addActionListener(gm.aHandler);
+        arrowButton.addActionListener(gm.getaHandler());
         arrowButton.setActionCommand(command + " " + target);
         bgPanel.get(bgNum).add(arrowButton);
     }
@@ -705,7 +686,7 @@ public class UI {
         startButton.setOpaque(false);
         startButton.setBounds(x,y,width,height);
         startButton.setBackground(Color.GRAY);
-        startButton.addActionListener(gm.aHandler);
+        startButton.addActionListener(gm.getaHandler());
         startButton.setActionCommand(command + " " + target);
         bgPanel.get(0).add(startButton);
 
@@ -720,7 +701,6 @@ public class UI {
     public void addObject(String name){
         int panel = findPanelIndex(gm.getPlayer().getCurrentRoom());
         Items itemBuild = gm.getGame().getItems().stream().filter(itemSeek -> itemSeek.getName().equals(name)).findFirst().orElse(null);
-        System.out.println("rebuilding Item name: " + itemBuild.getName() + ". Description: " +itemBuild.getDescription());
         gm.getUi().createObject(panel, itemBuild.getXaxis(), itemBuild.getYaxis(), itemBuild.getWidth(), itemBuild.getHeight(),
                 itemBuild.getImg(), itemBuild.getType(), itemBuild.getName());
         gm.getSc().showScreen(panel);
@@ -775,7 +755,6 @@ public class UI {
         for (Locations location:gm.getGame().getLocations()
         ) {
             generateScenes(i,location.getImg(),location.getItems(),location.getNPC(),location.getDirections(), location.getName());
-            System.out.println("loading... scene "+ i);
             i++;
         }
 
@@ -786,80 +765,30 @@ public class UI {
 
         for (String item:items
              ) {
-            System.out.println(item);
             Items itemBuild = gm.getGame().getItems().stream().filter(itemSeek -> itemSeek.getName().equals(item)).findFirst().orElse(null);
-            System.out.println("Item name: " + itemBuild.getName() + ". Description: " +itemBuild.getDescription());
             gm.getUi().createObject(sceneNum, itemBuild.getXaxis(), itemBuild.getYaxis(), itemBuild.getWidth(), itemBuild.getHeight(),
                     itemBuild.getImg(), itemBuild.getType(), itemBuild.getName());
         }
 
         for (String npc:npcs
         ) {
-            System.out.println(npc);
             Characters characterBuild = gm.getGame().getCharacters().stream().filter(characterSeek -> characterSeek.getName().equals(npc)).findFirst().orElse(null);
-            System.out.println("Character name: " + characterBuild.getName() + ". Description: " +characterBuild.getQuote());
             String type = "notFriendly";
             if (characterBuild.isFriendly()){
                 type = "Friendly";
             }
             gm.getUi().createObject(sceneNum, characterBuild.getXaxis(), characterBuild.getYaxis(), characterBuild.getWidth(), characterBuild.getHeight(),
                     characterBuild.getImg(), type, characterBuild.getName());
-            //gm.getUi().createObject(sceneNum, 970, 140, 150, 225, "img/parrot.png", "eat", "grab", "talk", "parrot");
         }
 
-        for (Map.Entry<String, String> entry: directions.entrySet()
-        ) {
-            System.out.println(entry.getKey());
-            //gm.getUi().createObject(sceneNum, 970, 140, 150, 225, "img/parrot.png", "eat", "grab", "talk", "parrot");
-        }
-
-
-//        if (sceneNum<15) {
-//            createArrowButton(sceneNum, 0, 150, 50, 50, "img/left.png", "move", String.valueOf(sceneNum+1));
-//        }
-//        else {
-//            createArrowButton(sceneNum, 0, 150, 50, 50, "img/left.png", "move", String.valueOf(1));
-//        }
         gm.getUi().bgPanel.get(sceneNum).add(bgLabel.get(sceneNum));
 
-
-//        for (String object : objects
-//        ) {
-//            createObject(sceneNum, 970, 140, 150, 225, "img/" + object + ".png", "eat", "grab", "talk", "parrot");
-//        }
-//        for (String npc : npcs) {
-//            createObject(1, 70, 80, 264, 400, "img/" + npc + ".png", "talk", "fight", "trade", "uncle");
-//        }
-//        for (String direction : directions) {
-//            createArrowButton(sceneNum, 0, 150, 50, 50, "img/" + direction + ".png", "move", String.valueOf(sceneNum+1));
-//        }
     }
-
-//notes from old
-////        createBackground(1, "img/jungle");
-////        createObject(1, 970, 140, 150, 225, "img/parrot.png", "eat", "grab", "talk", "parrot");
-////        createObject(1, 70, 80, 264, 400, "img/uncle.png", "talk", "fight", "trade", "uncle");
-////        createArrowButton(1,0,150,50,50,"img/left.png", "move", "2");
-////        bgPanel[1].add(bgLabel[1]);
-//
-//        createBackground(2, "img/village.png");
-//        //createObject(1, 970, 140, 150, 225, "parrot.png", "eat", "grab", "talk", "parrot");
-//        //createObject(1, 70, 80, 264, 400, "uncle.png", "talk", "fight", "trade", "uncle");
-//        createArrowButton(2,0,150,50,50,"img/left.png", "move", "1");
-//        bgPanel[2].add(bgLabel[2]);
 
     public void generateSplashScene(){
         createSplashScreen("img/splashscreen.png");
         createStartButton(550, 550, 200, 50, "start", "1");
         bgPanel.get(0).add(bgLabel.get(0));
-    }
-
-    public double getResolutionChanger() {
-        return resolutionChanger;
-    }
-
-    public void setResolutionChanger(double resolutionChanger) {
-        this.resolutionChanger = resolutionChanger;
     }
 
     public int getWindowHeight() {

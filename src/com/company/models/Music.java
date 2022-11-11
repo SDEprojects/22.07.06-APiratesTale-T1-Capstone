@@ -12,10 +12,9 @@ import javax.sound.sampled.*;
 
 public class Music {
 
-    FileGetter fileGetter = new FileGetter();
-    Scanner scanner = new Scanner(System.in);
-    File file = new File("");
-    boolean playCompleted;
+    private FileGetter fileGetter = new FileGetter();
+    private File file = new File("");
+    private boolean playCompleted;
     private float currentVolume = 0;
     private FloatControl floatControl;
     private boolean fxOff;

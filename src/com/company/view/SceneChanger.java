@@ -30,7 +30,7 @@ public class SceneChanger {
         }
         try {
             if (currentLocation.getDirections().get("lock").equals(nextRoom)){
-                if (!gm.getPlayer().inventory.contains(currentLocation.getDirections().get("key"))){
+                if (!gm.getPlayer().getInventory().contains(currentLocation.getDirections().get("key"))){
                     gm.getUi().messageText.setText("Can't go that way, "+ currentLocation.getDirections().get("keyError"));
                     int roomSelect = gm.getUi().findPanelIndex(currentLocation.getName());
                     gm.getPlayer().setCurrentRoom(currentLocation.getName());
@@ -38,34 +38,9 @@ public class SceneChanger {
                 }
             }
         } catch (Exception ignored) {
-
         }
 
-        //gm.getUi().getBgPanel().stream().filter(name -> name.getName().equals(nextRoom)).findFirst().orElse(null);
-
-
     }
-
-//    public static int findIndex(List<JPanel> panel, String name)
-//    {
-//        // find length of array
-//        int len = panel.size();
-//        int i = 0;
-//
-//        // traverse in the array
-//        while (i < len) {
-//
-//            // if the i-th element is t
-//            // then return the index
-//            if (panel.get(i).getName().equals(name)) {
-//                return i;
-//            }
-//            else {
-//                i = i + 1;
-//            }
-//        }
-//        return -1;
-//    }
 
     public void showScreen(int screen) {
         for (JPanel panel:gm.getUi().getBgPanel()

@@ -11,10 +11,9 @@ import com.company.view.UI;
 public class GameMain {
 
 
-    int resolution = 1;
-    public ActionHandler aHandler = new ActionHandler(this);
-    private final UI ui = new UI(this, resolution);
-    public SceneChanger sc = new SceneChanger(this);
+    private ActionHandler aHandler = new ActionHandler(this);
+    private final UI ui = new UI(this);
+    private SceneChanger sc = new SceneChanger(this);
     private final Player player = new Player(this);
     private final Game game = new Game(this);
     private Music music = new Music(this);
@@ -76,4 +75,5 @@ public class GameMain {
     public void setGamble(Gamble gamble) {
         this.gamble = gamble;
     }
+
 }

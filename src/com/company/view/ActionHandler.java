@@ -11,9 +11,6 @@ import java.awt.event.ActionListener;
 public class ActionHandler implements ActionListener {
 
     private GameMain gm;
-    Home home = new Home();
-
-
 
     public ActionHandler(GameMain gm){
         this.gm = gm;
@@ -37,7 +34,7 @@ public class ActionHandler implements ActionListener {
                 break;
             case "grab":
                 gm.getPlayer().grabItem(inputSplit[1]);
-                if (gm.getPlayer().inventory.contains("Treasure Chest")){
+                if (gm.getPlayer().getInventory().contains("Treasure Chest")){
                     gm.getPlayer().winGame();
                 }
                 break;
@@ -63,7 +60,7 @@ public class ActionHandler implements ActionListener {
             case "move":
                 String direction = inputSplit[1];
                 gm.getUi().messageText.setText("you went to area "+ inputSplit[1]);
-                gm.sc.screenPicker(direction);
+                gm.getSc().screenPicker(direction);
                 gm.getUi().getNpcName().setText("");
 
                 break;
@@ -88,7 +85,7 @@ public class ActionHandler implements ActionListener {
                 gm.getUi().messageText.setText("item : "+ inputSplit[1] + " | Description: "+ itemInstance.getDescription() + " | Gold Value: "+itemInstance.getCost());
                 break;
             case "start":
-                gm.sc.showScreen(1);
+                gm.getSc().showScreen(1);
                 gm.getUi().createMessageViewer();
                 break;
             case "equip":
@@ -124,7 +121,6 @@ public class ActionHandler implements ActionListener {
             } catch (Exception ignored) {
             }
         }
-        //if (gm.getPlayer().attack(inputSplit[1]))
 
     }
 }
