@@ -35,7 +35,7 @@ public class ActionHandler implements ActionListener {
             case "grab":
                 gm.getPlayer().grabItem(inputSplit[1]);
                 if (gm.getPlayer().getInventory().contains("Treasure Chest")){
-                    gm.getPlayer().winGame();
+                    gm.getUi().gameStateWindow("img/giphy.gif", "img/trophy.png", "What do you want to do?", "You beat the Game");
                 }
                 break;
             case "eat":
@@ -99,7 +99,7 @@ public class ActionHandler implements ActionListener {
                 break;
         }
         if (gm.getPlayer().getHp()<=0){
-            System.out.println("Game over");
+            gm.getUi().gameStateWindow("img/gameover.png", "img/end.png", "What do you want to do?", "You got wasted!");
         }
         if (gm.getPlayer().getHp() > 0){
             gm.getUi().getArea().setText("Current location: " + gm.getPlayer().getCurrentRoom());
