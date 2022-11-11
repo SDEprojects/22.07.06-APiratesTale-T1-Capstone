@@ -7,7 +7,10 @@
       "directions": {
         "north" : "Mango Docks",
         "east" : "Mango Trade Center",
-        "south" : "Mango Jungle North"
+        "south" : "Mango Jungle North",
+        "lock": "Mango Jungle North",
+        "key": "Sword",
+        "keyError": "Talk to your uncle the blacksmith, maybe he will loan you a sword!"
       },
       "img": "img/beachShack.png",
       "island": "mango",
@@ -20,7 +23,10 @@
       "items" : [],
       "directions": {
         "east" : "Boat1",
-        "south" : "Beach Shack"
+        "south" : "Beach Shack",
+        "lock": "Boat1",
+        "key": "Boat Pass",
+        "keyError": "Talk to the pirate and try to requisition the boat pass!"
       },
       "img": "img/dock.png",
       "island": "mango",
@@ -99,7 +105,7 @@
         "north" : "Monkey Docks",
         "east" : "Skull Docks"
       },
-      "img": "img/boat1.png",
+      "img": "img/boat2.png",
       "island": "mango",
       "grid": "a2"
     },
@@ -127,7 +133,7 @@
         "west" : "Mango Docks",
         "east" : "Monkey Docks"
       },
-      "img": "img/boat3.png",
+      "img": "img/boat2.png",
       "island": "skull",
       "grid": "d0"
     },
@@ -294,7 +300,10 @@
       "items" : [],
       "directions": {
         "east" : "Treasure Room",
-        "west" : "Skull Cave"
+        "west" : "Skull Cave",
+        "lock": "Treasure Room",
+        "key": "Treasure Room Key",
+        "keyError": "You need the Treasure Room Key, Defeat the Skull King and get the key..."
       },
       "img": "img/village.png",
       "island": "skull",

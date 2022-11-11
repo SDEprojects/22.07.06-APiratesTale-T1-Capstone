@@ -1,5 +1,6 @@
 package com.company.client;
 
+import com.company.models.Gamble;
 import com.company.models.Game;
 import com.company.models.Music;
 import com.company.models.Player;
@@ -17,6 +18,7 @@ public class GameMain {
     private final Player player = new Player(this);
     private final Game game = new Game(this);
     private Music music = new Music(this);
+    private Gamble gamble = new Gamble(this);
 
 
 
@@ -65,5 +67,13 @@ public class GameMain {
 
     public void setMusic(Music music) {
         this.music = music;
+    }
+
+    public Gamble getGamble() {
+        return gamble;
+    }
+
+    public void setGamble(Gamble gamble) {
+        this.gamble = gamble;
     }
 }

@@ -303,7 +303,6 @@ public class Player {
                             for (String item : NPCInstance.getItems()) {
                                 locationStuff.getItems().add(item);
                                 gm.getUi().addObject(item);
-
                             }
 
                             gm.getUi().messageText.setText(NPCInstance.getName() + " dropped " + NPCInstance.getItems() + "!");
