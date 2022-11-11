@@ -17,41 +17,25 @@ import java.util.stream.Collectors;
 public class PlayerTest extends TestCase {
 
     GameMain gm = new GameMain();
-    Player p1 = new Player(gm);
-    Game game = new Game(gm);
 
 
     @Test
     public void testUseItem() {
         String direction = "south";
-        gm.sc.screenPicker(direction);
-        p1.setCurrentRoom("Mango Jungle North");
-        System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getName());
-        System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getItems());
-        System.out.println(p1.hp);
-        p1.useItem("Mango");
-        System.out.println("used Mango");
-        System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getItems());
-        System.out.println(p1.hp);
-        assertEquals(15,p1.hp);
+        gm.getSc().screenPicker(direction);
+        gm.getPlayer().setCurrentRoom("Mango Jungle North");
+        gm.getPlayer().useItem("Mango");
+        assertEquals(15, gm.getPlayer().getHp());
     }
 
     @Test
     public void testGrabItemWhenNoReq(){
         String direction = "south";
-        gm.sc.screenPicker(direction);
-        System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getName());
-        System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getItems());
-        System.out.println(p1.getInventory());
-        p1.grabItem("Mango");
-        System.out.println("grabbed Mango");
-        System.out.println(gm.getGame().locations.stream().filter(locationFind -> locationFind.getName().equals(p1.getCurrentRoom())).findFirst().orElse(null).getItems());
-        System.out.println(p1.getInventory());
+        gm.getSc().screenPicker(direction);
+        gm.getPlayer().grabItem("Mango");
         ArrayList<String> result = new ArrayList<>();
         result.add("Mango");
-        System.out.println(result);
-        System.out.println(p1.getInventory());
-        assertEquals(result, p1.getInventory());
+        assertEquals(result, gm.getPlayer().getInventory());
     }
 
     @Test(expected = EmptyStackException.class)
@@ -74,19 +58,19 @@ public class PlayerTest extends TestCase {
     @Test
     public void testDropItem(){
         String direction = "south";
-        gm.sc.screenPicker(direction);
-        p1.setCurrentRoom("Mango Jungle North");
-        System.out.println(p1.getInventory());
-        p1.grabItem("Mango");
+        gm.getSc().screenPicker(direction);
+        gm.getPlayer().setCurrentRoom("Mango Jungle North");
+        System.out.println(gm.getPlayer().getInventory());
+        gm.getPlayer().grabItem("Mango");
         System.out.println("grabbed Mango");
-        System.out.println(p1.getInventory());
+        System.out.println(gm.getPlayer().getInventory());
         ArrayList<String> inv = new ArrayList<>();
         String direction1 = "north";
-        gm.sc.screenPicker(direction1);
-        p1.dropItem("Mango");
+        gm.getSc().screenPicker(direction1);
+        gm.getPlayer().dropItem("Mango");
         System.out.println("dropped Mango");
-        System.out.println(p1.getInventory());
-        assertEquals(inv, p1.getInventory());
+        System.out.println(gm.getPlayer().getInventory());
+        assertEquals(inv, gm.getPlayer().getInventory());
 
     }
 

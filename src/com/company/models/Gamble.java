@@ -12,19 +12,18 @@ import java.util.Random;
 
 public class Gamble {
 
-    GameMain gm;
-    int bet = 0;
-    String playerPick;
-    int racefinish = 100;
-    JLabel rat1 = new JLabel();
-    JLabel rat2 = new JLabel();
-    JLabel rat3 = new JLabel();
-    int rat1Moves;
-    int rat2Moves;
-    int rat3Moves;
-    JPanel gambleGame = new JPanel();
+    private GameMain gm;
+    private int bet = 0;
+    private String playerPick;
+    private JLabel rat1 = new JLabel();
+    private JLabel rat2 = new JLabel();
+    private JLabel rat3 = new JLabel();
+    private int rat1Moves;
+    private int rat2Moves;
+    private int rat3Moves;
+    private JPanel gambleGame = new JPanel();
     private JLabel[] rats = new JLabel[]{rat1, rat2, rat3};
-    int ratsFinished;
+    private int ratsFinished;
 
 
     public Gamble(GameMain gm) {
@@ -162,7 +161,6 @@ public class Gamble {
             gm.getUi().getMessageText().setText("Let's race! Player betting "+ currentBet+ "on the rat called "+ playerPick);
             gm.getPlayer().setGold(gm.getPlayer().getGold()-currentBet);
             String thisRacePick= playerPick;
-            System.out.println("Players gold balance: "+ gm.getPlayer().getGold());
             int rat1Moves=0;
             int rat2Moves=0;
             int rat3Moves=0;
@@ -198,10 +196,6 @@ public class Gamble {
                             ex.printStackTrace();
                         }
                     }
-                    System.out.println("done");
-                    System.out.println("'Big Rat' made it in "+rat1.getName()+" seconds...");
-                    System.out.println("'Slime Rat' made it in "+rat2.getName()+" seconds...");
-                    System.out.println("'White Rat' made it in "+rat3.getName()+" seconds...");
                     ArrayList<String> ratList = new ArrayList<>();
                     ratList.add(rat1.getName());
                     ratList.add(rat2.getName());
@@ -213,9 +207,7 @@ public class Gamble {
                     switch (thisRacePick){
                         case "Big Rat":
                             if (rat1.getName().equals(""+minNum)){
-                                System.out.println("Big Rat is a winner!");
                                 gm.getPlayer().setGold(gm.getPlayer().getGold()+(currentBet*3));
-                                System.out.println("Players gold balance: "+ gm.getPlayer().getGold());
                                 gm.getUi().getMessageText().setText("Big Rat is a winner! \nPlayer won : "+ (currentBet*3) + "!\nPlayers gold balance: "+ gm.getPlayer().getGold());
                             }else {
                                 gm.getUi().getMessageText().setText("Loser! Better luck next time...");
@@ -223,9 +215,7 @@ public class Gamble {
                             break;
                         case "Slime Rat":
                             if (rat2.getName().equals(""+minNum)){
-                                System.out.println("Slime Rat is a winner!");
                                 gm.getPlayer().setGold(gm.getPlayer().getGold()+(currentBet*3));
-                                System.out.println("Players gold balance: "+ gm.getPlayer().getGold());
                                 gm.getUi().getMessageText().setText("Slime Rat is a winner! \nPlayer won : "+ (currentBet*3) + "Gold!\nPlayers gold balance: "+ gm.getPlayer().getGold());
                             }else {
                                 gm.getUi().getMessageText().setText("Loser! Better luck next time...");
@@ -233,9 +223,7 @@ public class Gamble {
                             break;
                         case "White Rat":
                             if (rat3.getName().equals(""+minNum)){
-                                System.out.println("White rat is a winner!");
                                 gm.getPlayer().setGold(gm.getPlayer().getGold()+(currentBet*3));
-                                System.out.println("Players gold balance: "+ gm.getPlayer().getGold());
                                 gm.getUi().getMessageText().setText("White Rat is a winner! \nPlayer won : "+ (currentBet*3) + "!\nPlayers gold balance: "+ gm.getPlayer().getGold());
                             }else {
                                 gm.getUi().getMessageText().setText("Loser! Better luck next time...");
@@ -260,7 +248,7 @@ public class Gamble {
             int i=0;
             int round=0;
             public void actionPerformed(ActionEvent evt) {
-                if (i > 700) {//we did the task 10 times
+                if (i > 700) {
                     ((Timer) evt.getSource()).stop();
                     ratsFinished = ratsFinished+1;
                 }
@@ -269,10 +257,8 @@ public class Gamble {
                 int speed = randInt;
                 i = (rat.getLocation().x + speed);
                 round = round + 1;
-                //gm.getUi().getGambleGame().repaint((rat1.getLocation().x + 20), rat1.getLocation().y,96,128);
                 rat.setLocation((rat.getLocation().x + speed), rat.getLocation().y);
                 rat.setName((""+round));
-                System.out.println(SwingUtilities.isEventDispatchThread()+"i is now: "+ i);
 
             }
         };
