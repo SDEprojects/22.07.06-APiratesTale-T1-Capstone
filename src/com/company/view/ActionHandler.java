@@ -37,6 +37,9 @@ public class ActionHandler implements ActionListener {
                 break;
             case "grab":
                 gm.getPlayer().grabItem(inputSplit[1]);
+                if (gm.getPlayer().inventory.contains("Treasure Chest")){
+                    gm.getPlayer().winGame();
+                }
                 break;
             case "eat":
                 gm.getUi().getNpcName().setText(inputSplit[1]);
@@ -113,11 +116,11 @@ public class ActionHandler implements ActionListener {
             });
             timer.start();
 
-
             try {
                 String item = gm.getPlayer().getEquipedItem();
                 Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
                 gm.getUi().getCurrentWeapon().setText("Weapon: " + gm.getPlayer().getEquipedItem() + " (DP: +" + itemInstance.getStrength() + ")" );
+
             } catch (Exception ignored) {
             }
         }
