@@ -216,7 +216,7 @@
       "keyError": "none"
     },
     {
-      "name" : "Treasure Room Key",
+      "name" : "Skull Key",
       "quote": {
         "sfx": " "
       },
@@ -227,9 +227,9 @@
       "type": "quest",
       "img": "img/treasureKey.png",
       "xaxis": "350",
-      "yaxis": "300",
-      "width": "225",
-      "height": "225",
+      "yaxis": "150",
+      "width": "125",
+      "height": "125",
       "keyReq": "none",
       "keyError": "none"
     },
