@@ -59,9 +59,10 @@ public class ActionHandler implements ActionListener {
                 break;
             case "move":
                 String direction = inputSplit[1];
+                gm.getUi().messageText.setText("you went to area "+ inputSplit[1]);
                 gm.sc.screenPicker(direction);
                 gm.getUi().getNpcName().setText("");
-                gm.getUi().messageText.setText("you went to area "+ inputSplit[1]);
+
                 break;
             case "inventory":
                 gm.getUi().playerBag.setVisible(true);
@@ -89,6 +90,10 @@ public class ActionHandler implements ActionListener {
                 break;
             case "equip":
                 gm.getPlayer().equipItem(inputSplit[1]);
+                break;
+            case "gamble":
+                gm.getUi().getGambleGame().setVisible(true);
+                gm.getGamble().buildGamble(); //once built will move to actionhandler
                 break;
             default:
                 break;
