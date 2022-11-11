@@ -555,10 +555,7 @@ public class Player {
     public void winGame() {
         System.out.println("Congratulations, " + getPlayerName() + ", you have plundered the long-lost treasure of" +
                 "Skull Island. You are a true pirate!");
-        Console.pause(2000);
-        Console.clear();
-        Home newGame = new Home();
-        newGame.buildHome();
+        gm.getUi().winScreen();
     }
 
     private void setPlayerName(String name) {

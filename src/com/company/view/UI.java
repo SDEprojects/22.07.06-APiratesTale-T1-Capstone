@@ -26,7 +26,7 @@ public class UI {
     int windowWidth = 1280;
     public JTextArea messageText, helpText;
     private Font oldRetro;
-    private JPanel directionPanel, musicPanel;
+    private JPanel directionPanel, musicPanel, winPanel;
     private JButton northButton, southButton, eastButton, westButton;
     private JButton invButton, equipButton, settingButton, helpButton;
     private JPanel invPanel, settingPanel, statusPanel,textPanel, hpPanel, currentEquipPanel;
@@ -85,6 +85,22 @@ public class UI {
             e.printStackTrace();
         }
 
+    }
+
+    public void winScreen(){
+        window.setContentPane(new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/giphy.gif")))));
+        String[] options = {"Start", "Exit"};
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/trophy.png")));
+        String selected = (String) JOptionPane.showInputDialog(null, "What do you want to do?", "You beat the Game", JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
+        if (selected.equals("Start")){
+            window.dispose();
+            gm.getMusic().stopMusic(getMusicFile());
+            window = new JFrame();
+            new GameMain();
+        }
+        if (selected.equals("Exit")){
+            window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
+        }
     }
 
     public void createMainField(){
@@ -1135,5 +1151,13 @@ public class UI {
 
     public void setVolumeDown(JButton volumeDown) {
         this.volumeDown = volumeDown;
+    }
+
+    public JPanel getWinPanel() {
+        return winPanel;
+    }
+
+    public void setWinPanel(JPanel winPanel) {
+        this.winPanel = winPanel;
     }
 }
