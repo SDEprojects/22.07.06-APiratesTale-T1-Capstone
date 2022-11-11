@@ -19,8 +19,6 @@ public class GameMain {
     private Music music = new Music(this);
     private Gamble gamble = new Gamble(this);
 
-
-
     public static void main(String[] args) {
         new GameMain();
     }

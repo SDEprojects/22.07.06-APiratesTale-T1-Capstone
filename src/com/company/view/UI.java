@@ -85,11 +85,11 @@ public class UI {
 
     }
 
-    public void winScreen(){
-        window.setContentPane(new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/giphy.gif")))));
+    public void gameStateWindow(String bgImg, String iconImg, String message, String title){
+        window.setContentPane(new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(bgImg)))));
         String[] options = {"Start", "Exit"};
-        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/trophy.png")));
-        String selected = (String) JOptionPane.showInputDialog(null, "What do you want to do?", "You beat the Game", JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(iconImg)));
+        String selected = (String) JOptionPane.showInputDialog(null, message, title, JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
         if (selected.equals("Start")){
             window.dispose();
             gm.getMusic().stopMusic(getMusicFile());

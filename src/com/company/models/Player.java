@@ -261,19 +261,6 @@ public class Player {
         }
     }
 
-    public void gameOver() {
-        Console.pause(2000);
-        System.out.println("\nYou've been wasted. The game is over.");
-        Console.pause(2000);
-        Console.clear();
-    }
-
-    public void winGame() {
-        System.out.println("Congratulations, " + getPlayerName() + ", you have plundered the long-lost treasure of" +
-                "Skull Island. You are a true pirate!");
-        gm.getUi().winScreen();
-    }
-
     private void setPlayerName(String name) {
         this.name = name;
     }
