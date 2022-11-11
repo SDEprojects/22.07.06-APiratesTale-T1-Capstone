@@ -63,7 +63,7 @@ public class Gamble {
 
         JLabel rat1 = new JLabel();
         rat1.setBounds(20,20,96,128);
-        ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("rat.png")));
+        ImageIcon objectIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/rat.png")));
         rat1.setIcon(objectIcon);
         rat1.setName("Rat 1");
         gm.getUi().getGambleGame().add(rat1);
