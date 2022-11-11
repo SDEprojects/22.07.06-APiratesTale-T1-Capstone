@@ -27,11 +27,11 @@
       "cost": "0",
       "strength": "5",
       "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
+      "img": "img/scithersword.png",
+      "xaxis": "350",
+      "yaxis": "250",
+      "width": "92",
+      "height": "100",
       "keyReq": "none",
       "keyError": "none"
     },
@@ -108,24 +108,6 @@
       "keyError": "none"
     },
     {
-      "name": "Note",
-      "quote": {
-        "sfx": " "
-      },
-      "description": "Banana, Monkey Business, Monkey see monkey do",
-      "value": "0",
-      "cost": "0",
-      "strength": "0",
-      "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
-      "keyReq": "none",
-      "keyError": "none"
-    },
-    {
       "name": "Banana",
       "quote": {
         "sfx": " "
@@ -144,42 +126,6 @@
       "keyError": "none"
     },
     {
-      "name": "Left Boss Key",
-      "quote": {
-        "sfx": " "
-      },
-      "description": "Left key to unlock the Boss Door",
-      "value": "0",
-      "cost": "0",
-      "strength": "0",
-      "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
-      "keyReq": "none",
-      "keyError": "none"
-    },
-    {
-      "name": "Right Boss Key",
-      "quote": {
-        "sfx": " "
-      },
-      "description": "Right key to unlock the Boss Door",
-      "value": "0",
-      "cost": "0",
-      "strength": "0",
-      "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
-      "keyReq": "none",
-      "keyError": "none"
-    },
-    {
       "name": "Treasure Key",
       "quote": {
         "sfx": " "
@@ -189,11 +135,11 @@
       "cost": "0",
       "strength": "0",
       "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
+      "img": "img/treasureKey.png",
+      "xaxis": "350",
+      "yaxis": "150",
+      "width": "71",
+      "height": "125",
       "keyReq": "none",
       "keyError": "none"
     },
@@ -210,8 +156,8 @@
       "img": "img/chest.png",
       "xaxis": "450",
       "yaxis": "125",
-      "width": "300",
-      "height": "300",
+      "width": "200",
+      "height": "200",
       "keyReq": "none",
       "keyError": "none"
     },
@@ -225,7 +171,7 @@
       "cost": "0",
       "strength": "0",
       "type": "quest",
-      "img": "img/treasureKey.png",
+      "img": "img/skullKey.png",
       "xaxis": "350",
       "yaxis": "150",
       "width": "125",
@@ -279,7 +225,7 @@
       "cost": "0",
       "strength": "0",
       "type": "quest",
-      "img": "img/Skull.png",
+      "img": "img/skull.png",
       "xaxis": "450",
       "yaxis": "175",
       "width": "100",
@@ -297,11 +243,11 @@
       "cost": "0",
       "strength": "0",
       "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "370",
-      "yaxis": "50",
-      "width": "150",
-      "height": "225",
+      "img": "img/redKey.png",
+      "xaxis": "350",
+      "yaxis": "150",
+      "width": "85",
+      "height": "125",
       "keyReq": "none",
       "keyError": "none"
     }
