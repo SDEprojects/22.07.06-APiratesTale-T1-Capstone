@@ -158,7 +158,7 @@ public class Gamble {
     public void ratRace(){
         if (gm.getPlayer().getGold()>=getBet()){
             int currentBet = getBet();
-            gm.getUi().getMessageText().setText("Let's race! Player betting "+ currentBet+ "on the rat called "+ playerPick);
+            gm.getUi().getMessageText().setText("Let's race! Player betting "+ currentBet+ " on the rat called "+ playerPick);
             gm.getPlayer().setGold(gm.getPlayer().getGold()-currentBet);
             String thisRacePick= playerPick;
             int rat1Moves=0;
