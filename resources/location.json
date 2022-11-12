@@ -101,9 +101,6 @@
       "NPC" : ["Helmsman Jerry"],
       "items" : [],
       "directions": {
-        "west" : "Mango Docks",
-        "north" : "Monkey Docks",
-        "east" : "Skull Docks"
       },
       "img": "img/boat2.png",
       "island": "mango",
@@ -115,9 +112,6 @@
       "NPC" : ["Helmsman Barry"],
       "items" : [],
       "directions": {
-        "north" : "Monkey Docks",
-        "east" : "Skull Docks",
-        "west" : "Mango Docks"
       },
       "img": "img/boat2.png",
       "island": "monkey",
@@ -129,9 +123,6 @@
       "NPC" : ["Helmsman Harry"],
       "items" : [],
       "directions": {
-        "north" : "Skull Docks",
-        "west" : "Mango Docks",
-        "east" : "Monkey Docks"
       },
       "img": "img/boat2.png",
       "island": "skull",
