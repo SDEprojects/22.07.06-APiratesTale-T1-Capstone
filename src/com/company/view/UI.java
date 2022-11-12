@@ -13,10 +13,8 @@ import java.awt.event.*;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 public class UI {
 
@@ -40,10 +38,9 @@ public class UI {
     private ArrayList<JLabel> bgLabel= new ArrayList<>();
     private JPanel playerBag = new JPanel();
     private JPanel gambleGame = new JPanel();
-    private JPanel playerEquipment = new JPanel();
+    private JPanel playerMap = new JPanel();
     private JPanel help = new JPanel();
     private JPanel settings = new JPanel();
-    private JPanel map = new JPanel();
     private JList<String> inventoryList = new JList<>();
     private DefaultListModel inventory = new DefaultListModel();
     private String selectedItem;
@@ -61,8 +58,8 @@ public class UI {
         playerBag = eventPanel(300, 300, 400, 180, "playerBag");
         inventoryListBuilder();
         playerBag.setVisible(false);
-        playerEquipment = eventPanel(100, 100, (int) (windowWidth*.6), (int) (windowHeight*.6), "playerEquipment");
-        playerEquipment.setVisible(false);
+        playerMap = eventPanel(100, 100, 400, 500, "playerMap");
+        playerMap.setVisible(false);
         gambleGame = eventPanel(100, 100, 1000, 300, "gambleGame");
         gambleGame.setVisible(false);
         settings = eventPanel(700, 100, 400, 200, "settings");
@@ -72,6 +69,81 @@ public class UI {
         settingMenuOption();
         helpOption();
     }
+
+    public void createMap(String island, String gridSpace){
+        String fileName="";
+        switch (island){
+            case "mango":
+                fileName = "img/map1.png";
+                break;
+            case "monkey":
+                fileName = "img/map2.png";
+                break;
+            case "skull":
+                fileName = "img/map3.png";
+                break;
+            default:
+                break;
+        }
+        String yCoordinate = "A";
+        int xAxis = 50;
+        int yAxis=0;
+
+
+        List<String> moveLog = new ArrayList<>();
+        moveLog.add(gridSpace);
+        for (String s:moveLog
+        ) {
+            yCoordinate = s.substring(0, 1);
+            xAxis = xAxis+(Integer.parseInt(s.substring(1, 2))*100);
+        }
+
+        switch (yCoordinate){
+            case "a":
+                yAxis = 50;
+                break;
+            case "b":
+                yAxis = 150;
+                break;
+            case "c":
+                yAxis = 250;
+                break;
+            case "d":
+                yAxis = 350;
+                break;
+            case "e":
+                yAxis = 450;
+                break;
+            default:
+                break;
+        }
+
+        JButton exitButton = new JButton("X");
+        exitButton.setForeground(Color.black);
+        exitButton.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        exitButton.setOpaque(false);
+        exitButton.setBounds(370,0,30,30);
+        exitButton.setBackground(Color.GRAY);
+        exitButton.addActionListener(gm.getActionHandler());
+        exitButton.setActionCommand("close playerMap");
+        playerMap.add(exitButton);
+
+        JLabel playerMarker = new JLabel();
+        playerMarker.setBounds(xAxis-37,yAxis-37,75,75);
+        playerMap.add(playerMarker);
+
+        ImageIcon playerIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/mapMarker.png")));
+        playerMarker.setIcon(playerIcon);
+
+        JLabel locationMap = new JLabel();
+        locationMap.setBounds(0,0,400,500);
+        playerMap.add(locationMap);
+
+        ImageIcon bgIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(fileName)));
+        locationMap.setIcon(bgIcon);
+
+    }
+
 
     private void fontCreate(){
         try {
@@ -165,10 +237,10 @@ public class UI {
         getEquipWeapon().setContentAreaFilled(false);
         getEquipWeapon().setBorderPainted(false);
         getInvPanel().add(getEquipWeapon());
-        ImageIcon eqIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/equipped.png")));
+        ImageIcon eqIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/mapMarker.png")));
         getEquipWeapon().setIcon(eqIcon);
         getEquipWeapon().addActionListener(gm.getActionHandler());
-        getEquipWeapon().setActionCommand("equipment");
+        getEquipWeapon().setActionCommand("map");
 
         setTextPanel(new JPanel());
         getTextPanel().setBounds((int)(.05*windowWidth), (int) (.03*windowHeight), (int) (.42*windowWidth), (int) (.05*windowHeight));
@@ -532,14 +604,12 @@ public class UI {
             case "playerBag":
                 playerBag.setVisible(false);
                 break;
-            case "playerEquipment":
-                playerEquipment.setVisible(false);
+            case "playerMap":
+                playerMap.setVisible(false);
+                playerMap.removeAll();
                 break;
             case "gambleGame":
                 gambleGame.setVisible(false);
-                break;
-            case "map":
-                map.setVisible(false);
                 break;
             case "settings":
                 settings.setVisible(false);
@@ -1163,12 +1233,12 @@ public class UI {
         this.playerBag = playerBag;
     }
 
-    public JPanel getPlayerEquipment() {
-        return playerEquipment;
+    public JPanel getPlayerMap() {
+        return playerMap;
     }
 
-    public void setPlayerEquipment(JPanel playerEquipment) {
-        this.playerEquipment = playerEquipment;
+    public void setPlayerMap(JPanel playerMap) {
+        this.playerMap = playerMap;
     }
 
     public JPanel getHelp() {
@@ -1187,13 +1257,7 @@ public class UI {
         this.settings = settings;
     }
 
-    public JPanel getMap() {
-        return map;
-    }
 
-    public void setMap(JPanel map) {
-        this.map = map;
-    }
 
     public JList<String> getInventoryList() {
         return inventoryList;
