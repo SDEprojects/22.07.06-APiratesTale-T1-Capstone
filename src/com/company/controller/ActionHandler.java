@@ -2,6 +2,7 @@ package com.company.controller;
 
 import com.company.client.GameMain;
 import com.company.models.Item;
+import com.company.models.Location;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -66,8 +67,10 @@ public class ActionHandler implements ActionListener {
             case "inventory":
                 gm.getUi().getPlayerBag().setVisible(true);
                 break;
-            case "equipment":
-                gm.getUi().getPlayerEquipment().setVisible(true);
+            case "map":
+                Location currentLocation = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null);
+                gm.getUi().createMap(currentLocation.getIsland(), currentLocation.getGrid());
+                gm.getUi().getPlayerMap().setVisible(true);
                 break;
             case "setting":
                 gm.getUi().getSettings().setVisible(true);
