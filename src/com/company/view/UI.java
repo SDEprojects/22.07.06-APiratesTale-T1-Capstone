@@ -504,15 +504,23 @@ public class UI {
 
     public void inventoryListBuilder() {
 
+
+
         inventoryList.setModel(inventory);
         inventoryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         inventoryList.setLayoutOrientation(JList.VERTICAL);
         inventoryList.setVisibleRowCount(-1);
-        inventoryList.setBounds(50, 50, 250, 80);
+        //inventoryList.setBounds(50, 150, 250, 80);
         inventoryList.setOpaque(true);
         inventoryList.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
         JScrollPane listScroller = new JScrollPane(inventoryList);
-        listScroller.setPreferredSize(new Dimension(250, 80));
+        listScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        listScroller.setVisible(true);
+        listScroller.setWheelScrollingEnabled(true);
+        listScroller.setSize(250,80);
+        listScroller.setLocation(50,50);
+
+
 
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem menuItem[] = new JMenuItem[4];
@@ -587,7 +595,15 @@ public class UI {
 
         inventoryList.addListSelectionListener(listSelect);
 
-        playerBag.add(inventoryList);
+        //playerBag.add(inventoryList);
+        playerBag.add(listScroller);
+
+        JLabel title = new JLabel("Player's Bag");
+        title.setBounds(50, 0,250,50);
+        title.setVisible(true);
+        title.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
+        playerBag.add(title);
+
 
     }
 
