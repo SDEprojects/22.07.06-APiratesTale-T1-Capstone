@@ -47,7 +47,7 @@
     {
       "name": "Trader Jane",
       "quote": {
-        "initial": "Hi, My name is Jane. \nI am the best trader you can find on this island.",
+        "initial": "Hi, My name is Jane. \nI am the best trader you can find on this island.\nPrices reflect supply and demand based on recent shipments from around the Trilands",
         "quit" : "Come back to trade your life anytime.",
         "sfx": "music/help_trader1.wav"
       },
@@ -89,7 +89,7 @@
     {
       "name": "Rambo Gambler",
       "quote": {
-        "initial": "Aye little Pirate, come here. I give you best deal.",
+        "initial": "Aye little Pirate, come here. I give you best deal.\nWelcome to the Rat Race, place your bets in increments of 5 gold, \npick your rat and start the race to see how you fair",
         "quit" : "Come back to win anytime.",
         "sfx": "music/how can i help you.wav"
       },
@@ -242,7 +242,7 @@
     {
       "name": "Trader Joe",
       "quote": {
-        "initial": "Hey, lets trade something here.. ",
+        "initial": "Hey, lets trade something here...\nPrices reflect supply and demand based on recent shipments from around the Trilands",
         "quit" : "Come back to trade your life anytime.",
         "sfx": "music/letstrade.wav"
       },
@@ -262,7 +262,7 @@
     {
       "name": "Gambler Gal",
       "quote": {
-        "initial": "Hiii, I'm Gambler Gal... Gamble and win some gold here.",
+        "initial": "Hiii, I'm Gambler Gal...\nWelcome to the Rat Race, place your bets in increments of 5 gold, \npick your rat and start the race to see how you fair",
         "quit" : "Come back to win anytime.",
         "sfx": "music/trade_trader2.wav"
       },

@@ -27,9 +27,9 @@ public class UI {
     private JPanel directionPanel, musicPanel, winPanel;
     private JButton northButton, southButton, eastButton, westButton;
     private JButton invButton, equipButton, settingButton, helpButton;
-    private JPanel invPanel, settingPanel, statusPanel, textPanel, hpPanel, currentEquipPanel;
+    private JPanel invPanel, settingPanel, statusPanel, textPanel, hpPanel, goldPanel, currentEquipPanel;
     private JButton invBag, equipWeapon, settingIcon, helpIcon;
-    private JTextArea area, hp, currentWeapon, npcName;
+    private JTextArea area, hp, currentWeapon, npcName, gold;
     private JToggleButton musicToggle;
     private JComboBox musicStatus, soundFXStatus;
     private JLabel musicLabel, soundFxLabel;
@@ -37,6 +37,7 @@ public class UI {
     private ArrayList<JPanel> bgPanel = new ArrayList<>();
     private ArrayList<JLabel> bgLabel = new ArrayList<>();
     private JPanel playerBag = new JPanel();
+    private JPanel storePanel = new JPanel();
     private JPanel gambleGame = new JPanel();
     private JPanel playerMap = new JPanel();
     private JPanel help = new JPanel();
@@ -62,6 +63,8 @@ public class UI {
         playerMap.setVisible(false);
         gambleGame = eventPanel(100, 100, 1000, 300, "gambleGame");
         gambleGame.setVisible(false);
+        storePanel = eventPanel(100, 100, 1000, 300, "storePanel");
+        storePanel.setVisible(false);
         settings = eventPanel(700, 100, 400, 200, "settings");
         settings.setVisible(false);
         help = eventPanel(500, 100, 600, 400, "help");
@@ -254,6 +257,12 @@ public class UI {
         getHpPanel().setLayout(null);
         getHpPanel().setOpaque(false);
 
+        setGoldPanel(new JPanel());
+        getGoldPanel().setBounds((int) (.48 * windowWidth), (int) (.015 * windowHeight), (int) (.2 * windowWidth), (int) (.05 * windowHeight));
+        getGoldPanel().setBackground(Color.BLUE);
+        getGoldPanel().setLayout(null);
+        getGoldPanel().setOpaque(false);
+
         setCurrentEquipPanel(new JPanel());
         getCurrentEquipPanel().setBounds((int) (.54 * windowWidth), (int) (.03 * windowHeight), (int) (.28 * windowWidth), (int) (.05 * windowHeight));
         getCurrentEquipPanel().setBackground(Color.BLUE);
@@ -285,6 +294,16 @@ public class UI {
         getHp().setForeground(Color.black);
         getHp().setFont(getOldRetro().deriveFont(Font.ITALIC, 12));
         getHpPanel().add(getHp());
+
+        setGold(new JTextArea());
+        getGold().setBounds((int) (0 * windowWidth), (int) (.01 * windowHeight), (int) (.62 * windowWidth), (int) (.05 * windowHeight));
+        getGold().setEditable(false);
+        getGold().setLineWrap(true);
+        getGold().setWrapStyleWord(true);
+        getGold().setOpaque(false);
+        getGold().setForeground(Color.black);
+        getGold().setFont(getOldRetro().deriveFont(Font.ITALIC, 12));
+        getGoldPanel().add(getGold());
 
         setCurrentWeapon(new JTextArea());
         getCurrentWeapon().setBounds((int) (0 * windowWidth), (int) (.02 * windowHeight), (int) (.62 * windowWidth), (int) (.05 * windowHeight));
@@ -344,6 +363,7 @@ public class UI {
 
         window.add(getCurrentEquipPanel());
         window.add(getHpPanel());
+        window.add(getGoldPanel());
         window.add(getTextPanel());
         window.add(getStatusPanel());
         window.add(getSettingPanel());
@@ -504,8 +524,6 @@ public class UI {
 
     public void inventoryListBuilder() {
 
-
-
         inventoryList.setModel(inventory);
         inventoryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         inventoryList.setLayoutOrientation(JList.VERTICAL);
@@ -628,6 +646,9 @@ public class UI {
             case "settings":
                 settings.setVisible(false);
                 break;
+            case "storePanel":
+                storePanel.setVisible(false);
+                break;
             case "help":
                 help.setVisible(false);
         }
@@ -671,11 +692,14 @@ public class UI {
                 choices = 2;
                 break;
             case "shop":
+                choice1 = "shop";
+                choice2 = "fight";
+                choices = 2;
+                break;
             case "gamble":
-                choice1 = "talk";
-                choice2 = "gamble";
-                choice3 = "fight";
-                choices = 3;
+                choice1 = "gamble";
+                choice2 = "fight";
+                choices = 2;
                 break;
             case "boat":
                 choice1 = "talk";
@@ -1305,12 +1329,35 @@ public class UI {
         this.settings = settings;
     }
 
-
     public JList<String> getInventoryList() {
         return inventoryList;
     }
 
     public void setInventoryList(JList<String> inventoryList) {
         this.inventoryList = inventoryList;
+    }
+
+    public JPanel getStorePanel() {
+        return storePanel;
+    }
+
+    public void setStorePanel(JPanel storePanel) {
+        this.storePanel = storePanel;
+    }
+
+    public JTextArea getGold() {
+        return gold;
+    }
+
+    public void setGold(JTextArea gold) {
+        this.gold = gold;
+    }
+
+    public JPanel getGoldPanel() {
+        return goldPanel;
+    }
+
+    public void setGoldPanel(JPanel goldPanel) {
+        this.goldPanel = goldPanel;
     }
 }

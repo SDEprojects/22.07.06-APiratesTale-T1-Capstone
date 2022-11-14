@@ -1,9 +1,6 @@
 package com.company.client;
 
-import com.company.models.Gamble;
-import com.company.models.Game;
-import com.company.models.Music;
-import com.company.models.Player;
+import com.company.models.*;
 import com.company.controller.ActionHandler;
 import com.company.view.SceneChanger;
 import com.company.view.UI;
@@ -18,6 +15,7 @@ public class GameMain {
     private final Game game = new Game(this);
     private Music music = new Music(this);
     private Gamble gamble = new Gamble(this);
+    private Shop shop = new Shop(this);
 
     public static void main(String[] args) {
         new GameMain();
@@ -74,4 +72,11 @@ public class GameMain {
         this.gamble = gamble;
     }
 
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 }

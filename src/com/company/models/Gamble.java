@@ -32,8 +32,7 @@ public class Gamble {
     }
 
     public void buildGamble() {
-        gm.getUi().getMessageText().setText("Welcome to the Rat Race, place your bets in increments of 5 gold, " +
-                "\npick your rat and start the race to see how you fair");
+
 
         JLabel finishLine = new JLabel();
         finishLine.setBounds(700,40,20,150);

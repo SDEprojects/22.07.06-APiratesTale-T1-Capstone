@@ -74,11 +74,12 @@
     {
       "name": "Mango",
       "quote": {
-        "sfx": " "
+        "sfx": " ",
+        "market": "This item has not seen a price change since the last shipment!"
       },
       "description": "Delicious fruit found on Mango Island. Restores health by 5pts.",
       "value": "5",
-      "cost": "0",
+      "cost": "10",
       "strength": "-2",
       "type": "food",
       "img": "img/mango.png",
@@ -92,11 +93,12 @@
     {
       "name": "Cracker",
       "quote": {
-        "sfx": " "
+        "sfx": " ",
+        "market": "This item has not seen a price change since the last shipment!"
       },
       "description": "Cracker given by the Pirate Captain, to entice the Parrot",
       "value": "2",
-      "cost": "0",
+      "cost": "5",
       "strength": "-2",
       "type": "food",
       "img": "img/cracker.png",
@@ -110,11 +112,12 @@
     {
       "name": "Banana",
       "quote": {
-        "sfx": " "
+        "sfx": " ",
+        "market": "This item has not seen a price change since the last shipment!"
       },
       "description": "Delicious fruit found on Monkey Island. Restores health by 10 pts",
       "value": "10",
-      "cost": "0",
+      "cost": "15",
       "strength": "2",
       "type": "food",
       "img": "img/banana.png",
@@ -250,5 +253,25 @@
       "height": "125",
       "keyReq": "none",
       "keyError": "none"
-    }
+    },
+  {
+    "name": "Black Pearl",
+    "quote": {
+      "sfx": " ",
+      "market": "This item is always priced to sell!"
+    },
+    "description": "An extremely powerful sword",
+    "value": "0",
+    "cost": "500",
+    "strength": "20",
+    "type": "weapon",
+    "img": "img/sword.png",
+    "xaxis": "350",
+    "yaxis": "150",
+    "width": "85",
+    "height": "125",
+    "keyReq": "none",
+    "keyError": "none"
+  }
+
 ]
