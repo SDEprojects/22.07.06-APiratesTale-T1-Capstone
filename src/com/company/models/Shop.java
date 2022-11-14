@@ -135,6 +135,9 @@ public class Shop {
                 itemInstance.setCost(itemInstance.getCost()*2);
                 itemInstance.getQuote().put("market", "This item is in demand and price has increased!");
             } else if (randInt<5){
+                if (itemInstance.getCost()<=1){
+                    itemInstance.setCost(2);
+                }
                 itemInstance.setCost((int) (itemInstance.getCost()*.5));
                 itemInstance.getQuote().put("market", "This item is no longer in demand, price has decreased!");
             } else {

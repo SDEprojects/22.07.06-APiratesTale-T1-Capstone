@@ -185,6 +185,9 @@ public class Player {
             ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/fight.png")));
             int playerDamage = gm.getPlayer().dp + playerDamageModifier;
             int damage = NPCInstance.getDp();
+            if (NPCInstance.getType().equals("enemy")){
+                gm.getUi().getMessageText().setText(NPCInstance.getQuote().get("initial"));
+            }
             while (isFighting) {
                 Double chance = Math.random();
                 goldAquired = (NPCInstance.getDp()) * luck();
@@ -194,22 +197,29 @@ public class Player {
                         gm.getUi().getMessageText().setText(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp());
                         gm.getUi().getMessageText().append("You are attacking: " + NPCInstance.getName());
                         if (NPCInstance.getHp() > 0) {
-
                             if (chance > 0.2){
                                 NPCInstance.setHp(NPCInstance.getHp() - playerDamage);
-                                gm.getPlayer().setHp(gm.getPlayer().getHp() - damage);
                                 gm.getUi().getMessageText().setText("You dealt: " + playerDamage + "\n");
-                                gm.getUi().getMessageText().append(NPCInstance.getName() + " dealt " + damage + "\n");
-                                gm.getUi().getMessageText().append(NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp());
-
+                                gm.getUi().getMessageText().append(NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp()+"\n");
                             }
-                            if(chance < 0.2){
-                                System.out.println(luck());
+                            else {
                                 int luckDamage = ((int)(Math.random() + 1) * 4) + playerDamage;
                                 NPCInstance.setHp(NPCInstance.getHp() - luckDamage);
-                                gm.getPlayer().setHp(gm.getPlayer().getHp() - (damage + ((int)(Math.random() + 1) * 4)));
-                                gm.getUi().getMessageText().setText("You crit and dealt: " + luckDamage + "\n");
-                                gm.getUi().getMessageText().append(NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp());
+                                gm.getUi().getMessageText().setText("You dealt critical damage: " + luckDamage + "\n");
+                                gm.getUi().getMessageText().append(NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp()+"\n");
+                            }
+                            if (NPCInstance.getHp() > 0){
+                                Double npcChance = Math.random();
+                                if (npcChance > 0.2){
+                                    gm.getPlayer().setHp(gm.getPlayer().getHp() - damage);
+                                    gm.getUi().getMessageText().append(NPCInstance.getName() + " dealt " + damage + "\n");
+                                }
+                                else {
+                                    int npcDamage = ((int)(Math.random() + 1) * 4) + damage;
+                                    //or this...
+                                    gm.getPlayer().setHp(gm.getPlayer().getHp() - npcDamage);
+                                    gm.getUi().getMessageText().append("You have been critically hit: " + npcDamage + "\n");
+                                }
                             }
                         }
                         if (gm.getPlayer().getHp() <= 0) {
@@ -219,21 +229,21 @@ public class Player {
                             break;
                         }
                         if (NPCInstance.getHp() <= 0 && !NPCInstance.getItems().isEmpty()) {
-                            gm.getUi().getMessageText().setText("Wasted " + NPCInstance.getName() + "!");
+                            gm.getUi().getMessageText().append("Wasted " + NPCInstance.getName() + "!" + "\n");
                             gm.getUi().deleteObject(NPCInstance.getName());
 
                             for (String item : NPCInstance.getItems()) {
                                 locationStuff.getItems().add(item);
                                 gm.getUi().addObject(item);
                             }
-                            gm.getUi().getMessageText().setText(NPCInstance.getName() + " dropped " + NPCInstance.getItems() + "!\n");
+                            gm.getUi().getMessageText().append(NPCInstance.getName() + " dropped " + NPCInstance.getItems() + "!\n");
                             gm.getUi().getMessageText().append("Gold dropped: " + goldAquired + "\n");
                             setGold(goldAquired + gold);
                             isFighting = false;
                             break;
                         }
                         if (NPCInstance.getHp() <= 0) {
-                            gm.getUi().getMessageText().setText("Wasted " + NPCInstance.getName() + "!" + "\n");
+                            gm.getUi().getMessageText().append("Wasted " + NPCInstance.getName() + "!" + "\n");
                             gm.getUi().getMessageText().append("Gold dropped: " + goldAquired);
                             gm.getUi().deleteObject(NPCInstance.getName());
                             setGold(goldAquired + gold);
