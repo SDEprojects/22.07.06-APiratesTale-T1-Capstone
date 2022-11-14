@@ -58,6 +58,8 @@ public class Player {
 
     public void sail(String island){
 
+        gm.getShop().shiftEconomy();
+
         switch (island){
             case "Mango Island":
                 gm.getSc().boatScreenPicker("Mango Docks");

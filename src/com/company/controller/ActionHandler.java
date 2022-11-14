@@ -5,6 +5,7 @@ import com.company.models.Item;
 import com.company.models.Location;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -93,8 +94,16 @@ public class ActionHandler implements ActionListener {
                 gm.getPlayer().equipItem(inputSplit[1]);
                 break;
             case "gamble":
+                gm.getPlayer().talk(inputSplit[1]);
+                gm.getUi().getNpcName().setText(inputSplit[1]);
                 gm.getUi().getGambleGame().setVisible(true);
-                gm.getGamble().buildGamble(); //once built will move to actionhandler
+                gm.getGamble().buildGamble();
+                break;
+            case "shop":
+                gm.getPlayer().talk(inputSplit[1]);
+                gm.getUi().getNpcName().setText(inputSplit[1]);
+                gm.getUi().getStorePanel().setVisible(true);
+                gm.getShop().buildShop(); //once built will move to actionhandler
                 break;
             case "sail":
                 gm.getPlayer().sail(inputSplit[1]);
@@ -113,6 +122,7 @@ public class ActionHandler implements ActionListener {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     gm.getUi().getHp().setText("HP: " + gm.getPlayer().getHp());
+                    gm.getUi().getGold().setText("Gold: "+ gm.getPlayer().getGold());
                 }
             });
             timer.start();
