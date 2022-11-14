@@ -59,6 +59,28 @@ public class Player {
         }
     }
 
+    public void sail(String island){
+
+        gm.getShop().shiftEconomy();
+
+        switch (island){
+            case "Mango Island":
+                gm.getSc().boatScreenPicker("Mango Docks");
+                break;
+            case "Monkey Island":
+                gm.getSc().boatScreenPicker("Monkey Docks");
+                break;
+            case "Skull Island":
+                gm.getSc().boatScreenPicker("Skull Docks");
+                break;
+            default:
+                break;
+
+
+        }
+
+    }
+
     // EquipItem
     public void equipItem(String item) {
         Location locationStuff = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);

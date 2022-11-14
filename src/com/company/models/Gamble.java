@@ -32,8 +32,7 @@ public class Gamble {
     }
 
     public void buildGamble() {
-        gm.getUi().getMessageText().setText("Welcome to the Rat Race, place your bets in increments of 5 gold, " +
-                "\npick your rat and start the race to see how you fair");
+
 
         JLabel finishLine = new JLabel();
         finishLine.setBounds(700,40,20,150);
@@ -158,7 +157,7 @@ public class Gamble {
     public void ratRace(){
         if (gm.getPlayer().getGold()>=getBet()){
             int currentBet = getBet();
-            gm.getUi().getMessageText().setText("Let's race! Player betting "+ currentBet+ "on the rat called "+ playerPick);
+            gm.getUi().getMessageText().setText("Let's race! Player betting "+ currentBet+ " on the rat called "+ playerPick);
             gm.getPlayer().setGold(gm.getPlayer().getGold()-currentBet);
             String thisRacePick= playerPick;
             int rat1Moves=0;

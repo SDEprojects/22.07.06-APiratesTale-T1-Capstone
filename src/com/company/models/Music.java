@@ -28,7 +28,9 @@ public class Music {
 
         try {
             //using bufferedInputStream and file getter to use classpath/resources root
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(fileGetter.fileGetter(musicLocation)));
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass()
+                    .getClassLoader()
+                    .getResourceAsStream(musicLocation)));
             Clip audioClip = AudioSystem.getClip();
             audioClip.open(audioStream);
             setFloatControl((FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN));

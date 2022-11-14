@@ -8,7 +8,7 @@
     "value": "0",
     "cost": "0",
     "strength": "0",
-    "type": "quest",
+    "type": "questItem",
     "img": "img/map.png",
     "xaxis": "750",
     "yaxis": "225",
@@ -26,12 +26,12 @@
       "value": "0",
       "cost": "0",
       "strength": "5",
-      "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
+      "type": "questItem",
+      "img": "img/scithersword.png",
+      "xaxis": "350",
+      "yaxis": "250",
+      "width": "92",
+      "height": "100",
       "keyReq": "none",
       "keyError": "none"
     },
@@ -44,7 +44,7 @@
       "value": "0",
       "cost": "0",
       "strength": "0",
-      "type": "quest",
+      "type": "questItem",
       "img": "img/parrot.png",
       "xaxis": "970",
       "yaxis": "140",
@@ -62,7 +62,7 @@
     "value": "0",
     "cost": "0",
     "strength": "0",
-    "type": "quest",
+    "type": "questItem",
     "img": "img/monkeyPin.png",
     "xaxis": "350",
     "yaxis": "250",
@@ -74,11 +74,12 @@
     {
       "name": "Mango",
       "quote": {
-        "sfx": " "
+        "sfx": " ",
+        "market": "This item has not seen a price change since the last shipment!"
       },
       "description": "Delicious fruit found on Mango Island. Restores health by 5pts.",
       "value": "5",
-      "cost": "0",
+      "cost": "10",
       "strength": "-2",
       "type": "food",
       "img": "img/mango.png",
@@ -92,11 +93,12 @@
     {
       "name": "Cracker",
       "quote": {
-        "sfx": " "
+        "sfx": " ",
+        "market": "This item has not seen a price change since the last shipment!"
       },
       "description": "Cracker given by the Pirate Captain, to entice the Parrot",
       "value": "2",
-      "cost": "0",
+      "cost": "5",
       "strength": "-2",
       "type": "food",
       "img": "img/cracker.png",
@@ -108,31 +110,14 @@
       "keyError": "none"
     },
     {
-      "name": "Note",
-      "quote": {
-        "sfx": " "
-      },
-      "description": "Banana, Monkey Business, Monkey see monkey do",
-      "value": "0",
-      "cost": "0",
-      "strength": "0",
-      "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
-      "keyReq": "none",
-      "keyError": "none"
-    },
-    {
       "name": "Banana",
       "quote": {
-        "sfx": " "
+        "sfx": " ",
+        "market": "This item has not seen a price change since the last shipment!"
       },
       "description": "Delicious fruit found on Monkey Island. Restores health by 10 pts",
       "value": "10",
-      "cost": "0",
+      "cost": "15",
       "strength": "2",
       "type": "food",
       "img": "img/banana.png",
@@ -140,42 +125,6 @@
       "yaxis": "140",
       "width": "75",
       "height": "75",
-      "keyReq": "none",
-      "keyError": "none"
-    },
-    {
-      "name": "Left Boss Key",
-      "quote": {
-        "sfx": " "
-      },
-      "description": "Left key to unlock the Boss Door",
-      "value": "0",
-      "cost": "0",
-      "strength": "0",
-      "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
-      "keyReq": "none",
-      "keyError": "none"
-    },
-    {
-      "name": "Right Boss Key",
-      "quote": {
-        "sfx": " "
-      },
-      "description": "Right key to unlock the Boss Door",
-      "value": "0",
-      "cost": "0",
-      "strength": "0",
-      "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
       "keyReq": "none",
       "keyError": "none"
     },
@@ -188,12 +137,12 @@
       "value": "0",
       "cost": "0",
       "strength": "0",
-      "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "970",
-      "yaxis": "140",
-      "width": "150",
-      "height": "225",
+      "type": "questItem",
+      "img": "img/treasureKey.png",
+      "xaxis": "350",
+      "yaxis": "150",
+      "width": "71",
+      "height": "125",
       "keyReq": "none",
       "keyError": "none"
     },
@@ -206,14 +155,14 @@
       "value": "0",
       "cost": "0",
       "strength": "0",
-      "type": "quest",
+      "type": "questItem",
       "img": "img/chest.png",
       "xaxis": "450",
       "yaxis": "125",
-      "width": "300",
-      "height": "300",
-      "keyReq": "none",
-      "keyError": "none"
+      "width": "200",
+      "height": "200",
+      "keyReq": "Treasure Key",
+      "keyError": "You must get the Treasure Key, the Monkey King is told to be keeper of the Treasure Key!"
     },
     {
       "name" : "Skull Key",
@@ -224,14 +173,14 @@
       "value": "0",
       "cost": "0",
       "strength": "0",
-      "type": "quest",
-      "img": "img/treasureKey.png",
+      "type": "questItem",
+      "img": "img/skullKey.png",
       "xaxis": "350",
       "yaxis": "150",
       "width": "125",
       "height": "125",
-      "keyReq": "none",
-      "keyError": "none"
+      "keyReq": "Treasure Key",
+      "keyError": "Legend says Monkey King seating on highest hill top Temple on Monkey Island \nhas the KEY to open this chest."
     },
     {
       "name" : "Boat Pass",
@@ -242,7 +191,7 @@
       "value": "0",
       "cost": "0",
       "strength": "0",
-      "type": "quest",
+      "type": "questItem",
       "img": "img/boatPass.png",
       "xaxis": "450",
       "yaxis": "300",
@@ -260,7 +209,7 @@
       "value": "0",
       "cost": "0",
       "strength": "0",
-      "type": "quest",
+      "type": "questItem",
       "img": "img/parrot.png",
       "xaxis": "970",
       "yaxis": "140",
@@ -278,8 +227,8 @@
       "value": "0",
       "cost": "0",
       "strength": "0",
-      "type": "quest",
-      "img": "img/Skull.png",
+      "type": "questItem",
+      "img": "img/skull.png",
       "xaxis": "450",
       "yaxis": "175",
       "width": "100",
@@ -296,13 +245,33 @@
       "value": "0",
       "cost": "0",
       "strength": "0",
-      "type": "quest",
-      "img": "img/parrot.png",
-      "xaxis": "370",
-      "yaxis": "50",
-      "width": "150",
-      "height": "225",
+      "type": "questItem",
+      "img": "img/redKey.png",
+      "xaxis": "350",
+      "yaxis": "150",
+      "width": "85",
+      "height": "125",
       "keyReq": "none",
       "keyError": "none"
-    }
+    },
+  {
+    "name": "Black Pearl",
+    "quote": {
+      "sfx": " ",
+      "market": "This item is always priced to sell!"
+    },
+    "description": "An extremely powerful sword",
+    "value": "0",
+    "cost": "500",
+    "strength": "20",
+    "type": "weapon",
+    "img": "img/sword.png",
+    "xaxis": "350",
+    "yaxis": "150",
+    "width": "85",
+    "height": "125",
+    "keyReq": "none",
+    "keyError": "none"
+  }
+
 ]
