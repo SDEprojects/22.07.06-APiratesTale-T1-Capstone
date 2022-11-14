@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Player {
     private String name = "wilson";
     private int hp = 10;
-    private int dp = 5;
+    private int dp = 1;
     // make inventory/location items use list of item
     private List<String> inventory = new ArrayList<>();
     private ArrayList<String> locationItems;
@@ -50,6 +50,9 @@ public class Player {
                 locationStuff.getItems().remove(item);
                 gm.getUi().deleteObject(item);
                 gm.getUi().getMessageText().setText("you picked up " + item);
+                if (inventory.contains("Parrot")){
+                    gm.getMusic().playMusic("music/polly.wav");
+                }
             } else {
                 gm.getUi().getMessageText().setText(itemInstance.getKeyError());
             }
@@ -132,39 +135,62 @@ public class Player {
         }
     }
 
+    public int luck(){
+        return (int)(Math.random() + 1) * 4;
+    }
+
     public void attack(String name) {
         Location locationStuff = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Character NPCInstance = gm.getGame().getCharacters().stream().filter(npc -> npc.getName().equals(name)).findFirst().orElse(null);
+        Item eqpItem = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(gm.getPlayer().getEquipedItem())).findFirst().orElse(null);
         if (locationStuff.getNPC().contains(name)) {
             boolean isFighting = true;
-            String[] options = {"fight", "run", "bag"};
+            String[] options = {"fight", "run"};
+            int goldAquired;
+            int playerDamageModifier = 0;
+            try {
+                if (!gm.getPlayer().getEquipedItem().isEmpty()){
+                    playerDamageModifier += eqpItem.getStrength();
+                }
+            } catch (Exception ignore) {
+            }
             ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/fight.png")));
+            int playerDamage = gm.getPlayer().dp + playerDamageModifier;
+            int damage = NPCInstance.getDp();
             while (isFighting) {
+                Double chance = Math.random();
+                goldAquired = (NPCInstance.getDp()) * luck();
                 String selected = (String) JOptionPane.showInputDialog(null, "What do you want to do?", "You decided to fight", JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
                 switch (selected) {
                     case "fight":
-                        System.out.println(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp());
-                        System.out.println("You are attacking: " + NPCInstance.getName());
+                        gm.getUi().getMessageText().setText(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp());
+                        gm.getUi().getMessageText().append("You are attacking: " + NPCInstance.getName());
                         if (NPCInstance.getHp() > 0) {
-                            NPCInstance.setHp(NPCInstance.getHp() - gm.getPlayer().dp);
-                            System.out.println(NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp());
-                            //second if condition to only hit back if NPC still living
-                            if (NPCInstance.getHp() > 0) {
-                                int damage = NPCInstance.getDp();
+
+                            if (chance > 0.2){
+                                NPCInstance.setHp(NPCInstance.getHp() - playerDamage);
                                 gm.getPlayer().setHp(gm.getPlayer().getHp() - damage);
-                                gm.getUi().getMessageText().setText(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp() + "\n" + "You are attacking: " + NPCInstance.getName() + "\n" + NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp() + "\n" + NPCInstance.getName() + " was able to attack you back. Your HP is now " + gm.getPlayer().getHp());
-                                System.out.println(NPCInstance.getName() + " was able to attack you back. Your HP is now " + gm.getPlayer().getHp());
+                                gm.getUi().getMessageText().setText("You dealt: " + playerDamage + "\n");
+                                gm.getUi().getMessageText().append(NPCInstance.getName() + " dealt " + damage + "\n");
+                                gm.getUi().getMessageText().append(NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp());
+
+                            }
+                            if(chance < 0.2){
+                                System.out.println(luck());
+                                int luckDamage = ((int)(Math.random() + 1) * 4) + playerDamage;
+                                NPCInstance.setHp(NPCInstance.getHp() - luckDamage);
+                                gm.getPlayer().setHp(gm.getPlayer().getHp() - (damage + ((int)(Math.random() + 1) * 4)));
+                                gm.getUi().getMessageText().setText("You crit and dealt: " + luckDamage + "\n");
+                                gm.getUi().getMessageText().append(NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp());
                             }
                         }
                         if (gm.getPlayer().getHp() <= 0) {
-                            //gameOver();
-                            System.out.println("Game over...");
                             gm.getUi().getMessageText().setText("Game over...");
+                            gm.getUi().gameStateWindow("img/gameover.png", "img/end.png", "What do you want to do?", "You got wasted!");
                             isFighting = false;
                             break;
                         }
                         if (NPCInstance.getHp() <= 0 && !NPCInstance.getItems().isEmpty()) {
-                            System.out.println("Wasted " + NPCInstance.getName() + "!");
                             gm.getUi().getMessageText().setText("Wasted " + NPCInstance.getName() + "!");
                             gm.getUi().deleteObject(NPCInstance.getName());
 
@@ -172,14 +198,17 @@ public class Player {
                                 locationStuff.getItems().add(item);
                                 gm.getUi().addObject(item);
                             }
-
-                            gm.getUi().getMessageText().setText(NPCInstance.getName() + " dropped " + NPCInstance.getItems() + "!");
+                            gm.getUi().getMessageText().setText(NPCInstance.getName() + " dropped " + NPCInstance.getItems() + "!\n");
+                            gm.getUi().getMessageText().append("Gold dropped: " + goldAquired + "\n");
+                            setGold(goldAquired + gold);
                             isFighting = false;
                             break;
                         }
                         if (NPCInstance.getHp() <= 0) {
+                            gm.getUi().getMessageText().append("Gold dropped: " + goldAquired + "\n");
                             gm.getUi().getMessageText().setText("Wasted " + NPCInstance.getName() + "!");
                             gm.getUi().deleteObject(NPCInstance.getName());
+                            setGold(goldAquired + gold);
                             isFighting = false;
                             break;
                         }
@@ -188,11 +217,6 @@ public class Player {
                         System.out.println("running");
                         gm.getUi().getMessageText().setText("You ran away from the fight with " + NPCInstance.getName() + "!");
                         isFighting = false;
-                        break;
-                    case "bag":
-                        System.out.println("get items");
-                        //add a way to use during fight
-                        gm.getUi().getMessageText().setText("You check you bag!\n...Found nothing to use");
                         break;
                     default:
                         System.out.println("nothing happened");

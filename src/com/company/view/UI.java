@@ -31,7 +31,7 @@ public class UI {
     private JButton invButton, equipButton, settingButton, helpButton;
     private JPanel invPanel, settingPanel, statusPanel,textPanel, hpPanel, currentEquipPanel;
     private JButton invBag, equipWeapon, settingIcon, helpIcon;
-    private JTextArea area, hp, currentWeapon, npcName;
+    private JTextArea area, hp, currentWeapon, npcName, gold;
     private JToggleButton musicToggle;
     private JComboBox musicStatus, soundFXStatus;
     private JLabel musicLabel,soundFxLabel;
@@ -177,7 +177,7 @@ public class UI {
         getTextPanel().setOpaque(false);
 
         setHpPanel(new JPanel());
-        getHpPanel().setBounds((int)(.48*windowWidth), (int) (.03*windowHeight), (int) (.06*windowWidth), (int) (.05*windowHeight));
+        getHpPanel().setBounds((int)(.48*windowWidth), (int) (.00*windowHeight), (int) (.06*windowWidth), (int) (.10*windowHeight));
         getHpPanel().setBackground(Color.BLUE);
         getHpPanel().setLayout(null);
         getHpPanel().setOpaque(false);
@@ -194,6 +194,16 @@ public class UI {
         getStatusPanel().setLayout(null);
         getStatusPanel().setOpaque(false);
 
+        setGold(new JTextArea());
+        getGold().setBounds((int)(0*windowWidth), (int) (.05*windowHeight), (int) (.63*windowWidth), (int) (.05*windowHeight));
+        getGold().setEditable(false);
+        getGold().setLineWrap(true);
+        getGold().setWrapStyleWord(true);
+        getGold().setOpaque(false);
+        getGold().setForeground(Color.black);
+        getGold().setFont(getOldRetro().deriveFont(Font.ITALIC, 12));
+        getHpPanel().add(getGold());
+
         setArea(new JTextArea());
         getArea().setBounds((int)(0*windowWidth), (int) (.02*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
         getArea().setEditable(false);
@@ -205,7 +215,7 @@ public class UI {
         getTextPanel().add(getArea());
 
         setHp(new JTextArea());
-        getHp().setBounds((int)(0*windowWidth), (int) (.02*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
+        getHp().setBounds((int)(0*windowWidth), (int) (.01*windowHeight), (int) (.62*windowWidth), (int) (.05*windowHeight));
         getHp().setEditable(false);
         getHp().setLineWrap(true);
         getHp().setWrapStyleWord(true);
@@ -1201,5 +1211,13 @@ public class UI {
 
     public void setInventoryList(JList<String> inventoryList) {
         this.inventoryList = inventoryList;
+    }
+
+    public JTextArea getGold() {
+        return gold;
+    }
+
+    public void setGold(JTextArea gold) {
+        this.gold = gold;
     }
 }
