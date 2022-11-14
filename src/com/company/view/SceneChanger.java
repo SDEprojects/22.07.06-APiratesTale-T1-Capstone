@@ -1,10 +1,9 @@
 package com.company.view;
 
 import com.company.client.GameMain;
-import com.company.models.Locations;
+import com.company.models.Location;
 
 import javax.swing.*;
-import java.util.List;
 
 public class SceneChanger {
     GameMain gm;
@@ -15,44 +14,45 @@ public class SceneChanger {
 
     public void screenPicker(String direction){
 
-            Locations currentLocation = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null);
+            Location currentLocation = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null);
             String nextRoom = currentLocation.getDirections().get(direction);
+            Location locationNextRoom = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(nextRoom)).findFirst().orElse(null);
+        //try to move to a valid room, if doesn't work catch error and inform player that the move is invalid
         try {
             if (!nextRoom.isEmpty()){
                 gm.getPlayer().setCurrentRoom(nextRoom);
                 int roomSelect = gm.getUi().findPanelIndex(nextRoom);
                 showScreen(roomSelect);
+                gm.getUi().getMessageText().setText("You ventured to the "+ direction +"! To the "+ nextRoom + ", "+locationNextRoom.getDescription());
+                        gm.getUi().getNpcName().setText("");
             }
         } catch (Exception e) {
-            System.out.println("Room not found");
+            gm.getUi().getMessageText().setText("Location not available to move to!");
+        }
+        try {
+            //if 'room' has a lock on it does player have key? If not tell player the requirement
+            if (currentLocation.getDirections().get("lock").equals(nextRoom)){
+                if (!gm.getPlayer().getInventory().contains(currentLocation.getDirections().get("key"))){
+                    gm.getUi().getMessageText().setText("Can't go that way, "+ currentLocation.getDirections().get("keyError"));
+                    int roomSelect = gm.getUi().findPanelIndex(currentLocation.getName());
+                    gm.getPlayer().setCurrentRoom(currentLocation.getName());
+                    showScreen(roomSelect);
+                }
+            }
+        } catch (Exception ignored) {
         }
 
-
-        //gm.getUi().getBgPanel().stream().filter(name -> name.getName().equals(nextRoom)).findFirst().orElse(null);
-
-
     }
-
-//    public static int findIndex(List<JPanel> panel, String name)
-//    {
-//        // find length of array
-//        int len = panel.size();
-//        int i = 0;
-//
-//        // traverse in the array
-//        while (i < len) {
-//
-//            // if the i-th element is t
-//            // then return the index
-//            if (panel.get(i).getName().equals(name)) {
-//                return i;
-//            }
-//            else {
-//                i = i + 1;
-//            }
-//        }
-//        return -1;
-//    }
+    public void boatScreenPicker(String destination){
+        //a room is passed from player sail method, this does not validate anything and just 'sails' player to the dock of choice
+        String nextRoom = destination;
+        Location locationNextRoom = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(nextRoom)).findFirst().orElse(null);
+            gm.getPlayer().setCurrentRoom(nextRoom);
+            int roomSelect = gm.getUi().findPanelIndex(nextRoom);
+            showScreen(roomSelect);
+        gm.getUi().getMessageText().setText("The boat docks at "+ nextRoom +", "+locationNextRoom.getDescription());
+        gm.getUi().getNpcName().setText("");
+}
 
     public void showScreen(int screen) {
         for (JPanel panel:gm.getUi().getBgPanel()

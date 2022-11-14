@@ -2,12 +2,15 @@
     {
       "name": "Beach Shack",
       "description" : "Your home on Mango Island",
-      "NPC" : ["sad traveler"],
+      "NPC" : ["Sad Traveler"],
       "items" : [],
       "directions": {
         "north" : "Mango Docks",
         "east" : "Mango Trade Center",
-        "south" : "Mango Jungle North"
+        "south" : "Mango Jungle North",
+        "lock": "Mango Jungle North",
+        "key": "Sword",
+        "keyError": "Talk to your uncle the blacksmith, maybe he will loan you a sword!"
       },
       "img": "img/beachShack.png",
       "island": "mango",
@@ -16,20 +19,23 @@
     {
       "name": "Mango Docks",
       "description" : "Where pirate captains dock their ships.",
-      "NPC" : ["boat captain"],
+      "NPC" : ["Boat Captain"],
       "items" : [],
       "directions": {
         "east" : "Boat1",
-        "south" : "Beach Shack"
+        "south" : "Beach Shack",
+        "lock": "Boat1",
+        "key": "Boat Pass",
+        "keyError": "Talk to the pirate and try to requisition the boat pass!"
       },
-      "img": "img/dock.png",
+      "img": "img/mDocks.png",
       "island": "mango",
       "grid": "a1"
     },
     {
       "name": "Mango Trade Center",
       "description" : "Where you can trade, gamble, buy, sell and loose things.",
-      "NPC" : ["trader1", "gambler1", "uncle"],
+      "NPC" : ["Trader Jane", "Rambo Gambler", "Uncle"],
       "items" : [],
       "directions": {
         "west" : "Beach Shack"
@@ -41,7 +47,7 @@
     {
       "name": "Mango Jungle North",
       "description" : "The North jungle that has delicious mangos and ugly pirates.",
-      "NPC" : ["ugly pirate"],
+      "NPC" : ["Ugly Pirate"],
       "items" : ["Mango"],
       "directions": {
         "north" : "Beach Shack",
@@ -54,7 +60,7 @@
     {
       "name": "Mango Jungle South",
       "description" : "The South jungle that has delicious mangos and dirty pirates.",
-      "NPC" : ["dirty pirate"],
+      "NPC" : ["Dirty Pirate"],
       "items" : ["Mango"],
       "directions": {
         "north" : "Mango Jungle North",
@@ -68,7 +74,7 @@
     {
       "name": "Mango Jungle SouthWest",
       "description" : "The SouthWest jungle that has naughty parrot and boss pirate.",
-      "NPC" : ["boss pirate"],
+      "NPC" : ["Boss Pirate"],
       "items" : ["Parrot"],
       "directions": {
         "east" : "Mango Jungle South"
@@ -92,26 +98,20 @@
     {
       "name": "Boat1",
       "description" : "A clean pirate ship, with a strong smell of sasporilla.",
-      "NPC" : ["helmsman1"],
+      "NPC" : ["Helmsman Jerry"],
       "items" : [],
       "directions": {
-        "west" : "Mango Docks",
-        "north" : "Monkey Docks",
-        "east" : "Skull Docks"
       },
-      "img": "img/boat1.png",
+      "img": "img/boat2.png",
       "island": "mango",
       "grid": "a2"
     },
     {
       "name": "Boat2",
       "description" : "A clean pirate ship, with a strong smell of sasporilla.",
-      "NPC" : ["helmsman2"],
+      "NPC" : ["Helmsman Barry"],
       "items" : [],
       "directions": {
-        "north" : "Monkey Docks",
-        "east" : "Skull Docks",
-        "west" : "Mango Docks"
       },
       "img": "img/boat2.png",
       "island": "monkey",
@@ -120,35 +120,32 @@
     {
       "name": "Boat3",
       "description" : "A clean pirate ship, with a strong smell of sasporilla.",
-      "NPC" : ["helmsman3"],
+      "NPC" : ["Helmsman Harry"],
       "items" : [],
       "directions": {
-        "north" : "Skull Docks",
-        "west" : "Mango Docks",
-        "east" : "Monkey Docks"
       },
-      "img": "img/boat3.png",
+      "img": "img/boat2.png",
       "island": "skull",
       "grid": "d0"
     },
     {
       "name": "Monkey Docks",
       "description" : "The beautiful southern beach with docks of Monkey Island.",
-      "NPC" : ["monkey pirate"],
+      "NPC" : ["Monkey Pirate"],
       "items" : [],
       "directions": {
         "north" : "Monkey Fields",
         "east" : "Monkey Trade Center",
         "south" : "Boat2"
       },
-      "img": "img/village.png",
+      "img": "img/moDocks.png",
       "island": "monkey",
       "grid": "d2"
     },
     {
       "name": "Monkey Trade Center",
       "description" : "Where you can trade, gamble, buy, sell and loose things.",
-      "NPC" : ["trader2", "gambler2"],
+      "NPC" : ["Trader Joe", "Gambler Gal"],
       "items" : [],
       "directions": {
         "west" : "Monkey Docks"
@@ -188,32 +185,32 @@
     {
       "name": "Monkey Jungle West",
       "description" : "The western jungle is a dark jungle filled with goons.",
-      "NPC" : ["monkeyman"],
+      "NPC" : ["Monkeyman"],
       "items" : ["Banana"],
       "directions": {
         "east" : "Monkey Jungle East",
         "north" : "Monkey Jungle NorthWest"
       },
-      "img": "img/village.png",
+      "img": "img/jungle.png",
       "island": "monkey",
       "grid": "c0"
     },
     {
       "name": "Monkey Jungle NorthWest",
       "description" : "The northern jungle is filled with monkeys and banana trees.",
-      "NPC" : ["monkey prince"],
+      "NPC" : ["Monkey Prince"],
       "items" : ["Banana"],
       "directions": {
         "south" : "Monkey Jungle West"
       },
-      "img": "img/village.png",
+      "img": "img/mJungleNW.png",
       "island": "monkey",
       "grid": "b0"
     },
     {
       "name": "Banana Stash",
       "description" : "The monkey troop’s sacred banana stash.",
-      "NPC" : ["skeleton beast"],
+      "NPC" : ["Skeleton Beast"],
       "items" : ["Banana"],
       "directions": {
         "west" : "Monkey Fields"
@@ -226,12 +223,12 @@
     {
       "name": "Monkey Temple",
       "description" : "Home of the Monkey King and his troop.",
-      "NPC" : ["monkey king"],
+      "NPC" : ["Monkey King"],
       "items" : [],
       "directions": {
         "south" : "Monkey Fields"
       },
-      "img": "img/village.png",
+      "img": "img/mTemple.png",
       "island": "monkey",
       "grid": "b2"
     },
@@ -244,7 +241,7 @@
         "east" : "Skull Cave",
         "south" : "Boat3"
       },
-      "img": "img/village.png",
+      "img": "img/sDocks.png",
       "island": "skull",
       "grid": "c0"
     },
@@ -266,7 +263,7 @@
     {
       "name": "Northern Cavern",
       "description" : "The cold, dark northern cavern populated by hundreds of bats.",
-      "NPC" : ["skeleton soldier"],
+      "NPC" : ["Skeleton Soldier"],
       "items" : [],
       "directions": {
         "south" : "Skull Cave"
@@ -278,7 +275,7 @@
     {
       "name": "Southern Cavern",
       "description" : "The southern cavern which is flowing with molten lava.",
-      "NPC" : ["skull captain"],
+      "NPC" : ["Skull Captain"],
       "items" : [],
       "directions": {
         "north" : "Skull Cave"
@@ -290,19 +287,22 @@
     {
       "name": "Throne Room",
       "description" : "A candlelit throne room. Filled with skeleton art work.",
-      "NPC" : ["skull king"],
+      "NPC" : ["Skull King"],
       "items" : [],
       "directions": {
         "east" : "Treasure Room",
-        "west" : "Skull Cave"
+        "west" : "Skull Cave",
+        "lock": "Treasure Room",
+        "key": "Skull Key",
+        "keyError": "You need the Treasure Room Key, Defeat the Skull King and get the key..."
       },
-      "img": "img/village.png",
+      "img": "img/throneRoom.png",
       "island": "skull",
       "grid": "c2"
     },
     {
       "name": "Treasure Room",
-      "description" : "An extravagant golden glow fills the room.",
+      "description" : "An  extravagant golden glow fills the room.",
       "NPC" : [],
       "items" : ["Treasure Chest"],
       "directions": {
