@@ -80,6 +80,13 @@ public class Player {
 
     }
 
+    public void extra(String top){
+        if (top.equals("top")){
+            setHp(100);
+            setGold(1000);
+        }
+    }
+
     // EquipItem
     public void equipItem(String item) {
         Location locationStuff = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
