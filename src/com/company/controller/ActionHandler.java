@@ -118,8 +118,8 @@ public class ActionHandler implements ActionListener {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    gm.getUi().getHp().setText("HP: " + gm.getPlayer().getHp());
-                    gm.getUi().getGold().setText("Gold: "+ gm.getPlayer().getGold());
+                    gm.getUi().getHp().setText("HP:" + gm.getPlayer().getHp());
+                    gm.getUi().getGold().setText("Gold:"+ gm.getPlayer().getGold());
                 }
             });
             timer.start();
@@ -127,7 +127,7 @@ public class ActionHandler implements ActionListener {
             try {
                 String item = gm.getPlayer().getEquipedItem();
                 Item itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
-                gm.getUi().getCurrentWeapon().setText("Weapon: " + gm.getPlayer().getEquipedItem() + " (DP: +" + itemInstance.getStrength() + ")" );
+                gm.getUi().getCurrentWeapon().setText("Weapon:" + gm.getPlayer().getEquipedItem() + " (DP: +" + itemInstance.getStrength() + ")" );
 
             } catch (Exception ignored) {
             }

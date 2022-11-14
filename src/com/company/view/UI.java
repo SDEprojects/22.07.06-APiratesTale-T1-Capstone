@@ -30,10 +30,9 @@ public class UI {
     private JPanel invPanel, settingPanel, statusPanel, textPanel, hpPanel, goldPanel, currentEquipPanel;
     private JButton invBag, equipWeapon, settingIcon, helpIcon;
     private JTextArea area, hp, currentWeapon, npcName, gold;
-    private JToggleButton musicToggle;
     private JComboBox musicStatus, soundFXStatus;
     private JLabel musicLabel, soundFxLabel;
-    private JButton volumeUp, volumeDown;
+    private JButton volumeUp, volumeDown, topLeft;
     private ArrayList<JPanel> bgPanel = new ArrayList<>();
     private ArrayList<JLabel> bgLabel = new ArrayList<>();
     private JPanel playerBag = new JPanel();
@@ -252,7 +251,7 @@ public class UI {
         getTextPanel().setOpaque(false);
 
         setHpPanel(new JPanel());
-        getHpPanel().setBounds((int) (.48 * windowWidth), (int) (.03 * windowHeight), (int) (.06 * windowWidth), (int) (.05 * windowHeight));
+        getHpPanel().setBounds((int) (.48 * windowWidth), (int) (.03 * windowHeight), (int) (.08 * windowWidth), (int) (.05 * windowHeight));
         getHpPanel().setBackground(Color.BLUE);
         getHpPanel().setLayout(null);
         getHpPanel().setOpaque(false);
@@ -264,7 +263,7 @@ public class UI {
         getGoldPanel().setOpaque(false);
 
         setCurrentEquipPanel(new JPanel());
-        getCurrentEquipPanel().setBounds((int) (.54 * windowWidth), (int) (.03 * windowHeight), (int) (.28 * windowWidth), (int) (.05 * windowHeight));
+        getCurrentEquipPanel().setBounds((int) (.55 * windowWidth), (int) (.03 * windowHeight), (int) (.28 * windowWidth), (int) (.05 * windowHeight));
         getCurrentEquipPanel().setBackground(Color.BLUE);
         getCurrentEquipPanel().setLayout(null);
         getCurrentEquipPanel().setOpaque(false);
@@ -827,6 +826,16 @@ public class UI {
     }
 
     public void createStartButton(int x, int y, int width, int height, String command, String target) {
+        setTopLeft(new JButton());
+        getTopLeft().setOpaque(false);
+        getTopLeft().setBorderPainted(false);
+        topLeft.setBounds(0, 0, 20, 20);
+        topLeft.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gm.getPlayer().extra("top");
+            }
+        });
         JButton startButton = new JButton("Press Start");
         startButton.setForeground(Color.black);
         startButton.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
@@ -836,6 +845,7 @@ public class UI {
         startButton.addActionListener(gm.getActionHandler());
         startButton.setActionCommand(command + " " + target);
         bgPanel.get(0).add(startButton);
+        bgPanel.get(0).add(topLeft);
 
     }
 
@@ -1176,14 +1186,6 @@ public class UI {
         this.selectedItem = selectedItem;
     }
 
-    public JToggleButton getMusicToggle() {
-        return musicToggle;
-    }
-
-    public void setMusicToggle(JToggleButton musicToggle) {
-        this.musicToggle = musicToggle;
-    }
-
     public String getMusicFile() {
         return musicFile;
     }
@@ -1359,5 +1361,13 @@ public class UI {
 
     public void setGoldPanel(JPanel goldPanel) {
         this.goldPanel = goldPanel;
+    }
+
+    public JButton getTopLeft() {
+        return topLeft;
+    }
+
+    public void setTopLeft(JButton topLeft) {
+        this.topLeft = topLeft;
     }
 }
