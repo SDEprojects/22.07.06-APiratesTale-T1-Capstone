@@ -48,6 +48,7 @@ public class UI {
 
     public UI(GameMain gm) {
 
+        //this is the build for the entire game and ui
         this.gm = gm;
         fontCreate();
         setWindowHeight((int) (getWindowHeight()));
@@ -62,7 +63,7 @@ public class UI {
         playerMap.setVisible(false);
         gambleGame = eventPanel(100, 100, 1000, 300, "gambleGame");
         gambleGame.setVisible(false);
-        storePanel = eventPanel(100, 100, 1000, 300, "storePanel");
+        storePanel = eventPanel(100, 100, 300, 300, "storePanel");
         storePanel.setVisible(false);
         settings = eventPanel(700, 100, 400, 200, "settings");
         settings.setVisible(false);
@@ -74,6 +75,7 @@ public class UI {
 
     public void createMap(String island, String gridSpace) {
         String fileName = "";
+        //switches map based on player's island
         switch (island) {
             case "mango":
                 fileName = "img/map1.png";
@@ -94,12 +96,17 @@ public class UI {
 
         List<String> moveLog = new ArrayList<>();
         moveLog.add(gridSpace);
+        //for each character of the gridSpace separate into yCoordinate & xAxis
+        // (example A3 turns into a list and at [0] is 'A', [1] is '3')
         for (String s : moveLog
         ) {
             yCoordinate = s.substring(0, 1);
+            // xAxis starts with 50 (middle spot of 100 pixels)
+            // then List[1] is multiplied by 100, these numbers added together create marks between each grid on map
             xAxis = xAxis + (Integer.parseInt(s.substring(1, 2)) * 100);
         }
 
+        //yCoordinate is converted to corresponding yAxis 'in between' each 100x100 grid space
         switch (yCoordinate) {
             case "a":
                 yAxis = 50;
@@ -130,6 +137,8 @@ public class UI {
         exitButton.setActionCommand("close playerMap");
         playerMap.add(exitButton);
 
+        //playerMarker takes the xAxis and yAxis from above and sets the marker of where the player is located
+        //- 37 accounts for the "img/mapMarker.png" graphic size
         JLabel playerMarker = new JLabel();
         playerMarker.setBounds(xAxis - 37, yAxis - 37, 75, 75);
         playerMap.add(playerMarker);
@@ -148,6 +157,7 @@ public class UI {
 
 
     private void fontCreate() {
+        //used for most game elements made by ui
         try {
             FileGetter fileGetter = new FileGetter();
             InputStream is = new BufferedInputStream(fileGetter.fileGetter("Press_Start_2P/PressStart2P-Regular.ttf"));
@@ -160,6 +170,7 @@ public class UI {
     }
 
     public void gameStateWindow(String bgImg, String iconImg, String message, String title) {
+        //if the game is in a finished state
         window.setContentPane(new JLabel(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(bgImg)))));
         String[] options = {"Start", "Exit"};
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(iconImg)));
@@ -176,6 +187,7 @@ public class UI {
     }
 
     public void createMainField() {
+        //this is the whole game window, foundational part
         window = new JFrame("A Pirates Tale");
         window.setSize(windowWidth, windowHeight);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -186,6 +198,7 @@ public class UI {
     }
 
     public void createMessageViewer() {
+        //this contains all the ui buttons and text boxes you can interact with
         setDirectionPanel(new JPanel());
         getDirectionPanel().setBounds((int) (.76 * windowWidth), (int) (.68 * windowHeight), (int) (.18 * windowWidth), (int) (.25 * windowHeight));
         getDirectionPanel().setBackground(Color.BLUE);
@@ -373,6 +386,7 @@ public class UI {
 
     public void createBackground(int bgNum, String bgFileName, String target) {
 
+        //this creates a background panel for each location in the game and sets the setting picture
         JPanel panel = new JPanel();
         setDirectionPanel(new JPanel());
         panel.setName(target);
@@ -394,6 +408,7 @@ public class UI {
 
     public void createSplashScreen(String bgFileName) {
 
+        //this panel is only used to start or restart the game, the background is different than other game panels to cover the window
         JPanel splash = new JPanel();
         splash.setBounds(0, 0, 1280, 720);
         splash.setBackground(Color.BLUE);
@@ -411,9 +426,9 @@ public class UI {
     }
 
     public void helpOption() {
+        //this is the text area to hold help information
         helpText = new JTextArea();
         helpText.setBounds(30, 20, 530, 360);
-        //helpText.setBackground(Color.BLUE);
         helpText.setForeground(Color.black);
         helpText.setEditable(false);
         helpText.setLineWrap(true);
@@ -423,6 +438,7 @@ public class UI {
     }
 
     public String textHelp() {
+        //the help text to go in the help area
         String result = "   \n\n\n**  Left click to interact with object on the screen.\n\n" +
                 "**   Gear icon to change music and sound effects.\n\n" +
                 "**   Bag icon for inventory.\n\n" +
@@ -432,6 +448,7 @@ public class UI {
 
 
     public void settingMenuOption() {
+        //holds setting options for musix and sfx
         setMusicPanel(new JPanel());
         getMusicPanel().setBounds(25, 5, 340, 180);
         getMusicPanel().setBackground(Color.white);
@@ -498,6 +515,7 @@ public class UI {
     }
 
     public JPanel eventPanel(int x, int y, int width, int height, String target) {
+        //this was made to be used as a recyclable function to create game panels
         JPanel panelBuilder = new JPanel();
         panelBuilder.setBounds(x, y, width, height);
         panelBuilder.setBackground(Color.white);
@@ -522,14 +540,14 @@ public class UI {
 
 
     public void inventoryListBuilder() {
-
+        //using a JList to show players inventory
         inventoryList.setModel(inventory);
         inventoryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         inventoryList.setLayoutOrientation(JList.VERTICAL);
         inventoryList.setVisibleRowCount(-1);
-        //inventoryList.setBounds(50, 150, 250, 80);
         inventoryList.setOpaque(true);
         inventoryList.setFont(oldRetro.deriveFont(Font.ITALIC, 10));
+        //listScroller holds the JList and is bar scroll and wheel scroll enabled
         JScrollPane listScroller = new JScrollPane(inventoryList);
         listScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         listScroller.setVisible(true);
@@ -537,13 +555,11 @@ public class UI {
         listScroller.setSize(250,80);
         listScroller.setLocation(50,50);
 
-
-
+        //interaction options with your inventory
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem menuItem[] = new JMenuItem[4];
         menuItem[0] = new JMenuItem("drop");
         menuItem[0].addActionListener(gm.getActionHandler());
-//        menuItem[0].setActionCommand("drop " + inventoryList.getSelectedValue());
         menuItem[0].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[0]);
 
@@ -551,7 +567,6 @@ public class UI {
         menuItem[1].addActionListener(gm.getActionHandler());
         menuItem[1].setName(inventoryList.getSelectedValue());
         popupMenu.add(menuItem[1]);
-
 
         menuItem[2] = new JMenuItem("equip");
         menuItem[2].addActionListener(gm.getActionHandler());
@@ -612,7 +627,6 @@ public class UI {
 
         inventoryList.addListSelectionListener(listSelect);
 
-        //playerBag.add(inventoryList);
         playerBag.add(listScroller);
 
         JLabel title = new JLabel("Player's Bag");
@@ -621,21 +635,20 @@ public class UI {
         title.setFont(getOldRetro().deriveFont(Font.ITALIC, 15));
         playerBag.add(title);
 
-
     }
-
 
     private String selectItem() {
         return "drop " + getSelectedItem();
     }
 
-
     public void eventPanelClose(String name) {
+        //closes named panels with X button
         switch (name) {
             case "playerBag":
                 playerBag.setVisible(false);
                 break;
             case "playerMap":
+                //remove all used to update map everytime it is pulled up
                 playerMap.setVisible(false);
                 playerMap.removeAll();
                 break;
@@ -654,12 +667,15 @@ public class UI {
     }
 
     public void createObject(int bgNum, int objX, int objY, int objWidth, int ObjHeight, String objFile, String type, String target) {
+
+        //method used to create NPC and item objects on top of the background panel for each location
         String choice1 = null;
         String choice2 = null;
         String choice3 = null;
         String choice4 = null;
         int choices = 0;
 
+        //uses item or npc type to create interaction pop up windows
         switch (type) {
             case "questItem":
                 choice1 = "look";
@@ -751,25 +767,16 @@ public class UI {
         }
 
         if (type.equals("boat")){
-//            menuItem[1] = new JMenuItem(choice2);
-//            menuItem[1].addActionListener(gm.getActionHandler());
+            //if boat type reset the commands and names to new options
             menuItem[1].setActionCommand(choice2);
             menuItem[1].setName(target);
-            //popupMenu.add(menuItem[1]);
 
-//            menuItem[2] = new JMenuItem(choice3);
-//            menuItem[2].addActionListener(gm.getActionHandler());
             menuItem[2].setActionCommand(choice3);
             menuItem[2].setName(target);
-            //popupMenu.add(menuItem[2]);
 
-//            menuItem[3] = new JMenuItem(choice4);
-//            menuItem[3].addActionListener(gm.getActionHandler());
             menuItem[3].setActionCommand(choice4);
             menuItem[3].setName(target);
-            //popupMenu.add(menuItem[3]);
         }
-
 
         JLabel objectLabel = new JLabel();
         objectLabel.setBounds(objX, objY, objWidth, ObjHeight);
@@ -810,21 +817,6 @@ public class UI {
         ;
     }
 
-
-    public void createArrowButton(int bgNum, int x, int y, int width, int height, String arrowFileName, String command, String target) {
-        ImageIcon arrowIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource(arrowFileName)));
-        JButton arrowButton = new JButton();
-        arrowButton.setBounds(x, y, width, height);
-        arrowButton.setBackground(null);
-        arrowButton.setContentAreaFilled(false);
-        arrowButton.setFocusPainted(false);
-        arrowButton.setBorderPainted(false);
-        arrowButton.setIcon(arrowIcon);
-        arrowButton.addActionListener(gm.getActionHandler());
-        arrowButton.setActionCommand(command + " " + target);
-        bgPanel.get(bgNum).add(arrowButton);
-    }
-
     public void createStartButton(int x, int y, int width, int height, String command, String target) {
         setTopLeft(new JButton());
         getTopLeft().setOpaque(false);
@@ -846,16 +838,17 @@ public class UI {
         startButton.setActionCommand(command + " " + target);
         bgPanel.get(0).add(startButton);
         bgPanel.get(0).add(topLeft);
-
     }
 
     public void deleteObject(String name) {
+        //delete object used for picking up or using items... or wasting an npc
         int panel = findPanelIndex(gm.getPlayer().getCurrentRoom());
         bgPanel.get(panel).remove(findLabelIndex(panel, name));
         gm.getSc().showScreen(panel);
     }
 
     public void addObject(String name) {
+        //add objects player or npc drops during the game
         int panel = findPanelIndex(gm.getPlayer().getCurrentRoom());
         Item itemBuild = gm.getGame().getItems().stream().filter(itemSeek -> itemSeek.getName().equals(name)).findFirst().orElse(null);
         gm.getUi().createObject(panel, itemBuild.getXaxis(), itemBuild.getYaxis(), itemBuild.getWidth(), itemBuild.getHeight(),
@@ -865,14 +858,14 @@ public class UI {
     }
 
     public int findLabelIndex(int panel, String name) {
-        // find length of array
+        //find label is used to search and find the index of a label object on a screen
         int len = bgPanel.get(panel).getComponentCount();
         int i = 0;
 
-        // traverse in the array
+        // traverse the array
         while (i < len) {
 
-            // if the i-th element is t
+            // if the i-th element is the target
             // then return the index
             if (bgPanel.get(panel).getComponent(i).getName().equals(name)) {
                 return i;
@@ -884,15 +877,14 @@ public class UI {
     }
 
     public int findPanelIndex(String name) {
-        // find length of array
-
+        // used to traverse all of the panels made and return index number
         int len = bgPanel.size();
         int i = 0;
 
-        // traverse in the array
+        // traverse the array
         while (i < len) {
 
-            // if the i-th element is t
+            // if the i-th element is the target
             // then return the index
             if (bgPanel.get(i).getName().equals(name)) {
                 return i;
@@ -904,6 +896,7 @@ public class UI {
     }
 
     public void generate() {
+        //used to generate all locations
         int i = 1;
         for (Location location : gm.getGame().getLocations()
         ) {
@@ -916,6 +909,7 @@ public class UI {
     public void generateScenes(int sceneNum, String img, List<String> items, List<String> npcs, Map<String, String> directions, String location) {
         gm.getUi().createBackground(sceneNum, img, location);
 
+        // automatically builds objects and npcs at each location
         for (String item : items
         ) {
             Item itemBuild = gm.getGame().getItems().stream().filter(itemSeek -> itemSeek.getName().equals(item)).findFirst().orElse(null);
@@ -927,9 +921,6 @@ public class UI {
         ) {
             Character characterBuild = gm.getGame().getCharacters().stream().filter(characterSeek -> characterSeek.getName().equals(npc)).findFirst().orElse(null);
             String type = characterBuild.getType();
-//            if (characterBuild.isFriendly()){
-//                type = "Friendly";
-//            }
             gm.getUi().createObject(sceneNum, characterBuild.getXaxis(), characterBuild.getYaxis(), characterBuild.getWidth(), characterBuild.getHeight(),
                     characterBuild.getImg(), type, characterBuild.getName());
         }

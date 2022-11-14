@@ -7,7 +7,7 @@ import com.company.view.UI;
 
 public class GameMain {
 
-
+//all privates are used to get instances of each class, this maintains class persistence through the game
     private ActionHandler actionHandler = new ActionHandler(this);
     private final UI ui = new UI(this);
     private SceneChanger sc = new SceneChanger(this);
@@ -21,6 +21,7 @@ public class GameMain {
         new GameMain();
     }
 
+    //when the GameMain is called it builds world, UI, starts music and shows the game play screen
     public GameMain(){
         getGame().buildWorld();
         getUi().generate();
@@ -28,6 +29,7 @@ public class GameMain {
         sc.showScreen(0);
     }
 
+    //getters and setters to use throughout the various classes
     public UI getUi() {
         return ui;
     }

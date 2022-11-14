@@ -8,7 +8,7 @@
         "sfx": "music/welcome.wav"
         },
       "items": ["Map"],
-      "hp": "10",
+      "hp": "20",
       "isFriendly": true,
       "dp" : "1",
       "questReq" : [],
@@ -32,7 +32,7 @@
       "items": [
         "Cracker", "Boat Pass"
       ],
-      "hp": "10",
+      "hp": "30",
       "isFriendly": true,
       "dp" : "5",
       "questReq" : ["Parrot"],
@@ -52,7 +52,7 @@
         "sfx": "music/help_trader1.wav"
       },
       "items": [],
-      "hp": "10",
+      "hp": "30",
       "isFriendly": true,
       "dp" : "5",
       "questReq" : [],
@@ -74,9 +74,9 @@
       "items": [
         "Sword", "Red Key"
       ],
-      "hp": "10",
+      "hp": "50",
       "isFriendly": true,
-      "dp" : "5",
+      "dp" : "10",
       "questReq" : [],
       "reward" : ["Sword", "Red Key"],
       "img": "img/uncle.png",
@@ -94,7 +94,7 @@
         "sfx": "music/how can i help you.wav"
       },
       "items": [],
-      "hp": "10",
+      "hp": "30",
       "isFriendly": true,
       "dp" : "5",
       "questReq" : [],
@@ -113,7 +113,7 @@
         "sfx":""
       },
       "items": ["Mango"],
-      "hp": "10",
+      "hp": "15",
       "isFriendly": false,
       "dp" : "5",
       "questReq" : [],
@@ -132,7 +132,7 @@
         "sfx":""
       },
       "items": ["Mango"],
-      "hp": "10",
+      "hp": "15",
       "isFriendly": false,
       "dp" : "5",
       "questReq" : [],
@@ -151,7 +151,7 @@
         "sfx":""
       },
       "items": [],
-      "hp": "10",
+      "hp": "20",
       "isFriendly": false,
       "dp" : "5",
       "questReq" : [],
@@ -170,7 +170,7 @@
         "sfx":""
       },
       "items": [],
-      "hp": "10",
+      "hp": "300",
       "isFriendly": true,
       "dp" : "5",
       "questReq" : [],
@@ -189,7 +189,7 @@
         "sfx":""
       },
       "items": [],
-      "hp": "10",
+      "hp": "300",
       "isFriendly": true,
       "dp" : "5",
       "questReq" : [],
@@ -208,7 +208,7 @@
         "sfx":""
       },
       "items": [],
-      "hp": "10",
+      "hp": "300",
       "isFriendly": true,
       "dp" : "5",
       "questReq" : [],
@@ -227,9 +227,9 @@
         "sfx":"music/some animal noise.wav"
       },
       "items": [],
-      "hp": "10",
+      "hp": "20",
       "isFriendly": true,
-      "dp" : "1",
+      "dp" : "5",
       "questReq" : [],
       "reward" : [],
       "img": "img/monkey2.png",
@@ -247,7 +247,7 @@
         "sfx": "music/letstrade.wav"
       },
       "items": [],
-      "hp": "10",
+      "hp": "30",
       "isFriendly": true,
       "dp" : "5",
       "questReq" : [],
@@ -267,7 +267,7 @@
         "sfx": "music/trade_trader2.wav"
       },
       "items": [],
-      "hp": "10",
+      "hp": "30",
       "isFriendly": true,
       "dp" : "5",
       "questReq" : [],
@@ -286,7 +286,7 @@
         "sfx":"music/some animal noise.wav"
        },
       "items": [],
-      "hp": "10",
+      "hp": "20",
       "isFriendly": false,
       "dp" : "5",
       "questReq" : [],
@@ -308,7 +308,7 @@
         "sfx":"music/some animal noise.wav"
     },
       "items": ["Treasure Key", "Banana"],
-      "hp": "10",
+      "hp": "50",
       "isFriendly": true,
       "dp" : "10",
       "questReq" : ["Monkey Pin", "Beast Skull"],
@@ -329,9 +329,9 @@
         "sfx":"music/some animal noise.wav"
     },
       "items": ["Monkey Pin"],
-      "hp": "10",
+      "hp": "30",
       "isFriendly": true,
-      "dp" : "1",
+      "dp" : "5",
       "questReq" : [],
       "reward" : ["Monkey Pin"],
       "img": "img/monkeyprince.png",
@@ -348,9 +348,9 @@
         "sfx":""
       },
       "items": ["Skull Key"],
-      "hp": "13",
+      "hp": "30",
       "isFriendly": false,
-      "dp": "4",
+      "dp": "7",
       "questReq" : [],
       "reward" : ["Skull Key"],
       "img": "img/skullking.png",
@@ -367,9 +367,9 @@
         "sfx":""
       },
       "items": ["Beast Skull"],
-      "hp": "5",
+      "hp": "15",
       "isFriendly": false,
-      "dp": "2",
+      "dp": "5",
       "questReq" : [],
       "reward" : ["Beast Skull"],
       "img": "img/skullgoon.png",
@@ -386,9 +386,9 @@
         "sfx":""
       },
       "items": ["Mango"],
-      "hp": "5",
+      "hp": "15",
       "isFriendly": false,
-      "dp": "2",
+      "dp": "5",
       "questReq" : [],
       "reward" : ["Mango"],
       "img": "img/skullgoon.png",
@@ -405,9 +405,9 @@
         "sfx":""
       },
       "items": ["Banana"],
-      "hp": "5",
+      "hp": "20",
       "isFriendly": false,
-      "dp": "2",
+      "dp": "5",
       "questReq" : [],
       "reward" : ["Banana"],
       "img": "img/skullcaptain.png",

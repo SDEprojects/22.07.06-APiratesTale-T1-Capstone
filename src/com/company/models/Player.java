@@ -9,12 +9,10 @@ import javax.swing.*;
 
 public class Player {
     private String name = "wilson";
-    private int hp = 10;
-    private int dp = 1;
-    // make inventory/location items use list of item
+    private int hp = 20;
+    private int dp = 2;
     private List<String> inventory = new ArrayList<>();
     private ArrayList<String> locationItems;
-    // make locationNPCs use list of characters
     private ArrayList<String> locationNPC;
     private JsonTools tools = new JsonTools();
     private String currentRoom = "Beach Shack";
@@ -23,10 +21,8 @@ public class Player {
     private GameMain gm;
     private String equipedItem;
     private int gold = 50;
-
     private ArrayList<Map<String, Object>> locationData = tools.readJson("location.json");
     private ArrayList<Map<String, Object>> characterData = tools.readJson("character.json");
-    //read these 'ArrayList<Map<String, Object>>' into classes ^
     private FileGetter file = new FileGetter();
 
     public Player(GameMain gm) {
@@ -34,10 +30,12 @@ public class Player {
     }
 
 
-    public void grabItem(String item) { //grab needs overhauled this is a lot of hard coding
+    public void grabItem(String item) {
         Location locationStuff = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Item itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
+        //grab checks inventory for the item
         if (locationStuff.getItems().contains(item)) {
+            //checks for a key/lock on inventory (example: parrot)
             if (itemInstance.getKeyReq().equals("none")) {
                 getInventory().add(item);
                 gm.getUi().getInventory().addElement(item);
@@ -54,13 +52,14 @@ public class Player {
                     gm.getMusic().playMusic("music/polly.wav");
                 }
             } else {
+                //if you dont have the requirement to pick up it will tell you what you need
                 gm.getUi().getMessageText().setText(itemInstance.getKeyError());
             }
         }
     }
 
     public void sail(String island){
-
+        //sail shifts economy simulating ships coming and going to port and trading supplies
         gm.getShop().shiftEconomy();
 
         switch (island){
@@ -80,6 +79,7 @@ public class Player {
 
     }
 
+    //cheat code activates
     public void extra(String top){
         if (top.equals("top")){
             setHp(100);
@@ -100,14 +100,16 @@ public class Player {
         gm.getUi().getMessageText().setText("You are equipped with " + item + "!");
     }
 
-    public void useItem(String item) { //replace hard coding
+    public void useItem(String item) {
         Location locationStuff = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Item itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
+        //use became eat... if it isn't food don't eat it
         if (itemInstance.getType().equals("food")){
             if (locationStuff.getItems().contains(item)) {
                 setHp(getHp() + itemInstance.getValue());
                 locationStuff.getItems().remove(item);
                 gm.getUi().deleteObject(item);
+                inventory.remove(item);
                 gm.getUi().getMessageText().setText("You ate " + item + " and replenished your health by " + itemInstance.getValue());
             }
             else if (inventory.contains(item)){
@@ -124,10 +126,9 @@ public class Player {
 
     public void dropItem(String item) {
         Location locationStuff = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
-        //Items itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
         locationStuff.getItems().add(item);
-        //gm.getUi().deleteObject(item); remake the item?
         gm.getUi().getInventory().removeElement(item);
+        getInventory().remove(item);
         gm.getUi().getMessageText().setText("You dropped " + item + "!");
         gm.getUi().addObject(item);
     }
@@ -136,10 +137,12 @@ public class Player {
         Location locationStuff = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Character NPCInstance = gm.getGame().getCharacters().stream().filter(npc -> npc.getName().equals(name)).findFirst().orElse(null);
         if (locationStuff.getNPC().contains(name)) {
+            //when talkign first try to play sfx
             try {
                 gm.getMusic().playMusic(NPCInstance.getQuote().get("sfx"));
             } catch (Exception ignored) {
             }
+            //switch on different character types...
             switch (NPCInstance.getType()) {
                 case "quest":
                     handleQuest(name);
@@ -158,11 +161,13 @@ public class Player {
     public void look(String item) {
         Location locationStuff = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Item itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
+        //you look at something, it sends description to message text on ui
         if (locationStuff.getItems().contains(item)) {
             gm.getUi().getMessageText().setText("You look at " + item + ", " + itemInstance.getDescription());
         }
     }
 
+    //luck is used in combat
     public int luck(){
         return (int)(Math.random() + 1) * 4;
     }
@@ -171,11 +176,13 @@ public class Player {
         Location locationStuff = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(currentRoom)).findFirst().orElse(null);
         Character NPCInstance = gm.getGame().getCharacters().stream().filter(npc -> npc.getName().equals(name)).findFirst().orElse(null);
         Item eqpItem = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(gm.getPlayer().getEquipedItem())).findFirst().orElse(null);
+        //if the NPC is in the area fight with them
         if (locationStuff.getNPC().contains(name)) {
             boolean isFighting = true;
             String[] options = {"fight", "run"};
             int goldAquired;
             int playerDamageModifier = 0;
+            //if player is equipped modify stats
             try {
                 if (!gm.getPlayer().getEquipedItem().isEmpty()){
                     playerDamageModifier += eqpItem.getStrength();
@@ -185,6 +192,7 @@ public class Player {
             ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("img/fight.png")));
             int playerDamage = gm.getPlayer().dp + playerDamageModifier;
             int damage = NPCInstance.getDp();
+            //if player is enemy get the enemies quote
             if (NPCInstance.getType().equals("enemy")){
                 gm.getUi().getMessageText().setText(NPCInstance.getQuote().get("initial"));
             }
@@ -192,11 +200,15 @@ public class Player {
                 Double chance = Math.random();
                 goldAquired = (NPCInstance.getDp()) * luck();
                 String selected = (String) JOptionPane.showInputDialog(null, "What do you want to do?", "You decided to fight", JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
+                if (selected == null || selected.isEmpty()){
+                    break;
+                }
                 switch (selected) {
                     case "fight":
                         gm.getUi().getMessageText().setText(NPCInstance.getName() + "'s current hp is : " + NPCInstance.getHp());
                         gm.getUi().getMessageText().append("You are attacking: " + NPCInstance.getName());
                         if (NPCInstance.getHp() > 0) {
+                            //player gives first attack will hit normal or a chance to hit critical
                             if (chance > 0.2){
                                 NPCInstance.setHp(NPCInstance.getHp() - playerDamage);
                                 gm.getUi().getMessageText().setText("You dealt: " + playerDamage + "\n");
@@ -208,6 +220,7 @@ public class Player {
                                 gm.getUi().getMessageText().setText("You dealt critical damage: " + luckDamage + "\n");
                                 gm.getUi().getMessageText().append(NPCInstance.getName() + "'s hp after attack is : " + NPCInstance.getHp()+"\n");
                             }
+                            //new if starts NPC combat... if they are alive they can hit normal or have a chance to critically wound you
                             if (NPCInstance.getHp() > 0){
                                 Double npcChance = Math.random();
                                 if (npcChance > 0.2){
@@ -222,12 +235,14 @@ public class Player {
                                 }
                             }
                         }
+                        //if you die you lose the game... this is currently the only lose condition in the game
                         if (gm.getPlayer().getHp() <= 0) {
                             gm.getUi().getMessageText().setText("Game over...");
                             gm.getUi().gameStateWindow("img/gameover.png", "img/end.png", "What do you want to do?", "You got wasted!");
                             isFighting = false;
                             break;
                         }
+                        //if you beat npc they are 'wasted' and drop items they are carrying plus gold or if no items, they just give gold
                         if (NPCInstance.getHp() <= 0 && !NPCInstance.getItems().isEmpty()) {
                             gm.getUi().getMessageText().append("Wasted " + NPCInstance.getName() + "!" + "\n");
                             gm.getUi().deleteObject(NPCInstance.getName());
@@ -270,10 +285,12 @@ public class Player {
     // dialogue to accept quest from NPC
     private void handleQuest(String name) {
         Character NPCInstance = gm.getGame().getCharacters().stream().filter(npc -> npc.getName().equals(name)).findFirst().orElse(null);
-        if (NPCInstance.getItems().isEmpty()) {  //if quest npc has no items do normal talk
+        //if quest npc has no items do normal talk
+        if (NPCInstance.getItems().isEmpty()) {
             gm.getUi().getMessageText().setText(NPCInstance.getQuote().get("initial"));
         } else {
-            if (NPCInstance.getQuestReq().isEmpty()) {  //if NPC has items w/ no requirement just give items
+            //if NPC has items w/ no requirement just give items
+            if (NPCInstance.getQuestReq().isEmpty()) {
                 for (String item :
                         NPCInstance.getReward()) {
                     gm.getUi().getInventory().addElement(item);
@@ -282,7 +299,8 @@ public class Player {
                     System.out.println("received item");
                 }
                 gm.getUi().getMessageText().setText(NPCInstance.getQuote().get("reward"));
-            } else {  //else figure out if the player has the required items
+                //else figure out if the player has the required items
+            } else {
                 int i = 0;
                 for (String questReq : NPCInstance.getQuestReq()
                 ) {
@@ -290,13 +308,17 @@ public class Player {
                         i = i + 1;
                     }
                 }
-                if (NPCInstance.getQuestReq().size() == i) {  //if player has all items required
+                //if player has all items required
+                if (NPCInstance.getQuestReq().size() == i) {
 
-                    for (String questReq : NPCInstance.getQuestReq()) {//for each required item remove them
+                    //for each required item remove them
+                    for (String questReq : NPCInstance.getQuestReq()) {
                         inventory.remove(questReq);
                         gm.getUi().getInventory().removeElement(questReq);
                     }
-                    for (String item :  //for each reward give player an item and delete the item from inventory
+
+                    //for each reward give player an item and delete the item from inventory
+                    for (String item :
                             NPCInstance.getReward()) {
                         gm.getUi().getInventory().addElement(item);
                         inventory.add(item);
@@ -306,10 +328,11 @@ public class Player {
                     gm.getUi().getMessageText().setText(NPCInstance.getQuote().get("reward"));
                     System.out.println("npc items: " + NPCInstance.getItems());
 
-                } else {  //if player doesnt haver required quest items do this
+                    //if player doesn't have required quest items do this
+                } else {
                     //quest text
-                    //gives item that helps quest...
                     gm.getUi().getMessageText().setText(NPCInstance.getQuote().get("quest"));
+                    //gives item that helps quest...
                     try {
                         gm.getUi().getInventory().addElement(NPCInstance.getQuote().get("gives"));
                         inventory.add(NPCInstance.getQuote().get("gives"));

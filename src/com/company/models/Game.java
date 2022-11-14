@@ -16,6 +16,7 @@ public class Game {
         this.gm = gm;
     }
 
+    //build worlds takes the json and makes an instance of each entry into corresponding class...then adds to related list
     public void buildWorld(){
         ArrayList<Map<String, Object>> itemData = tools.readJson("item.json");
         ArrayList<Map<String, Object>> locationData = tools.readJson("location.json");

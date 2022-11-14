@@ -17,17 +17,21 @@ public class ActionHandler implements ActionListener {
         this.gm = gm;
     }
 
+    //this function is called from the ui and is the "controller" for all functions of the game
     @Override
     public void actionPerformed(ActionEvent e) {
 
         String yourChoice = e.getActionCommand();
+
+        //Original parser from old game used to pass verb(inputSplit[0]) & noun (inputSplit[1]) into the action switch that follows
         String[] inputSplit = yourChoice.trim().split(" ");
 
+        //if noun is two words add second word
         if (inputSplit.length>2){
             inputSplit[1] = inputSplit[1] +" "+inputSplit[2];
         }
 
-
+        //switch on verb passed from UI, actions passed on to other classes
         switch (inputSplit[0]) {
             case "look":
                 gm.getPlayer().look(inputSplit[1]);
@@ -45,7 +49,6 @@ public class ActionHandler implements ActionListener {
                 break;
             case "drop":
                 gm.getPlayer().dropItem(inputSplit[1]);
-                //gm.getUi().messageText.setText("You try to drop "+ inputSplit[1]);
                 break;
             case "fight":
                 gm.getUi().getNpcName().setText(inputSplit[1]);
@@ -60,9 +63,7 @@ public class ActionHandler implements ActionListener {
                 break;
             case "move":
                 String direction = inputSplit[1];
-                //gm.getUi().getMessageText().setText("you went to area "+ inputSplit[1]);
                 gm.getSc().screenPicker(direction);
-                //gm.getUi().getNpcName().setText("");
                 break;
             case "inventory":
                 gm.getUi().getPlayerBag().setVisible(true);
@@ -111,11 +112,14 @@ public class ActionHandler implements ActionListener {
             default:
                 break;
         }
+
+        //if player is still alive continue playing the game
         if (gm.getPlayer().getHp() > 0){
             gm.getUi().getArea().setText("Current location: " + gm.getPlayer().getCurrentRoom());
 
             Timer timer = new Timer(1000, new ActionListener() {
 
+                //timer used to continue and update the HP & Gold as those parameters change
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     gm.getUi().getHp().setText("HP:" + gm.getPlayer().getHp());
@@ -124,6 +128,7 @@ public class ActionHandler implements ActionListener {
             });
             timer.start();
 
+            //if player equips item, show item in equipment bar
             try {
                 String item = gm.getPlayer().getEquipedItem();
                 Item itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
