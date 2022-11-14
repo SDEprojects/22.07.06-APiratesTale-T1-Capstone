@@ -111,9 +111,6 @@ public class ActionHandler implements ActionListener {
             default:
                 break;
         }
-        if (gm.getPlayer().getHp()<=0){
-            gm.getUi().gameStateWindow("img/gameover.png", "img/end.png", "What do you want to do?", "You got wasted!");
-        }
         if (gm.getPlayer().getHp() > 0){
             gm.getUi().getArea().setText("Current location: " + gm.getPlayer().getCurrentRoom());
 
