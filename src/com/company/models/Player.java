@@ -226,8 +226,8 @@ public class Player {
                             break;
                         }
                         if (NPCInstance.getHp() <= 0) {
-                            gm.getUi().getMessageText().append("Gold dropped: " + goldAquired + "\n");
-                            gm.getUi().getMessageText().setText("Wasted " + NPCInstance.getName() + "!");
+                            gm.getUi().getMessageText().setText("Wasted " + NPCInstance.getName() + "!" + "\n");
+                            gm.getUi().getMessageText().append("Gold dropped: " + goldAquired);
                             gm.getUi().deleteObject(NPCInstance.getName());
                             setGold(goldAquired + gold);
                             isFighting = false;
