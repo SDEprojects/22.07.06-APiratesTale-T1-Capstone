@@ -28,7 +28,7 @@
         "key": "Boat Pass",
         "keyError": "Talk to the pirate and try to requisition the boat pass!"
       },
-      "img": "img/dock.png",
+      "img": "img/mDocks.png",
       "island": "mango",
       "grid": "a1"
     },
@@ -138,7 +138,7 @@
         "east" : "Monkey Trade Center",
         "south" : "Boat2"
       },
-      "img": "img/village.png",
+      "img": "img/moDocks.png",
       "island": "monkey",
       "grid": "d2"
     },
@@ -191,7 +191,7 @@
         "east" : "Monkey Jungle East",
         "north" : "Monkey Jungle NorthWest"
       },
-      "img": "img/village.png",
+      "img": "img/jungle.png",
       "island": "monkey",
       "grid": "c0"
     },
@@ -203,7 +203,7 @@
       "directions": {
         "south" : "Monkey Jungle West"
       },
-      "img": "img/village.png",
+      "img": "img/mJungleNW.png",
       "island": "monkey",
       "grid": "b0"
     },
@@ -228,7 +228,7 @@
       "directions": {
         "south" : "Monkey Fields"
       },
-      "img": "img/village.png",
+      "img": "img/mTemple.png",
       "island": "monkey",
       "grid": "b2"
     },
@@ -241,7 +241,7 @@
         "east" : "Skull Cave",
         "south" : "Boat3"
       },
-      "img": "img/village.png",
+      "img": "img/sDocks.png",
       "island": "skull",
       "grid": "c0"
     },
@@ -296,13 +296,13 @@
         "key": "Skull Key",
         "keyError": "You need the Treasure Room Key, Defeat the Skull King and get the key..."
       },
-      "img": "img/village.png",
+      "img": "img/throneRoom.png",
       "island": "skull",
       "grid": "c2"
     },
     {
       "name": "Treasure Room",
-      "description" : "An extravagant golden glow fills the room.",
+      "description" : "An  extravagant golden glow fills the room.",
       "NPC" : [],
       "items" : ["Treasure Chest"],
       "directions": {
