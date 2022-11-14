@@ -31,9 +31,8 @@ public class Gamble {
 
     }
 
+    //builds the gamble panel
     public void buildGamble() {
-
-
         JLabel finishLine = new JLabel();
         finishLine.setBounds(700,40,20,150);
         finishLine.setBackground(Color.BLACK);
@@ -154,7 +153,9 @@ public class Gamble {
 
     }
 
+
     public void ratRace(){
+        // if player has gold to cover the bet, then they can start the race
         if (gm.getPlayer().getGold()>=getBet()){
             int currentBet = getBet();
             gm.getUi().getMessageText().setText("Let's race! Player betting "+ currentBet+ " on the rat called "+ playerPick);
@@ -166,6 +167,7 @@ public class Gamble {
             rat1.setBounds(106,20,66,65);
             rat2.setBounds(106,60,66,65);
             rat3.setBounds(106,100,66,65);
+            //set name to 0, this is just a count of each turns for each rat
             rat1.setName("0");
             rat2.setName("0");
             rat3.setName("0");
@@ -181,9 +183,9 @@ public class Gamble {
 
                 });
                 thread.start();
-
             }
 
+            //do not end race before all rats finish
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -195,6 +197,7 @@ public class Gamble {
                             ex.printStackTrace();
                         }
                     }
+                    //rats are added to a list, String names are changed to int and we find the lowest time(turns) completed
                     ArrayList<String> ratList = new ArrayList<>();
                     ratList.add(rat1.getName());
                     ratList.add(rat2.getName());
@@ -203,6 +206,7 @@ public class Gamble {
                             .mapToInt(Integer::parseInt)
                             .min()
                             .orElse(0);
+                    //switch on player's pick if players pick name = the winning score they win, else they are loser
                     switch (thisRacePick){
                         case "Big Rat":
                             if (rat1.getName().equals(""+minNum)){
@@ -246,26 +250,28 @@ public class Gamble {
         ActionListener taskPerformer = new ActionListener() {
             int i=0;
             int round=0;
+            //this is a race for each rat ran through the method, finish line currently set to 700
             public void actionPerformed(ActionEvent evt) {
                 if (i > 700) {
                     ((Timer) evt.getSource()).stop();
                     ratsFinished = ratsFinished+1;
                 }
+                //each rat increases their 'speed' by randInt
                 Random r = new Random();
                 int randInt = r.nextInt(100-10) + 10;
                 int speed = randInt;
                 i = (rat.getLocation().x + speed);
                 round = round + 1;
                 rat.setLocation((rat.getLocation().x + speed), rat.getLocation().y);
+                //name is set to round, so that when names compared the rats who have the least amount of rounds, win the race
                 rat.setName((""+round));
-
             }
         };
         new Timer(delay, taskPerformer).start();
 
     }
 
-
+    //getters and setters
     public GameMain getGm() {
         return gm;
     }

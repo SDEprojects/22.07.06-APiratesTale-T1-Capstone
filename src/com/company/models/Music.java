@@ -47,7 +47,7 @@ public class Music {
             }
             getFloatControl().setValue(getCurrentVolume());
 
-           // playCompleted = false;
+            //thread runs music and will stop whenever the stopMusic function sets playCompleted to true
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {

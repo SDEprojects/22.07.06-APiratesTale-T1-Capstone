@@ -16,6 +16,7 @@ public class Shop {
     private int itemCost;
     private String itemSelected;
     private String economyText;
+    //economy only influences prices on these items
     private String[] economyChoices = {"Mango", "Banana", "Cracker"};
 
 
@@ -27,6 +28,7 @@ public class Shop {
 
     public void buildShop() {
 
+        //this builds the shop window
         JButton addQty = new JButton("+ qty");
         addQty.setForeground(Color.black);
         addQty.setFont(gm.getUi().getOldRetro().deriveFont(Font.ITALIC, 15));
@@ -46,8 +48,6 @@ public class Shop {
                         }
                     }
                 }
-
-
                 gm.getUi().getMessageText().setText("Selecting " + getQty()+" "+ getItemSelected()+", at a current price of "+ getItemCost()+" each!\n"
                 +"Currently you own "+ itemsOwned+"!");
             }
@@ -100,7 +100,8 @@ public class Shop {
         gm.getUi().getStorePanel().add(buy);
         gm.getUi().getStorePanel().add(sell);
 
-
+        //this adds The 'Black Pearl' sword...
+        //...it is not influenced by economy which is why this list is different from the global variable up top
         String[] marketChoices = { "Mango", "Banana", "Cracker", "Black Pearl"};
 
         final JComboBox<String> cb = new JComboBox<String>(marketChoices);
@@ -125,16 +126,17 @@ public class Shop {
 
 
     public void shiftEconomy(){
+        //loops through top variable economy items to change prices, simulates shipments coming and going
         for (String item:economyChoices
              ) {
             Item itemInstance = gm.getGame().getItems().stream().filter(itemFind -> itemFind.getName().equals(item)).findFirst().orElse(null);
             Random r = new Random();
             int randInt = r.nextInt(20-1) + 1;
-
             if (randInt>15){
                 itemInstance.setCost(itemInstance.getCost()*2);
                 itemInstance.getQuote().put("market", "This item is in demand and price has increased!");
             } else if (randInt<5){
+                //this else if addresses items that drop to zero price... this makes sure an item is always worth at least one gold
                 if (itemInstance.getCost()<=1){
                     itemInstance.setCost(2);
                 }
@@ -167,7 +169,7 @@ public class Shop {
         int i=0;
         while (qty>0
             ) {
-
+            //If an item is sold for over the player's quantity, this method ensures that player can not sell excess items
             if (gm.getPlayer().getInventory().contains(itemSelected)){
                 i=i+1;
                 gm.getPlayer().getInventory().remove(itemSelected);

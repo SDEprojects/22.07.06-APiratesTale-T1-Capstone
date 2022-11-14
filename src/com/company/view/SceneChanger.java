@@ -17,7 +17,7 @@ public class SceneChanger {
             Location currentLocation = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(gm.getPlayer().getCurrentRoom())).findFirst().orElse(null);
             String nextRoom = currentLocation.getDirections().get(direction);
             Location locationNextRoom = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(nextRoom)).findFirst().orElse(null);
-
+        //try to move to a valid room, if doesn't work catch error and inform player that the move is invalid
         try {
             if (!nextRoom.isEmpty()){
                 gm.getPlayer().setCurrentRoom(nextRoom);
@@ -30,6 +30,7 @@ public class SceneChanger {
             gm.getUi().getMessageText().setText("Location not available to move to!");
         }
         try {
+            //if 'room' has a lock on it does player have key? If not tell player the requirement
             if (currentLocation.getDirections().get("lock").equals(nextRoom)){
                 if (!gm.getPlayer().getInventory().contains(currentLocation.getDirections().get("key"))){
                     gm.getUi().getMessageText().setText("Can't go that way, "+ currentLocation.getDirections().get("keyError"));
@@ -43,6 +44,7 @@ public class SceneChanger {
 
     }
     public void boatScreenPicker(String destination){
+        //a room is passed from player sail method, this does not validate anything and just 'sails' player to the dock of choice
         String nextRoom = destination;
         Location locationNextRoom = gm.getGame().getLocations().stream().filter(locationFind -> locationFind.getName().equals(nextRoom)).findFirst().orElse(null);
             gm.getPlayer().setCurrentRoom(nextRoom);
