@@ -48,7 +48,7 @@ public class ActionHandler implements ActionListener {
                 //gm.getUi().messageText.setText("You try to drop "+ inputSplit[1]);
                 break;
             case "fight":
-                gm.getUi().getMessageText().setText("You try to fight "+ inputSplit[1]);
+                gm.getUi().getNpcName().setText(inputSplit[1]);
                 gm.getPlayer().attack(inputSplit[1]);
                 break;
             case "talk":
