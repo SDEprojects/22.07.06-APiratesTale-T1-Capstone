@@ -179,8 +179,8 @@
       "yaxis": "150",
       "width": "125",
       "height": "125",
-      "keyReq": "Treasure Key",
-      "keyError": "Legend says Monkey King seating on highest hill top Temple on Monkey Island \nhas the KEY to open this chest."
+      "keyReq": "none",
+      "keyError": "none"
     },
     {
       "name" : "Boat Pass",

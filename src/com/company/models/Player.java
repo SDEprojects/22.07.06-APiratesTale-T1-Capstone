@@ -267,12 +267,10 @@ public class Player {
                         }
                         break;
                     case "run":
-                        System.out.println("running");
                         gm.getUi().getMessageText().setText("You ran away from the fight with " + NPCInstance.getName() + "!");
                         isFighting = false;
                         break;
                     default:
-                        System.out.println("nothing happened");
                         break;
                 }
             }
@@ -296,7 +294,6 @@ public class Player {
                     gm.getUi().getInventory().addElement(item);
                     inventory.add(item);
                     NPCInstance.getItems().remove(item);
-                    System.out.println("received item");
                 }
                 gm.getUi().getMessageText().setText(NPCInstance.getQuote().get("reward"));
                 //else figure out if the player has the required items
@@ -323,10 +320,8 @@ public class Player {
                         gm.getUi().getInventory().addElement(item);
                         inventory.add(item);
                         NPCInstance.getItems().remove(item);
-                        System.out.println("received quest reward item");
                     }
                     gm.getUi().getMessageText().setText(NPCInstance.getQuote().get("reward"));
-                    System.out.println("npc items: " + NPCInstance.getItems());
 
                     //if player doesn't have required quest items do this
                 } else {
@@ -336,7 +331,6 @@ public class Player {
                     try {
                         gm.getUi().getInventory().addElement(NPCInstance.getQuote().get("gives"));
                         inventory.add(NPCInstance.getQuote().get("gives"));
-                        System.out.println("received item");
                     } catch (Exception ignored) {
 
                     }

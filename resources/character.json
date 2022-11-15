@@ -3,7 +3,7 @@
       "name": "Sad Traveler",
       "quote": {
         "quest" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned map and see if your luck is any better than mine.\n",
-        "reward" : "\nHey kid, you look like an enthusiastic adventurer.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\nHere, take this darned map and see if your luck is any better than mine.\n",
+        "reward" : "\nHey adventurer, you look like someone who is up for a challenge.\nI am a weary traveler who has been searching for a secret treasure for years, with no luck in my pursuit.\n\nI have found out that the monkey king holds the key to this treasure kept on skull island, you should visit the king for further direction.\n",
         "initial" : "Safe travels, kid...",
         "sfx": "music/welcome.wav"
         },
@@ -27,7 +27,7 @@
         "gives" : "Cracker",
         "reward":"\nOh jolly, you found Polly. Thank you so much! Hey it’s a dangerous world out there.\nGo see the blacksmith for a SWORD, and then we will set sail when you're ready.\nBoard the ship, and type GO followed by the name of your desired island, and we can get sailing.\n",
         "initial": "\nArrggh!!!!\n",
-        "sfx": "music/arrr.wav"
+        "sfx": "music/capRon.wav"
       },
       "items": [
         "Cracker", "Boat Pass"
@@ -67,18 +67,18 @@
     {
       "name": "Uncle",
       "quote": {
-        "reward": "\nHey Nephew, it’s great to see you. I’ve heard you are on a big adventure.\nIt’s a dangerous world out there, so I fashioned you this SWORD to take.\nAlso, take this MANGO, if you fall ill it will replenish 5pts. of your health. Be safe out there.\n",
+        "reward": "\nHey Nephew, it’s great to see you. I’ve heard you are on a big adventure.\nIt’s a dangerous world out there, so I fashioned you this SWORD to take.\nAlso, take this MANGO, if you fall ill it will replenish 5hp of your health. Be safe out there.\n",
         "initial" : "Come back to visit anytime Nephew.",
         "sfx": "music/tradeguil.wav"
       },
       "items": [
-        "Sword", "Red Key"
+        "Sword", "Mango"
       ],
       "hp": "50",
       "isFriendly": true,
       "dp" : "10",
       "questReq" : [],
-      "reward" : ["Sword", "Red Key"],
+      "reward" : ["Sword", "Mango"],
       "img": "img/uncle.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -166,8 +166,8 @@
     {
       "name": "Helmsman Jerry",
       "quote": {
-        "initial": "Where to sail Pirate ??",
-        "sfx":""
+        "initial": "Welcome to my boat, let me know where to sail Adventurer?",
+        "sfx":"music/arrr.wav"
       },
       "items": [],
       "hp": "300",
@@ -185,8 +185,8 @@
     {
       "name": "Helmsman Barry",
       "quote": {
-        "initial": "Where to sail Pirate ??",
-        "sfx":""
+        "initial": "Welcome to my boat, let me know where to sail Adventurer?",
+        "sfx":"music/arrr.wav"
       },
       "items": [],
       "hp": "300",
@@ -204,8 +204,8 @@
     {
       "name": "Helmsman Harry",
       "quote": {
-        "initial": "Where to sail Pirate ??",
-        "sfx":""
+        "initial": "Welcome to my boat, let me know where to sail Adventurer?",
+        "sfx":"music/arrr.wav"
       },
       "items": [],
       "hp": "300",
@@ -301,8 +301,8 @@
     {
       "name": "Monkey King",
       "quote": {
-        "quest" : "\nI have no time to speak with outsiders. \nThere are vile monsters invading our Bananas stash in the east, \n and my son the MONKEY PRINCE has not returned from playing in the Eastern jungle.",
-        "reward" : "\nImpressive outsider, you have restored peace to our bananas stash, and saved the Prince. As a reward I give you this key.\nIt is said to be the key to opening the secret treasure of Skull Island.\nSkull Island is a dangerous place, take one of our sacred bananas. If you fall ill, it will replenish 10pts. of your health.\n",
+        "quest" : "\nI have no time to speak with outsiders. If you want help on your quest for treasure I have TWO tasks for you! \n\nThere is a vile monster invading our 'BANANA STASH' in the east please get rid of him and bring me his skull!\n\nNext my son the 'MONKEY PRINCE' has not returned from playing in the jungle located on the west side of the island, bring evidence of his well being.",
+        "reward" : "\nImpressive outsider, you have restored peace to our 'BANANA STASH', and located the 'PRINCE'. \n\nAs a reward I give you this key. It is said to be the key to opening the secret treasure of Skull Island.\n\nSkull Island is a dangerous place, take one of our sacred bananas. It will replenish 10hp of your health.\n",
         "initial": "\nI am the Monkey King.",
         "quit" : "Hmmmm farewell...",
         "sfx":"music/some animal noise.wav"
