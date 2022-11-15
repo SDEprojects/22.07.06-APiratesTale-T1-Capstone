@@ -27,7 +27,7 @@
         "gives" : "Cracker",
         "reward":"\nOh jolly, you found Polly. Thank you so much! Hey it’s a dangerous world out there.\nGo see the blacksmith for a SWORD, and then we will set sail when you're ready.\nBoard the ship, and type GO followed by the name of your desired island, and we can get sailing.\n",
         "initial": "\nArrggh!!!!\n",
-        "sfx": "music/arrr.wav"
+        "sfx": "music/capRon.wav"
       },
       "items": [
         "Cracker", "Boat Pass"
@@ -67,18 +67,18 @@
     {
       "name": "Uncle",
       "quote": {
-        "reward": "\nHey Nephew, it’s great to see you. I’ve heard you are on a big adventure.\nIt’s a dangerous world out there, so I fashioned you this SWORD to take.\nAlso, take this MANGO, if you fall ill it will replenish 5pts. of your health. Be safe out there.\n",
+        "reward": "\nHey Nephew, it’s great to see you. I’ve heard you are on a big adventure.\nIt’s a dangerous world out there, so I fashioned you this SWORD to take.\nAlso, take this MANGO, if you fall ill it will replenish 5hp of your health. Be safe out there.\n",
         "initial" : "Come back to visit anytime Nephew.",
         "sfx": "music/tradeguil.wav"
       },
       "items": [
-        "Sword", "Red Key"
+        "Sword", "Mango"
       ],
       "hp": "50",
       "isFriendly": true,
       "dp" : "10",
       "questReq" : [],
-      "reward" : ["Sword", "Red Key"],
+      "reward" : ["Sword", "Mango"],
       "img": "img/uncle.png",
       "xaxis": "60",
       "yaxis": "65",
@@ -166,8 +166,8 @@
     {
       "name": "Helmsman Jerry",
       "quote": {
-        "initial": "Where to sail Pirate ??",
-        "sfx":""
+        "initial": "Welcome to my boat, let me know where to sail Adventurer?",
+        "sfx":"music/arrr.wav"
       },
       "items": [],
       "hp": "300",
@@ -185,8 +185,8 @@
     {
       "name": "Helmsman Barry",
       "quote": {
-        "initial": "Where to sail Pirate ??",
-        "sfx":""
+        "initial": "Welcome to my boat, let me know where to sail Adventurer?",
+        "sfx":"music/arrr.wav"
       },
       "items": [],
       "hp": "300",
@@ -204,8 +204,8 @@
     {
       "name": "Helmsman Harry",
       "quote": {
-        "initial": "Where to sail Pirate ??",
-        "sfx":""
+        "initial": "Welcome to my boat, let me know where to sail Adventurer?",
+        "sfx":"music/arrr.wav"
       },
       "items": [],
       "hp": "300",
